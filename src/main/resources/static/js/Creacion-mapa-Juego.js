@@ -1,7 +1,7 @@
 const board_border = 'black';
 const board_background = "white";
 const Monster_col = 'lightblue';
-const monster_border = 'darkblue';
+const monster_border = 'black';
 
 let Monstruo = [
   {x: 400, y: 400}
