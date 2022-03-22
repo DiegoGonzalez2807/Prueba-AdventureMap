@@ -1,11 +1,15 @@
 const Monster_col = 'red';
 const monster_border = 'black';
+
+
 let Monstruo = [
-  {x: 400, y: 400}
+  {x: 200, y: 200},
+  {x: 150, y: 150},
+  {x: 1, y: 1}
 ]
 
-const GameCanvas = document.getElementById("gameCanvas");
-const GameCanvas_ctx = GameCanvas.getContext("2d");
+const GameCanva = document.getElementById("gameCanvas");
+const GameCanva_ctx = GameCanvas.getContext("2d");
 main();
 
 
@@ -21,8 +25,8 @@ function drawMonster() {
 
 function drawMonsterPart(MonsterPart) {
 
-    GameCanvas_ctx.fillStyle = Monster_col;
-    GameCanvas_ctx.strokestyle = monster_border;
-    GameCanvas_ctx.fillRect(MonsterPart.x, MonsterPart.y, 10, 10);
-    GameCanvas_ctx.strokeRect(MonsterPart.x, MonsterPart.y, 10, 10);
+    GameCanva_ctx.fillStyle = Monster_col;
+    GameCanva_ctx.strokestyle = monster_border;
+    GameCanva_ctx.fillRect(MonsterPart.x, MonsterPart.y, 10, 10);
+    GameCanva_ctx.strokeRect(MonsterPart.x, MonsterPart.y, 10, 10);
 }

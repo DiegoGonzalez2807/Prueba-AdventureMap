@@ -16,14 +16,36 @@
         <h1 class="text-danger"> Adventure Map </h1>
     </div>
     <hr>
+    <div class="d-md-flex flex-md-row">
+        <div class="card" style="width: 90%; margin: 2%; padding: 2%;">
+            <h3 class="text-primary" id="authorName">Top Scores</h3>
+            <div class="card-body" >
+                <table class="table table-bordered" id="tableBluePrints">
+                    <thead>
+                    <tr>
+                        <th scope="col">Jugador</th>
+                        <th scope="col">Puntos</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <hr>
+                <div>
+                    <p id="totalPoints" style="font-weight: bold;">Pelear</p>
+                </div>
+            </div>
+        </div>
         <div class="card" style="width: 90%; margin: 2%; padding: 2%;">
             <h3 class="text-primary" id="Mapa de juego"> Juego:  </h3>
             <br>
             <br>
-            <canvas id="gameCanvas" width="800px" height="800px" style="border:1px solid #000000;"></canvas>
+            <canvas id="gameCanvas" width="400px" height="400px" style="border:1px solid #000000;"></canvas>
         </div>
     </div>
 </main>
+
+
 <script src="js/Creacion-mapa-Juego.js"></script>
 <script src="js/Monstruos.js"></script>
 </body>
