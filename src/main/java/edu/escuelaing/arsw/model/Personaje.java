@@ -1,4 +1,4 @@
-package edu.eci.arsw.model;
+package edu.escuelaing.arsw.model;
 
 /**
  * Clase que simula un personaje en el juego

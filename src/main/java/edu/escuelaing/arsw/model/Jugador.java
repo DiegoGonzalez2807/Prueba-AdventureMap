@@ -1,4 +1,4 @@
-package edu.eci.arsw.model;
+package edu.escuelaing.arsw.model;
 
 public class Jugador extends Personaje{
 

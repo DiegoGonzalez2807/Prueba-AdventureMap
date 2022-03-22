@@ -1,4 +1,4 @@
-package edu.eci.arsw.model;
+package edu.escuelaing.arsw.model;
 
 import java.awt.*;
 

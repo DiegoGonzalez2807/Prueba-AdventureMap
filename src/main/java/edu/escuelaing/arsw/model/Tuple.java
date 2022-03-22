@@ -1,4 +1,4 @@
-package edu.eci.arsw.model;
+package edu.escuelaing.arsw.model;
 
 /**
  * Clase que simula una tupla conformado por una coordenada x e y
