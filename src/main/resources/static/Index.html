@@ -7,6 +7,8 @@
     <title>Adventure Map</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/App.js"></script>
@@ -14,7 +16,7 @@
     <body>
         <form>
             <h2>Ingresa nombre de Jugador</h2>
-            <input type="text" placeholder="Nombre de tu Jugador">
+            <input id="playerName" type="text" placeholder="Nombre de tu Jugador">
             <input type="button" value="Entrar" onclick="app.redirect()">
         </form>
     </body>
