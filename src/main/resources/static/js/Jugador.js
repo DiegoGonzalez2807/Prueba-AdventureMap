@@ -41,55 +41,68 @@ function clear_board() {
 
 var movimiento = (function(){
 
+    function comprobar_bordesx(dx) {
+        const hitLeftWallp = dx < 0;
+        const hitRightWallp = dx > GameCanvasp.width - 10;
+
+        return hitLeftWallp ||  hitRightWallp;
+    }
+
+    function comprobar_bordesy(dy){
+        const hitToptWallp = dy < 0;
+        const hitBottomWallp = dy > GameCanvasp.height -10;
+        return hitToptWallp || hitBottomWallp;
+    }
+
     function move_monsterderecha() {
           let dx = 10;
           let dy = 0;
-          console.info("entrode")
           console.info(jugadores)
-          jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
-          console.info(jugadores)
-          clear_board();
-          maint();
-          mainM();
-          main();
+          if (!(comprobar_bordesx(jugadores.x + dx)  )){
+               jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
+               clear_board();
+               maint();
+               mainM();
+               main();
+          }
     }
 
     function move_monsterizquierda() {
-              let dx = -10;
-              let dy = 0;
-              console.info("entroiz")
+          let dx = -10;
+          let dy = 0;
+          if (!(comprobar_bordesx(jugadores.x + dx)  )){
               jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
-              console.info(jugadores)
               clear_board();
               maint();
               mainM();
               main();
+          }
 
     }
 
     function move_monsterarriba() {
-              let dx = 0;
-              let dy = 10;
-              console.info("entroar")
-              jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
-              console.info(jugadores)
-              clear_board();
-              maint();
-              mainM();
-              main();
+          let dx = 0;
+          let dy = 10;
+          if(!(comprobar_bordesy(jugadores.y + dy))){
+               jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
+               clear_board();
+               maint();
+               mainM();
+               main();
+          }
     }
 
     function move_monsterabajo() {
-              let dx = 0;
-              let dy = -10;
-              console.info("entroa")
-              jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
-              console.info(jugadores)
-              clear_board();
-              maint();
-              mainM();
-              main();
-        }
+          let dx = 0;
+          let dy = -10;
+          if(!(comprobar_bordesy(jugadores.y + dy))){
+                  jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
+                  clear_board();
+                  maint();
+                  mainM();
+                  main();
+          }
+    }
 
     return{
         derecha:move_monsterderecha,
