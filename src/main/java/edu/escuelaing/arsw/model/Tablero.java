@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLongArray;
 
-import javafx.css.PseudoClass;
 
 /**
  * Clase que simula el tablero de juego, en este se guardan lo personajes ya sea monstruo o jugador de la partida.
