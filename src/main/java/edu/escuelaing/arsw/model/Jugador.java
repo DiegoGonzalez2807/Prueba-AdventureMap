@@ -12,4 +12,15 @@ public class Jugador extends Personaje{
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString(){
+        return "Jugador{Nombre: "+nombre+super.toString()+"}";
+    }
+
+    //COnsultar estado jugador
+
+    //Decidir
+
+    
+
 }

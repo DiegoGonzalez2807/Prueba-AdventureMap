@@ -10,4 +10,9 @@ public class Monstruo extends Personaje{
         super(coordenada);
     }
 
+    @Override
+    public String toString(){
+        return "Monstruo{"+super.toString()+"}";
+    }
+
 }

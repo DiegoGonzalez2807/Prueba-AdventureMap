@@ -5,9 +5,9 @@ package edu.escuelaing.arsw.model;
  */
 public abstract class Personaje{
 
-    private Tuple coordenadas;
-    private int vida;
-    private int dano;
+    protected Tuple coordenadas;
+    protected int vida;
+    protected int dano;
     public static int VIDA = 100;
     public static int DANO = 10;
 
@@ -15,6 +15,11 @@ public abstract class Personaje{
         this.coordenadas = coordenada;
     }
 
+    @Override
+    public String toString(){
+        return "Coordenadas:"+this.coordenadas+" vida:"+this.vida+" dano: "+this.dano;
+    }
+  
     //Atacar
 
     //Moverse
