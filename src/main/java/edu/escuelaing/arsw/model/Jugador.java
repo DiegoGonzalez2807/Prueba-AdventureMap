@@ -1,5 +1,7 @@
 package edu.escuelaing.arsw.model;
 
+import edu.escuelaing.arsw.persistence.AdventureMapPersistenceException;
+
 public class Jugador extends Personaje{
 
     private String nombre;
@@ -7,8 +9,8 @@ public class Jugador extends Personaje{
     private int bajaMonstruos;
 
 
-    public Jugador(Tuple coordenada, String nombre) {
-        super(coordenada);
+    public Jugador(Tuple coordenada, String nombre, Tablero tablero) {
+        super(coordenada, tablero);
         this.nombre = nombre;
     }
 
@@ -17,9 +19,21 @@ public class Jugador extends Personaje{
         return "Jugador{Nombre: "+nombre+super.toString()+"}";
     }
 
-    //COnsultar estado jugador
 
-    //Decidir
+    /**
+     * Simula la accion segun la decision del personaje
+     * Si en la accion se decide pelear, se procede a entrar a la pelea
+     * Si en la accion se decide huir, se procede a moverse a una casilla vacia al rededor
+     * @param accion
+     */ 
+    public void decidir(String accion) throws AdventureMapPersistenceException{
+        switch (accion){
+            case "Pelear":
+                //Pelear
+            case "Huir":
+                //Huir
+        }
+    }
 
     
 

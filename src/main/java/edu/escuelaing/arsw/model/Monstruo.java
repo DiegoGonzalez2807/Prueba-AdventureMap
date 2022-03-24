@@ -6,8 +6,8 @@ public class Monstruo extends Personaje{
 
     private Image imagen;
 
-    public Monstruo(Tuple coordenada){
-        super(coordenada);
+    public Monstruo(Tuple coordenada, Tablero tablero){
+        super(coordenada, tablero);
     }
 
     @Override
