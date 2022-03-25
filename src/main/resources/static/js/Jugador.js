@@ -19,7 +19,6 @@ function main() {
 }
 
 function drawPlayer() {
-   console.log("preuba netrar");
    drawjugadoresPart(jugadores);
 }
 
