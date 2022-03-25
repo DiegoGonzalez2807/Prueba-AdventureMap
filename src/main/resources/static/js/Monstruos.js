@@ -6,6 +6,8 @@ const GameCanva = document.getElementById("gameCanvas");
 const GameCanva_ctx = GameCanvas.getContext("2d");
 const movement = [-10, 10]
 
+var booleans = [];
+
 
 let Monstruo = [
   {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
@@ -56,27 +58,46 @@ function drawMonsterPart(MonsterPart) {
     GameCanva_ctx.strokeRect(MonsterPart.x, MonsterPart.y, 10, 10);
 }
 
-function comprobar_bordesx(dx) {
+function comprobar_bordesx(dx, i) {
     const hitLeftWall = dx < 0;
     const hitRightWall = dx > GameCanva.width - 10;
-
     return hitLeftWall ||  hitRightWall;
 }
 
-function comprobar_bordesy(dy){
+function comprobar_bordesy(dy, i){
     const hitToptWall = dy < 0;
     const hitBottomWall = dy > GameCanva.height -10;
+
     return hitToptWall || hitBottomWall;
 }
 
-function comprobar_otro_monstruo1(monstruo){
+function comprobar_otro_monstruo(monstruo, i){
 
-    const another_monster1 =  (monstruo.x === Monstruo[1].x && monstruo.y === Monstruo[1].y);
-    const another_monster2 =  (monstruo.x === Monstruo[2].x && monstruo.y === Monstruo[2].y);
-    const another_monster3 =  (monstruo.x === Monstruo[3].x && monstruo.y === Monstruo[3].y);
-    const another_monster4 =  (monstruo.x === Monstruo[4].x && monstruo.y === Monstruo[4].y);
+       var another_monster0 = false;
+       var another_monster1 = false;
+       var another_monster2 = false;
+       var another_monster3 = false;
+       var another_monster4 = false;
 
-    return another_monster1 && another_monster2 && another_monster3 && another_monster4;
+       if(i === 0){
+               another_monster0 = (monstruo.x == Monstruo[0].x && monstruo.y == Monstruo[0].y);
+       }
+       if(i === 1){
+              another_monster1 = (monstruo.x == Monstruo[1].x && monstruo.y == Monstruo[1].y);
+       }
+       if(i === 2){
+              another_monster2 = (monstruo.x == Monstruo[2].x && monstruo.y == Monstruo[2].y);
+       }
+       if(i === 3){
+              another_monster3 = (monstruo.x == Monstruo[3].x && monstruo.y == Monstruo[3].y);
+       }
+       if(i === 4){
+              another_monster4 = (monstruo.x == Monstruo[4].x && monstruo.y == Monstruo[4].y);
+       }
+
+
+       return another_monster0 && another_monster1 && another_monster2 && another_monster3 && another_monster4;
+
 }
 
 function move_monster(i) {
@@ -91,10 +112,9 @@ function move_monster(i) {
       }
       if (!(comprobar_bordesx(Monstruo[i].x + dx))){
         if(!(comprobar_bordesy(Monstruo[i].y + dy))){
-            Monstruo[i] = {x: Monstruo[i].x + dx, y: Monstruo[i].y + dy}
-            var prueba = comprobar_otro_monstruo1(Monstruo[i]);
-            console.info(prueba);
-            console.info(i);
+            if(!(comprobar_otro_monstruo({x: Monstruo[i].x + dx, y: Monstruo[i].y + dy}, i))){
+                Monstruo[i] = {x: Monstruo[i].x + dx, y: Monstruo[i].y + dy};
+            }
         }
       }
 
