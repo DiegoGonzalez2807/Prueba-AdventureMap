@@ -2,14 +2,15 @@ const player_col = 'blue';
 const player_border = 'black';
 const board_borderr = 'black';
 const board_backgroundr = "white";
-
-
-
-let jugadores = {x: 100, y: 100}
-
-
 const GameCanvasp = document.getElementById("gameCanvas");
 const GameCanvasp_ctx = GameCanvasp.getContext("2d");
+
+
+
+let jugadores = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
+
+
+
 main();
 
 
@@ -22,6 +23,10 @@ function drawPlayer() {
    drawjugadoresPart(jugadores);
 }
 
+function random_player(min, max)
+{
+   return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+}
 
 function drawjugadoresPart(MonsterPart) {
 

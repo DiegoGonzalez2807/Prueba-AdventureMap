@@ -2,19 +2,19 @@ const Monster_col = 'red';
 const monster_border = 'black';
 const board_borderm = 'black';
 const board_backgroundm = "white";
-
+const GameCanva = document.getElementById("gameCanvas");
+const GameCanva_ctx = GameCanvas.getContext("2d");
 
 
 let Monstruo = [
-  {x: 200, y: 200},
-  {x: 150, y: 150},
-  {x: 1, y: 1},
-  {x: 390, y:370},
-  {x: 40, y:170}
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)}
 ]
 
-const GameCanva = document.getElementById("gameCanvas");
-const GameCanva_ctx = GameCanvas.getContext("2d");
+
 mainM();
 
 
@@ -25,6 +25,11 @@ function mainM() {
     move_monster3();
     move_monster4();
     move_monster5();
+}
+
+function random_monster(min, max)
+{
+   return Math.round((Math.random() * (max-min) + min) / 10) * 10;
 }
 
 function drawMonster() {
