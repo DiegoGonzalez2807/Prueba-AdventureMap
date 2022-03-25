@@ -7,6 +7,7 @@ const GameCanva_ctx = GameCanvas.getContext("2d");
 const movement = [-10, 10]
 
 var booleans = [];
+var jugadores_M = [];
 
 
 let Monstruo = [
@@ -71,6 +72,11 @@ function comprobar_bordesy(dy, i){
     return hitToptWall || hitBottomWall;
 }
 
+function comprobar_jugador(monstruo){
+    var player0 = (jugadores.x === Monstruo[0].x && jugadores.y === Monstruo[0].y);
+    return player0;
+}
+
 function comprobar_otro_monstruo(monstruo, i){
 
        var another_monster0 = false;
@@ -80,23 +86,23 @@ function comprobar_otro_monstruo(monstruo, i){
        var another_monster4 = false;
 
        if(i === 0){
-               another_monster0 = (monstruo.x == Monstruo[0].x && monstruo.y == Monstruo[0].y);
+               another_monster0 = (monstruo.x === Monstruo[0].x && monstruo.y === Monstruo[0].y);
        }
        if(i === 1){
-              another_monster1 = (monstruo.x == Monstruo[1].x && monstruo.y == Monstruo[1].y);
+              another_monster1 = (monstruo.x === Monstruo[1].x && monstruo.y === Monstruo[1].y);
        }
        if(i === 2){
-              another_monster2 = (monstruo.x == Monstruo[2].x && monstruo.y == Monstruo[2].y);
+              another_monster2 = (monstruo.x === Monstruo[2].x && monstruo.y === Monstruo[2].y);
        }
        if(i === 3){
-              another_monster3 = (monstruo.x == Monstruo[3].x && monstruo.y == Monstruo[3].y);
+              another_monster3 = (monstruo.x === Monstruo[3].x && monstruo.y === Monstruo[3].y);
        }
        if(i === 4){
-              another_monster4 = (monstruo.x == Monstruo[4].x && monstruo.y == Monstruo[4].y);
+              another_monster4 = (monstruo.x === Monstruo[4].x && monstruo.y === Monstruo[4].y);
        }
 
 
-       return another_monster0 && another_monster1 && another_monster2 && another_monster3 && another_monster4;
+       return another_monster0 || another_monster1 || another_monster2 || another_monster3 || another_monster4;
 
 }
 
@@ -114,6 +120,10 @@ function move_monster(i) {
         if(!(comprobar_bordesy(Monstruo[i].y + dy))){
             if(!(comprobar_otro_monstruo({x: Monstruo[i].x + dx, y: Monstruo[i].y + dy}, i))){
                 Monstruo[i] = {x: Monstruo[i].x + dx, y: Monstruo[i].y + dy};
+                if(comprobar_jugador(Monstruo[i])){
+                    console.info("encontro jugador el monstruo:")
+                    console.info(i)
+                }
             }
         }
       }
