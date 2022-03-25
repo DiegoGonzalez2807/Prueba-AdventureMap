@@ -9,7 +9,7 @@ public class Jugador extends Personaje{
     private int bajaMonstruos;
 
 
-    public Jugador(Tuple coordenada, String nombre, Tablero tablero) {
+    public Jugador(Tuple coordenada, String nombre, Tablero tablero) throws AdventureMapPersistenceException{
         super(coordenada, tablero);
         this.nombre = nombre;
     }
@@ -35,6 +35,17 @@ public class Jugador extends Personaje{
         }
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getBajaJugadores() {
+        return bajaJugadores;
+    }
+
+    public int getBajaMonstruos() {
+        return bajaMonstruos;
+    }
     
 
 }

@@ -15,9 +15,14 @@ public abstract class Personaje{
     public static int VIDA = 100;
     public static int DANO = 10;
 
-    public Personaje(Tuple coordenada, Tablero tablero){
+    public Personaje(Tuple coordenada, Tablero tablero) throws AdventureMapPersistenceException{
         this.coordenadas = coordenada;
         this.tablero = tablero;
+        try{
+            tablero.ingresarPersonaje(coordenada,this);
+        }catch(AdventureMapPersistenceException e){
+            throw e;
+        }
         this.dano = DANO;
         this.vida = VIDA;
     }
@@ -66,6 +71,22 @@ public abstract class Personaje{
         tablero.moverPersonaje(coordenadas, destino);
     }
     //Moverse
+
+    public Tuple getCoordenadas() {
+        return coordenadas;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public int getDano() {
+        return dano;
+    }
 
 
 

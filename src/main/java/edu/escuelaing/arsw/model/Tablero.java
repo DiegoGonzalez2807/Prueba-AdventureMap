@@ -16,9 +16,13 @@ import edu.escuelaing.arsw.persistence.AdventureMapPersistenceException;
 public class Tablero {
 
     //Tablero del juego
-    private ConcurrentHashMap<Tuple,Personaje> tablero;
+    private ConcurrentHashMap<String,Personaje> tablero;
 
-    public static Tablero getTablero(){
+    /**
+     * Retorna un nuevo tablero de juego
+     * @return
+     */
+    public final static Tablero getTableroJuego(){
         return new Tablero();
     }
 
@@ -34,7 +38,7 @@ public class Tablero {
     public void moverPersonaje(Tuple begin, Tuple end) throws AdventureMapPersistenceException{
         try{
             Personaje personaje = tablero.remove(begin);
-            tablero.put(end, personaje);
+            tablero.put(end.toString(), personaje);
         }catch(Exception e){
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
         }
@@ -50,12 +54,12 @@ public class Tablero {
      */
     public boolean ingresarPersonaje(Tuple pos, Personaje p) throws AdventureMapPersistenceException{
         boolean isOk = false;//Informa si se inserto el personaje
-        try{
-            tablero.put(pos,p);
-            isOk = true;
-        }catch(Exception e){
-            throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
-        }
+            if(tablero.get(pos.toString()) == null){
+                tablero.put(pos.toString(),p);
+                isOk = true;
+            }else{
+                throw new AdventureMapPersistenceException("No es posible ingresar al personaje en la posicicion ("+pos.getX()+","+pos.getY()+")");    
+            }
         return isOk;
 
     }
@@ -68,10 +72,10 @@ public class Tablero {
     public Personaje getPersonaje(Tuple pos) throws AdventureMapNotFoundException, AdventureMapPersistenceException{
         Personaje p;
         try{
-            p = tablero.get(pos);
+            p = tablero.get(pos.toString());
             // En caso que no se encuentre un elemento en el tablero en la posicion.
             if(p == null){
-                throw new AdventureMapNotFoundException("Personaje no encontrado en la posicion:("+pos.x+","+pos.y+")");
+                throw new AdventureMapNotFoundException("Personaje no encontrado en la posicion:("+pos.getX()+","+pos.getY()+")");
             }
         }catch(Exception e){
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
@@ -87,7 +91,7 @@ public class Tablero {
     public boolean isPlayer(Tuple pos) throws AdventureMapPersistenceException{
         boolean isPlayer = false;
         try{
-            Personaje p =tablero.get(pos);    
+            Personaje p =tablero.get(pos.toString());    
             if(p != null){
                 isPlayer = true;
             }
@@ -95,6 +99,10 @@ public class Tablero {
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause()); 
         }
         return isPlayer;
+    }
+
+    public ConcurrentHashMap<String,Personaje> getTablero(){
+        return this.tablero;
     }
 
     
