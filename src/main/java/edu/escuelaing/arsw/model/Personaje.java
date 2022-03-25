@@ -18,6 +18,8 @@ public abstract class Personaje{
     public Personaje(Tuple coordenada, Tablero tablero){
         this.coordenadas = coordenada;
         this.tablero = tablero;
+        this.dano = DANO;
+        this.vida = VIDA;
     }
 
     @Override
@@ -37,15 +39,31 @@ public abstract class Personaje{
      * @param enemigo Posicion en el mapa del enemigo a atacar.
      */
     public void atacar(Tuple enemigo) throws AdventureMapNotFoundException,AdventureMapPersistenceException{
+        Personaje p = tablero.getPersonaje(enemigo);
+        try{p.sufrirAtaque(dano);}
+        catch(AdventureMapPersistenceException e){
+            throw e;
+        }
 
     }
     //Atacar
 
     /**
+     * Accion que simula recibir un ataque
+     * @param dano Daño sufrido al personaje
+     */
+    public void sufrirAtaque(int dano) throws AdventureMapPersistenceException{
+        this.vida -= dano;
+        if(this.vida<=0){
+            throw new AdventureMapPersistenceException(AdventureMapPersistenceException.EXCEPCTION_MUERTEJUGADOR);
+        }
+    }
+
+    /**
      * Accion que simula el movimiento de un personaje en el tablero de juego
      */
     public void mover(Tuple destino) throws AdventureMapPersistenceException{
-
+        tablero.moverPersonaje(coordenadas, destino);
     }
     //Moverse
 
