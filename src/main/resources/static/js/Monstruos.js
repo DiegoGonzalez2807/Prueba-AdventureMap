@@ -4,6 +4,7 @@ const board_borderm = 'black';
 const board_backgroundm = "white";
 const GameCanva = document.getElementById("gameCanvas");
 const GameCanva_ctx = GameCanvas.getContext("2d");
+const movement = [-10, 10]
 
 
 let Monstruo = [
@@ -27,9 +28,12 @@ function mainM() {
     move_monster5();
 }
 
-function random_monster(min, max)
-{
+function random_monster(min, max){
    return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+}
+
+function random_movement(){
+   return movement[Math.floor(Math.random() * movement.length)];
 }
 
 function drawMonster() {
@@ -66,8 +70,16 @@ function comprobar_bordesy(dy){
     }
 
 function move_monster1() {
-      let dx = 10;
+      let dx = 0;
       let dy = 0;
+      const xoy = Math.floor(Math.random() * 2)
+      if (xoy == 0){
+        dx = random_movement();
+      }
+      else{
+        dy = random_movement();
+      }
+
       if (!(comprobar_bordesx(Monstruo[0].x + dx)  )){
         if(!(comprobar_bordesy(Monstruo[0].y + dy))){
             Monstruo[0] = {x: Monstruo[0].x + dx, y: Monstruo[0].y + dy}
@@ -76,8 +88,15 @@ function move_monster1() {
 }
 
 function move_monster2() {
-      let dx = -10;
-      let dy = 0;
+      let dx = 0;
+            let dy = 0;
+            const xoy = Math.floor(Math.random() * 2)
+            if (xoy == 0){
+              dx = random_movement();
+            }
+            else{
+              dy = random_movement();
+            }
       if (!(comprobar_bordesx(Monstruo[1].x + dx)  )){
               if(!(comprobar_bordesy(Monstruo[1].y + dy))){
                 Monstruo[1] = {x: Monstruo[1].x + dx, y: Monstruo[1].y + dy}
@@ -87,7 +106,14 @@ function move_monster2() {
 
 function move_monster3() {
       let dx = 0;
-      let dy = -10;
+            let dy = 0;
+            const xoy = Math.floor(Math.random() * 2)
+            if (xoy == 0){
+              dx = random_movement();
+            }
+            else{
+              dy = random_movement();
+            }
       if (!(comprobar_bordesx(Monstruo[2].x + dx)  )){
               if(!(comprobar_bordesy(Monstruo[2].y + dy))){
                     Monstruo[2] = {x: Monstruo[2].x + dx, y: Monstruo[2].y + dy}
@@ -96,8 +122,15 @@ function move_monster3() {
 }
 
 function move_monster4() {
-      let dx = -10;
-      let dy = 0;
+      let dx = 0;
+            let dy = 0;
+            const xoy = Math.floor(Math.random() * 2)
+            if (xoy == 0){
+              dx = random_movement();
+            }
+            else{
+              dy = random_movement();
+            }
       if (!(comprobar_bordesx(Monstruo[3].x + dx)  )){
               if(!(comprobar_bordesy(Monstruo[3].y + dy))){
                     Monstruo[3] = {x: Monstruo[3].x + dx, y: Monstruo[3].y + dy}
@@ -107,7 +140,14 @@ function move_monster4() {
 
 function move_monster5() {
       let dx = 0;
-      let dy = 10;
+            let dy = 0;
+            const xoy = Math.floor(Math.random() * 2)
+            if (xoy == 0){
+              dx = random_movement();
+            }
+            else{
+              dy = random_movement();
+            }
       if (!(comprobar_bordesx(Monstruo[4].x + dx)  )){
               if(!(comprobar_bordesy(Monstruo[4].y + dy))){
                     Monstruo[4]  = {x: Monstruo[4].x + dx, y: Monstruo[4].y + dy}
