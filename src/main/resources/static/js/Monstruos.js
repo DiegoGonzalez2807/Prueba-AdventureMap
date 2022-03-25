@@ -2,29 +2,41 @@ const Monster_col = 'red';
 const monster_border = 'black';
 const board_borderm = 'black';
 const board_backgroundm = "white";
+const GameCanva = document.getElementById("gameCanvas");
+const GameCanva_ctx = GameCanvas.getContext("2d");
+const movement = [-10, 10]
 
+var booleans = [];
+var jugadores_M = [];
 
 
 let Monstruo = [
-  {x: 200, y: 200},
-  {x: 150, y: 150},
-  {x: 1, y: 1},
-  {x: 390, y:370},
-  {x: 40, y:170}
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
+  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)}
 ]
 
-const GameCanva = document.getElementById("gameCanvas");
-const GameCanva_ctx = GameCanvas.getContext("2d");
+
 mainM();
 
 
 function mainM() {
     drawMonster();
-    move_monster1();
-    move_monster2();
-    move_monster3();
-    move_monster4();
-    move_monster5();
+    move_monster(0);
+    move_monster(1);
+    move_monster(2);
+    move_monster(3);
+    move_monster(4);
+}
+
+function random_monster(min, max){
+   return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+}
+
+function random_movement(){
+   return movement[Math.floor(Math.random() * movement.length)];
 }
 
 function drawMonster() {
@@ -47,65 +59,73 @@ function drawMonsterPart(MonsterPart) {
     GameCanva_ctx.strokeRect(MonsterPart.x, MonsterPart.y, 10, 10);
 }
 
-function comprobar_bordesx(dx) {
+function comprobar_bordesx(dx, i) {
     const hitLeftWall = dx < 0;
     const hitRightWall = dx > GameCanva.width - 10;
-
     return hitLeftWall ||  hitRightWall;
-    }
+}
 
-function comprobar_bordesy(dy){
+function comprobar_bordesy(dy, i){
     const hitToptWall = dy < 0;
     const hitBottomWall = dy > GameCanva.height -10;
-    return hitToptWall || hitBottomWall;
-    }
 
-function move_monster1() {
-      let dx = 10;
+    return hitToptWall || hitBottomWall;
+}
+
+function comprobar_jugador(monstruo){
+    var player0 = (jugadores.x === Monstruo[0].x && jugadores.y === Monstruo[0].y);
+    return player0;
+}
+
+function comprobar_otro_monstruo(monstruo, i){
+
+       var another_monster0 = false;
+       var another_monster1 = false;
+       var another_monster2 = false;
+       var another_monster3 = false;
+       var another_monster4 = false;
+
+       if(i === 0){
+               another_monster0 = (monstruo.x === Monstruo[0].x && monstruo.y === Monstruo[0].y);
+       }
+       if(i === 1){
+              another_monster1 = (monstruo.x === Monstruo[1].x && monstruo.y === Monstruo[1].y);
+       }
+       if(i === 2){
+              another_monster2 = (monstruo.x === Monstruo[2].x && monstruo.y === Monstruo[2].y);
+       }
+       if(i === 3){
+              another_monster3 = (monstruo.x === Monstruo[3].x && monstruo.y === Monstruo[3].y);
+       }
+       if(i === 4){
+              another_monster4 = (monstruo.x === Monstruo[4].x && monstruo.y === Monstruo[4].y);
+       }
+
+
+       return another_monster0 || another_monster1 || another_monster2 || another_monster3 || another_monster4;
+
+}
+
+function move_monster(i) {
+      let dx = 0;
       let dy = 0;
-      if (!(comprobar_bordesx(Monstruo[0].x + dx)  )){
-        if(!(comprobar_bordesy(Monstruo[0].y + dy))){
-            Monstruo[0] = {x: Monstruo[0].x + dx, y: Monstruo[0].y + dy}
+      const xoy = Math.floor(Math.random() * 2)
+      if (xoy == 0){
+        dx = random_movement();
+      }
+      else{
+        dy = random_movement();
+      }
+      if (!(comprobar_bordesx(Monstruo[i].x + dx))){
+        if(!(comprobar_bordesy(Monstruo[i].y + dy))){
+            if(!(comprobar_otro_monstruo({x: Monstruo[i].x + dx, y: Monstruo[i].y + dy}, i))){
+                Monstruo[i] = {x: Monstruo[i].x + dx, y: Monstruo[i].y + dy};
+                if(comprobar_jugador(Monstruo[i])){
+                    console.info("encontro jugador el monstruo:")
+                    console.info(i)
+                }
+            }
         }
       }
-}
 
-function move_monster2() {
-      let dx = -10;
-      let dy = 0;
-      if (!(comprobar_bordesx(Monstruo[1].x + dx)  )){
-              if(!(comprobar_bordesy(Monstruo[1].y + dy))){
-                Monstruo[1] = {x: Monstruo[1].x + dx, y: Monstruo[1].y + dy}
-              }
-      }
-}
-
-function move_monster3() {
-      let dx = 0;
-      let dy = -10;
-      if (!(comprobar_bordesx(Monstruo[2].x + dx)  )){
-              if(!(comprobar_bordesy(Monstruo[2].y + dy))){
-                    Monstruo[2] = {x: Monstruo[2].x + dx, y: Monstruo[2].y + dy}
-              }
-      }
-}
-
-function move_monster4() {
-      let dx = -10;
-      let dy = 0;
-      if (!(comprobar_bordesx(Monstruo[3].x + dx)  )){
-              if(!(comprobar_bordesy(Monstruo[3].y + dy))){
-                    Monstruo[3] = {x: Monstruo[3].x + dx, y: Monstruo[3].y + dy}
-              }
-      }
-}
-
-function move_monster5() {
-      let dx = 0;
-      let dy = 10;
-      if (!(comprobar_bordesx(Monstruo[4].x + dx)  )){
-              if(!(comprobar_bordesy(Monstruo[4].y + dy))){
-                    Monstruo[4]  = {x: Monstruo[4].x + dx, y: Monstruo[4].y + dy}
-              }
-      }
 }

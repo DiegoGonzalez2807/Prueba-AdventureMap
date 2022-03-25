@@ -2,14 +2,15 @@ const player_col = 'blue';
 const player_border = 'black';
 const board_borderr = 'black';
 const board_backgroundr = "white";
-
-
-
-let jugadores = {x: 100, y: 100}
-
-
 const GameCanvasp = document.getElementById("gameCanvas");
 const GameCanvasp_ctx = GameCanvasp.getContext("2d");
+
+
+
+let jugadores = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
+
+
+
 main();
 
 
@@ -18,10 +19,13 @@ function main() {
 }
 
 function drawPlayer() {
-   console.log("preuba netrar");
    drawjugadoresPart(jugadores);
 }
 
+function random_player(min, max)
+{
+   return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+}
 
 function drawjugadoresPart(MonsterPart) {
 
@@ -57,13 +61,15 @@ var movimiento = (function(){
     function move_monsterderecha() {
           let dx = 10;
           let dy = 0;
-          console.info(jugadores)
           if (!(comprobar_bordesx(jugadores.x + dx)  )){
                jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
                clear_board();
                maint();
                mainM();
                main();
+               if(comprobar_otro_monstruo(jugadores)){
+                    console.info("jugador encontro monstruo derecha")
+               }
           }
     }
 
@@ -76,6 +82,9 @@ var movimiento = (function(){
               maint();
               mainM();
               main();
+              if(comprobar_otro_monstruo(jugadores)){
+                                  console.info("jugador encontro monstruo izquierda")
+                             }
           }
 
     }
@@ -89,6 +98,9 @@ var movimiento = (function(){
                maint();
                mainM();
                main();
+               if(comprobar_otro_monstruo(jugadores)){
+                                   console.info("jugador encontro monstruo abajo")
+                              }
           }
     }
 
@@ -101,7 +113,24 @@ var movimiento = (function(){
                   maint();
                   mainM();
                   main();
+                  if(comprobar_otro_monstruo(jugadores)){
+                                      console.info("jugador encontro monstruo arriba")
+                                 }
           }
+    }
+
+    function comprobar_otro_monstruo(jugador){
+
+           var monster0 = (jugador.x === Monstruo[0].x && jugador.y === Monstruo[0].y);
+           var monster1 = (jugador.x === Monstruo[1].x && jugador.y === Monstruo[1].y);
+           var monster2 = (jugador.x === Monstruo[2].x && jugador.y === Monstruo[2].y);
+           var monster3 = (jugador.x === Monstruo[3].x && jugador.y === Monstruo[3].y);
+           var monster4 = (jugador.x === Monstruo[4].x && jugador.y === Monstruo[4].y);
+
+
+
+           return monster0 || monster1 || monster2 || monster3 || monster4;
+
     }
 
     return{
