@@ -4,15 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-/**
- * Hello world!
- *
- */
 @SpringBootApplication
-@ComponentScan(basePackages = {"edu.eci.arsw.collabpaint"})
-public class App {
+@ComponentScan(basePackages = {"edu.escuelaing.arsw"})
+public class AdventureMapApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AdventureMapApplication.class, args);
+    }
 }
