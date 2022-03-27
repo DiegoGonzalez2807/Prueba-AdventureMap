@@ -9,16 +9,6 @@ const movement = [-10, 10]
 var booleans = [];
 var jugadores_M = [];
 
-
-let Monstruo = [
-  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
-  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
-  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
-  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)},
-  {x: random_monster(0, GameCanva.width - 10), y: random_monster(0, GameCanva.height - 10)}
-]
-
-
 mainM();
 
 

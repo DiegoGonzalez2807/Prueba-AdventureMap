@@ -2,11 +2,21 @@
 
     var name = $("#playerName").val();
     var stompClient = null;
+
+    function redirect(){
+        window.location = "../AdventureMap/Mapa.html"
+    }
+
+    function callback(data){
+        console.log(data);
+    }
     
 
     function init(){
         connectAndSuscribe();
-        
+        getMonstruos(callback);
+
+
     }
 
     function connectAndSuscribe(){
