@@ -6,7 +6,7 @@ import edu.escuelaing.arsw.persistence.AdventureMapPersistenceException;
 /**
  * Clase que simula un personaje en el juego
  */
-public abstract class Personaje{
+public abstract class Personaje extends Thread{
 
     protected Tuple coordenadas;
     protected int vida;
@@ -14,6 +14,7 @@ public abstract class Personaje{
     protected Tablero tablero;
     public static int VIDA = 100;
     public static int DANO = 10;
+    private long time = System.currentTimeMillis();
 
     public Personaje(Tuple coordenada, Tablero tablero) throws AdventureMapPersistenceException{
         this.coordenadas = coordenada;
@@ -25,6 +26,19 @@ public abstract class Personaje{
         }
         this.dano = DANO;
         this.vida = VIDA;
+    }
+    @Override
+    public void run(){
+        while(vida >0){   
+            long actual = System.currentTimeMillis();
+            if(actual - time > 5000){
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
     
 
@@ -46,7 +60,10 @@ public abstract class Personaje{
      */
     public void atacar(Tuple enemigo) throws AdventureMapNotFoundException,AdventureMapPersistenceException{
         Personaje p = tablero.getPersonaje(enemigo);
-        try{p.sufrirAtaque(dano);}
+        try{
+            System.out.println(this.coordenadas + " ataca a "+enemigo);
+            p.sufrirAtaque(dano);
+        }
         catch(AdventureMapPersistenceException e){
             throw e;
         }
@@ -60,6 +77,7 @@ public abstract class Personaje{
      */
     public void sufrirAtaque(int dano) throws AdventureMapPersistenceException{
         this.vida -= dano;
+        System.out.println("Vida Restante de "+this.coordenadas +": " +this.vida);
         if(this.vida<=0){
             throw new AdventureMapPersistenceException(AdventureMapPersistenceException.EXCEPCTION_MUERTEJUGADOR);
         }

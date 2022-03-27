@@ -83,6 +83,7 @@ public class AdventureMapServices {
 
     //AccionEnTerritorioNoVacio(ConJugadores)
     public void accionEnTerritorioNoVacio() throws AdventureMapServicesPersistenceException{
+        
     }
 
     //AccionEnTerritorioVacio(SinJugadores)
@@ -118,7 +119,7 @@ public class AdventureMapServices {
         return this.monstruos;
     }
 
-    public ArrayList<Jugador> getJugadores(){
+    public ArrayList<Jugador> getJugadores() throws AdventureMapServicesPersistenceException{
         reloadPersonajes();
         return this.jugadores;
     }
