@@ -28,7 +28,6 @@ public class AdventureMapServices {
     private ArrayList<Monstruo> monstruos;
     private ArrayList<Jugador> jugadores;
 
-    //IniciarMapa 
 
     public AdventureMapServices(){
         tablero = Tablero.getTableroJuego();
