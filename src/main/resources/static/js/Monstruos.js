@@ -31,6 +31,10 @@ function mainM() {
     move_monster(4);
 }
 
+function prueba(){
+  console.log("SI SE HACE LA CONEXION CON MONSTRUO")
+}
+
 function random_monster(min, max){
    return Math.round((Math.random() * (max-min) + min) / 10) * 10;
 }

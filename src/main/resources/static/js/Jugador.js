@@ -13,7 +13,6 @@ let jugadores = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0
 
 main();
 
-
 function main() {
     drawPlayer();
 }
