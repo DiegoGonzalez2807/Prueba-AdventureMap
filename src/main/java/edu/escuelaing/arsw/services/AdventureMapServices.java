@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.aop.config.AdviceEntry;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import edu.escuelaing.arsw.model.Jugador;
 import edu.escuelaing.arsw.model.Monstruo;
@@ -17,6 +19,8 @@ import edu.escuelaing.arsw.services.persistence.AdventureMapServicesPersistenceE
 /**
  * Clase encargada de la prestacion de los servicios necesarios para el juego.
  */
+@Service
+@Component
 public class AdventureMapServices {
 
     private Tablero tablero;
@@ -80,6 +84,7 @@ public class AdventureMapServices {
 
     //AccionEnTerritorioNoVacio(ConJugadores)
     public void accionEnTerritorioNoVacio() throws AdventureMapServicesPersistenceException{
+        
     }
 
     //AccionEnTerritorioVacio(SinJugadores)
@@ -110,12 +115,12 @@ public class AdventureMapServices {
         }
     }
 
-    public ArrayList<Monstruo> getMonstruos(){
+    public ArrayList<Monstruo> getMonstruos() throws AdventureMapServicesPersistenceException{
         reloadPersonajes();
         return this.monstruos;
     }
 
-    public ArrayList<Jugador> getJugadores(){
+    public ArrayList<Jugador> getJugadores() throws AdventureMapServicesPersistenceException{
         reloadPersonajes();
         return this.jugadores;
     }

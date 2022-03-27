@@ -2,7 +2,6 @@ package edu.escuelaing.arsw.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -65,7 +64,10 @@ public class AdventureMapServicesTest {
     public void deberiaRetornarListasPersonajes(){
         try{
             ams.iniciarMapa();
-            
+            ArrayList<Jugador> jugadores = ams.getJugadores();
+            ArrayList<Monstruo> monstruos = ams.getMonstruos();
+            assertEquals(jugadores.size(), 3);
+            assertEquals(monstruos.size(), 5);
         }catch(AdventureMapServicesPersistenceException e){
             fail("No deberia lanzar error");
         }
