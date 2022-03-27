@@ -62,6 +62,16 @@ public class AdventureMapServicesTest {
     }
 
     @Test
+    public void deberiaRetornarListasPersonajes(){
+        try{
+            ams.iniciarMapa();
+            
+        }catch(AdventureMapServicesPersistenceException e){
+            fail("No deberia lanzar error");
+        }
+    }
+
+    @Test
     public void deberiaIngresarJugadores(){
         try{
             assertEquals(t.getPersonaje(new Tuple(12,24)).getCoordenadas().toString(),new Tuple(12,24).toString());
