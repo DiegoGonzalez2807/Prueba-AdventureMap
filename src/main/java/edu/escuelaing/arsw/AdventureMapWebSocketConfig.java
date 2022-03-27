@@ -14,7 +14,7 @@ public class AdventureMapWebSocketConfig extends AbstractWebSocketMessageBrokerC
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
+        config.enableSimpleBroker("/App");
         config.setApplicationDestinationPrefixes("/App");
     }
 

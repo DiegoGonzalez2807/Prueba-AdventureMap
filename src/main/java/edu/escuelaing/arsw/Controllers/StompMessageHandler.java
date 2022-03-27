@@ -37,12 +37,17 @@ public class StompMessageHandler {
         ams.moverPersonaje(j, destino);
         //Despues de mover al jugador devolvemos el jugador con su nueva posicion
         msgt.convertAndSend("topic/jugador."+j.getName()+"/mover",j);
-        System.out.println("PRUENA DE INSERCION DE MESSAGEMAPPING");
+
 
     }
 
     @MessageMapping("/jugador/atacar.{j}")
     public void handleAtacarJugador(){
+    }
+
+    @MessageMapping("/map")
+    public void handleRetornarJugador(){
+        System.out.println("SE ENTRA AL MESSAGEMAPPING DE RETORNAR JUGADOR");
     }
 
 

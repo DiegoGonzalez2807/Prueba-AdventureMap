@@ -1,7 +1,8 @@
-    var name = $("#playerName").val();
-    var stompClient = null;
+    var name;
+    var stompClient;
 
-    function redirect(){
+    function redirect(data){
+        name = data;
         window.location = "../AdventureMap/Mapa.html"
     }
 
@@ -9,15 +10,17 @@
         console.log(data);
     }
     
-
+    function getElementsTablero(){
+        getPlayerInCanva();
+    }
     function init(){
-        console.log("CONECTANDO....")
         connectAndSuscribe();
-        console.log("INSERTANDO JUGADOR EN POSICION ALEATORIA...");
     }
 
 
     function getPlayerInCanva(){
+        console.log(name)
+        console.log("ESTE ES EL JUGADOR"+name);
         stompClient.send("/App/map",{},JSON.stringify(getJugador()));
     }
 
@@ -33,12 +36,13 @@
             console.log('Connected: ' + frame);
             stompClient.subscribe('/App/map', function(eventbody){
                 console.log("ESTE ES EL EVENTBODY")
-                console.log(eventbody)
-                var obj = JSON.parse(eventbody.body);
-                alert(obj)
+                console.log(JSON.parse(eventbody.body));
+                drawjugadoresPart(JSON.parse(eventbody.body))
             });
-        })
-    }
-
-    getPlayerInCanva();
-
+            stompClient.subscribe('App/prueba/', function(eventbody){
+                console.log("ESTE ES EL EVENTBODY")
+                console.log(eventbody)
+            });
+            getElementsTablero();
+      });      
+    };
