@@ -46,10 +46,12 @@ public class AdventureMapServicesTest {
         try{
             ams.iniciarMapa();
             ConcurrentHashMap<String,Personaje> tablero = t.getTablero();
-            assertEquals(tablero.size(), 7);//Se valida que se hayan creado 5 personajes
+            assertEquals(tablero.size(), 8);//Se valida que se hayan creado 5 Monstruos
+            System.out.println(tablero.toString());
             Collection<Personaje> l = tablero.values();
             for(Personaje p:l){
-                if(!p.getCoordenadas().equals(new Tuple(12,24)) && !p.getCoordenadas().equals(new Tuple(15, 78))){
+                if(!p.getCoordenadas().equals(new Tuple(12,24)) && !p.getCoordenadas().equals(new Tuple(15, 78)) && !p.getCoordenadas().equals(new Tuple(12,25))){
+                    System.out.println("Perosonaje   " + p.toString());
                     assertEquals(p.getClass(), Monstruo.class);
                 }
             }

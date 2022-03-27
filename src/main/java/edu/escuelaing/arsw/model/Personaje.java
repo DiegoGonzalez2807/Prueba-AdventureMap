@@ -26,6 +26,7 @@ public abstract class Personaje{
         this.dano = DANO;
         this.vida = VIDA;
     }
+    
 
     @Override
     public String toString(){
@@ -68,7 +69,13 @@ public abstract class Personaje{
      * Accion que simula el movimiento de un personaje en el tablero de juego
      */
     public void mover(Tuple destino) throws AdventureMapPersistenceException{
-        tablero.moverPersonaje(coordenadas, destino);
+        try{
+            tablero.moverPersonaje(coordenadas, destino);
+            this.coordenadas = destino;
+        }catch(AdventureMapPersistenceException e){
+            e.printStackTrace();
+            throw e;
+        }
     }
     //Moverse
 

@@ -37,9 +37,10 @@ public class Tablero {
      */
     public void moverPersonaje(Tuple begin, Tuple end) throws AdventureMapPersistenceException{
         try{
-            Personaje personaje = tablero.remove(begin);
+            Personaje personaje = tablero.remove(begin.toString());
             tablero.put(end.toString(), personaje);
         }catch(Exception e){
+            e.printStackTrace();
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
         }
 
@@ -75,7 +76,7 @@ public class Tablero {
             p = tablero.get(pos.toString());
             // En caso que no se encuentre un elemento en el tablero en la posicion.
             if(p == null){
-                throw new AdventureMapNotFoundException("Personaje no encontrado en la posicion:("+pos.getX()+","+pos.getY()+")");
+                return null;
             }
         }catch(Exception e){
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
