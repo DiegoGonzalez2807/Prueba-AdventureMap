@@ -6,7 +6,7 @@
 
     function init(){
         connectAndSuscribe();
-        prueba();
+        
     }
 
     function connectAndSuscribe(){

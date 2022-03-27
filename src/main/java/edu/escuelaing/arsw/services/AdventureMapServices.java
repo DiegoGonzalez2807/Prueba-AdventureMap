@@ -17,7 +17,6 @@ public class AdventureMapServices {
 
     private Tablero tablero;
 
-    //IniciarMapa 
 
     public AdventureMapServices(){
         tablero = Tablero.getTableroJuego();
@@ -25,13 +24,13 @@ public class AdventureMapServices {
 
     public void iniciarMapa() throws AdventureMapServicesPersistenceException{
         for(int i=0;i<5;i++){
-            int x = Math.round((float)Math.random()*5);
-            int y = Math.round((float)Math.random()*5);
+            int x = Math.round((float)Math.random()*390);
+            int y = Math.round((float)Math.random()*390);
             Tuple newPosicion = new Tuple(x,y);
             try{
                 while(tablero.getPersonaje(newPosicion)!=null){
-                    x = Math.round((float)Math.random()*5);
-                    y = Math.round((float)Math.random()*5);
+                    x = Math.round((float)Math.random()*390);
+                    y = Math.round((float)Math.random()*390);
                     newPosicion = new Tuple(x, y);
                 }
                     Monstruo m = new Monstruo(newPosicion, tablero);
