@@ -10,8 +10,11 @@ const GameCanvasp_ctx = GameCanvasp.getContext("2d");
 let jugadores = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
 
 
+function getJugador(){
+    return jugadores;
+}
 
-main();
+
 
 function main() {
     drawPlayer();

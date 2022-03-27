@@ -8,18 +8,8 @@ const movement = [-10, 10]
 
 var booleans = [];
 var jugadores_M = [];
+var list = [];
 
-mainM();
-
-
-function mainM() {
-    drawMonster();
-    move_monster(0);
-    move_monster(1);
-    move_monster(2);
-    move_monster(3);
-    move_monster(4);
-}
 
 function prueba(){
   console.log("SI SE HACE LA CONEXION CON MONSTRUO")
@@ -33,8 +23,9 @@ function random_movement(){
    return movement[Math.floor(Math.random() * movement.length)];
 }
 
-function drawMonster() {
-   Monstruo.forEach(drawMonsterPart)
+function drawMonster(lista) {
+  list = lista;
+  list.forEach(drawMonsterPart)
 }
 
 function clear_boardm() {

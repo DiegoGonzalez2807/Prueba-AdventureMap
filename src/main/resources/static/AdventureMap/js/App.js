@@ -1,5 +1,3 @@
-
-
     var name = $("#playerName").val();
     var stompClient = null;
 
@@ -13,11 +11,16 @@
     
 
     function init(){
+        console.log("CONECTANDO....")
         connectAndSuscribe();
-        getMonstruos(callback);
-
-
+        console.log("INSERTANDO JUGADOR EN POSICION ALEATORIA...");
     }
+
+
+    function getPlayerInCanva(){
+        stompClient.send("/App/map",{},JSON.stringify(getJugador()));
+    }
+
 
     function connectAndSuscribe(){
         //SE EMPIEZA CREANDO EL STOMPCLIENT PARA MANDAR PETICIONES
@@ -28,21 +31,14 @@
         //SUSCRIBIRSE AL CANAL DE JUEGO
         stompClient.connect({},function(frame){
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/app/Map', function(eventbody){
+            stompClient.subscribe('/App/map', function(eventbody){
+                console.log("ESTE ES EL EVENTBODY")
+                console.log(eventbody)
                 var obj = JSON.parse(eventbody.body);
                 alert(obj)
             });
         })
     }
 
+    getPlayerInCanva();
 
-   /**  return {
-        //REDIRECCION DESDE LA PAGINA DE INICIO HASTA LA PAGINA DONDE SE ENCUENTRA EL TABLERO
-        redirect: function () {
-            window.location = "Mapa.html"
-        },
-        init : function(){
-            connectAndSuscribe();
-            prueba();
-        }
-    };*/

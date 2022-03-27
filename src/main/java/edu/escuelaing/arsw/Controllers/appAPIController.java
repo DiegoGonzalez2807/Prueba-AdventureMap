@@ -28,7 +28,20 @@ public class appAPIController {
             monstruos = services.getMonstruos();
             mensaje = new ResponseEntity<>(monstruos, HttpStatus.ACCEPTED);
         } catch (AdventureMapServicesPersistenceException ex) {
+            ex.printStackTrace();
             mensaje = new ResponseEntity<>("No se pudo cargar el arreglo de monstruos",HttpStatus.NOT_FOUND);
+        }
+        return mensaje;
+    }
+
+    @RequestMapping(value = "/AdventureMap/initMap", method = RequestMethod.GET)
+    public ResponseEntity<?> manejadorgetMapa(){
+        ResponseEntity<?> mensaje = null;
+        try{
+            services.iniciarMapa();
+        } catch (AdventureMapServicesPersistenceException e) {
+            e.printStackTrace();
+            mensaje = new ResponseEntity<>("No se pudo iniciar el mapa con los monstruos", HttpStatus.NOT_FOUND);
         }
         return mensaje;
     }
