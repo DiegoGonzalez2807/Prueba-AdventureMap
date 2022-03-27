@@ -13,6 +13,9 @@ var app = (function () {
     var name = $("#playerName").val();
     var stompClient = null;
 
+    /**
+     * 
+     */
     var connectAndSuscribe = function(){
         //SE EMPIEZA CREANDO EL STOMPCLIENT PARA MANDAR PETICIONES
         console.info('Connecting to WS...');
@@ -28,6 +31,9 @@ var app = (function () {
         //REDIRECCION DESDE LA PAGINA DE INICIO HASTA LA PAGINA DONDE SE ENCUENTRA EL TABLERO
         redirect: function () {
             window.location = "Mapa.html"
+        },
+        init : function(){
+            connectAndSuscribe();
         }
     };
 
