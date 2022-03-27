@@ -39,7 +39,7 @@ public class AdventureMapServices {
     }
 
     //Atacar(Jugador)
-    public void atacar() throws AdventureMapServicesPersistenceException{}
+    public void atacar(Personaje atacante,Tuple victima) throws AdventureMapServicesPersistenceException{}
 
     //Atacar(Monstruo)
 
