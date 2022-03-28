@@ -12,13 +12,14 @@ let jugadores = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0
 
 function getJugador(){
     console.log("ESTE ES X", jugadores.x)
+    
     console.log("ESTE ES Y", jugadores.y)
     return jugadores;
 }
 
 
 
-function mainP() {
+function main() {
     drawPlayer();
 }
 
@@ -33,11 +34,8 @@ function random_player(min, max)
 }
 
 function drawjugadoresPart(MonsterPart) {
-    console.log("MONSTERPART " + MonsterPart)
-    console.log("ENTRA A DRAWJUGADORESPART")
     GameCanvasp_ctx.fillStyle = player_col;
     GameCanvasp_ctx.strokestyle = player_border;
-    console.log("ESTE ES EL MONSTERPART "+MonsterPart.x,MonsterPart.y)
     GameCanvasp_ctx.fillRect(MonsterPart.x, MonsterPart.y, 10, 10);
     GameCanvasp_ctx.strokeRect(MonsterPart.x, MonsterPart.y, 10, 10);
 }
@@ -72,11 +70,11 @@ var movimiento = (function(){
                jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
                clear_board();
                maint();
-               mainM();
+              // mainM();
                main();
-               if(comprobar_otro_monstruo(jugadores)){
-                    console.info("jugador encontro monstruo derecha")
-               }
+             //  if(comprobar_otro_monstruo(jugadores)){
+                 //   console.info("jugador encontro monstruo derecha")
+                // }
           }
     }
 
@@ -87,11 +85,11 @@ var movimiento = (function(){
               jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
               clear_board();
               maint();
-              mainM();
+             // mainM();
               main();
-              if(comprobar_otro_monstruo(jugadores)){
-                                  console.info("jugador encontro monstruo izquierda")
-                             }
+              //if(comprobar_otro_monstruo(jugadores)){
+                             //     console.info("jugador encontro monstruo izquierda")
+                           //  }
           }
 
     }
@@ -103,11 +101,11 @@ var movimiento = (function(){
                jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
                clear_board();
                maint();
-               mainM();
+              // mainM();
                main();
-               if(comprobar_otro_monstruo(jugadores)){
-                                   console.info("jugador encontro monstruo abajo")
-                              }
+              // if(comprobar_otro_monstruo(jugadores)){
+                                //   console.info("jugador encontro monstruo abajo")
+                             // }
           }
     }
 
@@ -118,11 +116,11 @@ var movimiento = (function(){
                   jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
                   clear_board();
                   maint();
-                  mainM();
+                //  mainM();
                   main();
-                  if(comprobar_otro_monstruo(jugadores)){
-                                      console.info("jugador encontro monstruo arriba")
-                                 }
+                 // if(comprobar_otro_monstruo(jugadores)){
+                                     // console.info("jugador encontro monstruo arriba")
+                                // }
           }
     }
 
@@ -138,7 +136,7 @@ var movimiento = (function(){
 
            return monster0 || monster1 || monster2 || monster3 || monster4;
 
-    }
+    } 
 
     return{
         derecha:move_monsterderecha,
