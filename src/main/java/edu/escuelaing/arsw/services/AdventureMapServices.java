@@ -2,6 +2,7 @@ package edu.escuelaing.arsw.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Scanner;
 
 import org.springframework.aop.config.AdviceEntry;
 import org.springframework.stereotype.Component;
@@ -62,8 +63,11 @@ public class AdventureMapServices {
         try{
             p.mover(destino);
         }catch(AdventureMapPersistenceException e){
-            e.printStackTrace();
-            throw new AdventureMapServicesPersistenceException("No se puede mover el personaje a la posicicion ("+destino.getX()+","+destino.getY()+")");
+            if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
+                accionEnTerritorioNoVacio(p, destino);
+            }
+            //e.printStackTrace();
+            //throw new AdventureMapServicesPersistenceException("No se puede mover el personaje a la posicicion ("+destino.getX()+","+destino.getY()+")");
         }
     }
 
@@ -82,8 +86,27 @@ public class AdventureMapServices {
 
 
     //AccionEnTerritorioNoVacio(ConJugadores)
-    public void accionEnTerritorioNoVacio() throws AdventureMapServicesPersistenceException{
+    public void accionEnTerritorioNoVacio(Personaje p, Tuple enemigo) throws AdventureMapServicesPersistenceException{
+        System.out.println(p+ " Esta a punto de atacar a " + enemigo);
+        System.out.println("Que desea hacer\n 1.Atacar\n2.Huir");
+        Scanner sc = new Scanner(System.in);
+        int accion = sc.nextInt();
         
+        switch (accion) {
+            case 1:
+                System.out.println("Atacar jugador");
+                break;
+            case 2:
+                System.out.println("Huir");
+                break;
+        }
+        try {
+            System.out.println(tablero.getPersonaje(enemigo));
+        } catch (AdventureMapNotFoundException | AdventureMapPersistenceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        atacar(p, enemigo);
     }
 
     //AccionEnTerritorioVacio(SinJugadores)

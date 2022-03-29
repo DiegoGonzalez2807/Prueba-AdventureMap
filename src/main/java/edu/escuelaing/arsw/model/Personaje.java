@@ -61,7 +61,7 @@ public abstract class Personaje extends Thread{
     public void atacar(Tuple enemigo) throws AdventureMapNotFoundException,AdventureMapPersistenceException{
         Personaje p = tablero.getPersonaje(enemigo);
         try{
-            System.out.println(this.coordenadas + " ataca a "+enemigo);
+            System.out.println(this.coordenadas + " ataca a "+p);
             p.sufrirAtaque(dano);
         }
         catch(AdventureMapPersistenceException e){
@@ -88,10 +88,11 @@ public abstract class Personaje extends Thread{
      */
     public void mover(Tuple destino) throws AdventureMapPersistenceException{
         try{
-            tablero.moverPersonaje(coordenadas, destino);
-            this.coordenadas = destino;
+            synchronized(this.coordenadas){
+                tablero.moverPersonaje(coordenadas, destino);
+                this.coordenadas = destino;
+            }
         }catch(AdventureMapPersistenceException e){
-            e.printStackTrace();
             throw e;
         }
     }

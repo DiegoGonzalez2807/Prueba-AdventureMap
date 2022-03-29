@@ -38,9 +38,13 @@ public class Tablero {
     public void moverPersonaje(Tuple begin, Tuple end) throws AdventureMapPersistenceException{
         try{
             Personaje personaje = tablero.remove(begin.toString());
+            if(getPersonaje(end) != null){
+                System.out.println("Se encontro un personaje en la posicion ");
+                throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
+            }
             tablero.put(end.toString(), personaje);
         }catch(Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
         }
 

@@ -29,7 +29,7 @@ public class StompMessageHandler {
     AdventureMapServices ams = new AdventureMapServices();
 
     ArrayList<Jugador> jugadores = new ArrayList<>();
-    ArrayList<Monstruo> monstruos = new ArrayList<>();   
+    ArrayList<Monstruo> monstruos = new ArrayList<>();  
 
     @MessageMapping("/jugador/mover.{j}")
     public void handleMoveEventJugador(@DestinationVariable Jugador j, Tuple destino) throws Exception{
@@ -37,8 +37,6 @@ public class StompMessageHandler {
         ams.moverPersonaje(j, destino);
         //Despues de mover al jugador devolvemos el jugador con su nueva posicion
         msgt.convertAndSend("topic/jugador."+j.getName()+"/mover",j);
-
-
     }
 
     @MessageMapping("/jugador/atacar.{j}")

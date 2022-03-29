@@ -2,6 +2,7 @@ package edu.escuelaing.arsw.services;
 
 import edu.escuelaing.arsw.model.Jugador;
 import edu.escuelaing.arsw.model.Tuple;
+import edu.escuelaing.arsw.persistence.AdventureMapNotFoundException;
 import edu.escuelaing.arsw.persistence.AdventureMapPersistenceException;
 import edu.escuelaing.arsw.services.persistence.AdventureMapServicesPersistenceException;
 
@@ -17,17 +18,26 @@ public class AdventureMapMain {
             j1.start();
             j2.start();
             j3.start();
-            ams.atacar(j1, j2.getCoordenadas());
-            ams.atacar(j2, j3.getCoordenadas());
-            ams.atacar(j1, j3.getCoordenadas());
-            ams.atacar(j1,j2.getCoordenadas());
-            ams.atacar(j2,j1.getCoordenadas());
-            ams.atacar(j3,j1.getCoordenadas());
+            //ams.atacar(j1, j2.getCoordenadas());
+            j1.atacar(j2.getCoordenadas());
+            j3.atacar(j2.getCoordenadas());
+            // ams.moverPersonaje(j1, j2.getCoordenadas());
+            // ams.moverPersonaje(j3, j2.getCoordenadas());
+            // ams.moverPersonaje(j2, j3.getCoordenadas());
+            // ams.moverPersonaje(j3, j1.getCoordenadas());
+            // ams.atacar(j2, j3.getCoordenadas());
+            // ams.atacar(j1, j3.getCoordenadas());
+            // ams.atacar(j1,j2.getCoordenadas());
+            // ams.atacar(j2,j1.getCoordenadas());
+            // ams.atacar(j3,j1.getCoordenadas());
 
         } catch (AdventureMapServicesPersistenceException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (AdventureMapPersistenceException e) {
+            // TODO Auto-generated catch block
+            //e.printStackTrace();
+        } catch (AdventureMapNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

@@ -6,6 +6,7 @@ package edu.escuelaing.arsw.persistence;
 public class AdventureMapPersistenceException extends Exception{
 
     public static final String EXCEPCTION_MUERTEJUGADOR = "Ha muerto";
+    public static final String ATACAR_EXCEPTION = "Empieza el ataque";
     
     public AdventureMapPersistenceException(String message){super(message);}
 
