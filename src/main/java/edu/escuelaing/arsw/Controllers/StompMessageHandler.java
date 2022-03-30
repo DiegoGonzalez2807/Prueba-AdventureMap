@@ -35,6 +35,7 @@ public class StompMessageHandler {
 
     @MessageMapping("/map/{nombre}")
     public void handleIngresarJugador(@DestinationVariable String nombre, Tuple coordenada){
+        System.out.println("INGRESO UN NUEVO JUGADOR  "+ nombre);
         try {
             Jugador j = new Jugador(coordenada, nombre, ams.getTablero());
             System.out.println("Jugador adicionado" + j);
@@ -48,13 +49,13 @@ public class StompMessageHandler {
     // public void handleAtacarJugador(){
     // }
 
-    @MessageMapping("/map/{origen}")
+    @MessageMapping("/map/mover/{origen}")
     public void handleMoverJugador(@DestinationVariable String origen, Tuple destino){
         try {
             System.out.println("Origen:    "+new Tuple(origen).toString());
             Personaje p = ams.getPersonaje(new Tuple(origen));
             ams.moverPersonaje(p, destino);
-            System.out.println("Nuevas"+p.getCoordenadas()+"\n");
+            System.out.println("Nuevas "+p.getCoordenadas()+"\n");
         } catch (AdventureMapServicesPersistenceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

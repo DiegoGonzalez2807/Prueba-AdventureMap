@@ -1,5 +1,5 @@
     //Variables generales
-    var name_;
+    var name;
     var stompClient;
     var direction;
 
@@ -10,8 +10,8 @@
      * @param {String} data 
      */
     function redirect(data){
-        name_ = data;
-        console.log(data);
+        name = data;
+        console.log(name);
         window.location = "../AdventureMap/Mapa.html"
     }
 
@@ -56,7 +56,7 @@
         }
         var h = "(" + getJugadorVie().x + ","+  getJugadorVie().y + ")";
         console.log(h);
-        stompClient.send("/App/map/"+h,{},JSON.stringify(getJugador()));
+        stompClient.send("/App/map/mover/"+h,{},JSON.stringify(getJugador()));
 
     }
     
@@ -87,10 +87,9 @@
      * aleatoria
      */
     function getPlayerInCanva(){
-        name_ = $("#playerName").val();
-        console.log(name_)
-        console.log("ESTE ES EL JUGADOR"+name_);
-        stompClient.send("/App/map/"+name_,{},JSON.stringify(getJugador()));
+        console.log(name)
+        console.log("ESTE ES EL JUGADOR"+name);
+        stompClient.send("/App/map/"+name,{},JSON.stringify(getJugador()));
     }
 
     /**
@@ -99,6 +98,7 @@
      * como canales de escucha a eventos o peticiones
      */
     function connectAndSuscribe(){
+        console.log(name);
         //SE EMPIEZA CREANDO EL STOMPCLIENT PARA MANDAR PETICIONES
         console.info('Connecting to WS...');
         var socket = new SockJS('/stompendpoint');
