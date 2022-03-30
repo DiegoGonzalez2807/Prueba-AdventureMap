@@ -147,5 +147,15 @@ public class AdventureMapServices {
         return this.jugadores;
     }
     
+    public Personaje getPersonaje(Tuple personaje) throws AdventureMapServicesPersistenceException{
+        Personaje p = null;
+        try {
+            p = tablero.getPersonaje(personaje);
+        } catch (AdventureMapNotFoundException | AdventureMapPersistenceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return p;
+    }
 
 }

@@ -27,6 +27,7 @@ public abstract class Personaje extends Thread{
         this.dano = DANO;
         this.vida = VIDA;
     }
+
     @Override
     public void run(){
         while(vida >0){   

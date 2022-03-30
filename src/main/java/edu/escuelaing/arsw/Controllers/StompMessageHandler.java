@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.escuelaing.arsw.model.Jugador;
 import edu.escuelaing.arsw.model.Monstruo;
+import edu.escuelaing.arsw.model.Personaje;
 import edu.escuelaing.arsw.model.Tuple;
+import edu.escuelaing.arsw.persistence.AdventureMapPersistenceException;
 import edu.escuelaing.arsw.services.AdventureMapServices;
 
 import java.util.ArrayList;
@@ -31,22 +33,34 @@ public class StompMessageHandler {
     ArrayList<Jugador> jugadores = new ArrayList<>();
     ArrayList<Monstruo> monstruos = new ArrayList<>();  
 
-    @MessageMapping("/jugador/mover.{j}")
-    public void handleMoveEventJugador(@DestinationVariable Jugador j, Tuple destino) throws Exception{
-        System.out.println("Se recibio al jugador "+j.getName());
-        ams.moverPersonaje(j, destino);
-        //Despues de mover al jugador devolvemos el jugador con su nueva posicion
-        msgt.convertAndSend("topic/jugador."+j.getName()+"/mover",j);
+    @MessageMapping("/map/{nombre}")
+    public void handleIngresarJugador(@DestinationVariable String nombre, Tuple coordenada){
+        try {
+            Jugador j = new Jugador(coordenada, nombre, ams.getTablero());
+            System.out.println("Jugador adicionado" + j);
+        } catch (AdventureMapPersistenceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
-    @MessageMapping("/jugador/atacar.{j}")
-    public void handleAtacarJugador(){
+    // @MessageMapping("/jugador/atacar.{j}")
+    // public void handleAtacarJugador(){
+    // }
+
+    @MessageMapping("/map/{origen}")
+    public void handleMoverJugador(@DestinationVariable String origen, Tuple destino){
+        try {
+            System.out.println("Origen:    "+new Tuple(origen).toString());
+            Personaje p = ams.getPersonaje(new Tuple(origen));
+            ams.moverPersonaje(p, destino);
+            System.out.println("Nuevas"+p.getCoordenadas()+"\n");
+        } catch (AdventureMapServicesPersistenceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
-    @MessageMapping("/map")
-    public void handleRetornarJugador(){
-        System.out.println("SE ENTRA AL MESSAGEMAPPING DE RETORNAR JUGADOR");
-    }
 
 
 }

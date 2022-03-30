@@ -1,5 +1,5 @@
     //Variables generales
-    var name;
+    var name_;
     var stompClient;
     var direction;
 
@@ -10,7 +10,8 @@
      * @param {String} data 
      */
     function redirect(data){
-        name = data;
+        name_ = data;
+        console.log(data);
         window.location = "../AdventureMap/Mapa.html"
     }
 
@@ -53,7 +54,9 @@
             case "DER": movimiento.derecha();
             break;
         }
-        stompClient.send("/App/map",{},JSON.stringify(getJugador()));
+        var h = "(" + getJugadorVie().x + ","+  getJugadorVie().y + ")";
+        console.log(h);
+        stompClient.send("/App/map/"+h,{},JSON.stringify(getJugador()));
 
     }
     
@@ -84,9 +87,10 @@
      * aleatoria
      */
     function getPlayerInCanva(){
-        console.log(name)
-        console.log("ESTE ES EL JUGADOR"+name);
-        stompClient.send("/App/map",{},JSON.stringify(getJugador()));
+        name_ = $("#playerName").val();
+        console.log(name_)
+        console.log("ESTE ES EL JUGADOR"+name_);
+        stompClient.send("/App/map/"+name_,{},JSON.stringify(getJugador()));
     }
 
     /**

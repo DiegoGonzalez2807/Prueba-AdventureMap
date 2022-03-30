@@ -13,6 +13,16 @@ public class Tuple {
         this.y = y;
     }
 
+    public Tuple(String coordenada){
+        String[] l = coordenada.split(",");
+        this.x = Integer.parseInt(l[0].replace("(",""));
+        this.y = Integer.parseInt(l[1].replace(")",""));
+    }
+
+    public Tuple(){
+
+    }
+
 
     @Override
     public String toString(){
@@ -34,5 +44,12 @@ public class Tuple {
 
     public int getX(){return this.x;}
     public int getY(){return this.y;}
+
+    public void setX(int x) {
+        this.x = x;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
     
 }

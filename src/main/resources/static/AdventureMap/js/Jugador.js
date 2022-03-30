@@ -8,6 +8,7 @@ const GameCanvasp_ctx = GameCanvasp.getContext("2d");
 
 
 let jugadores = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
+let jugadoresViejos = {x:-1,y:-1};
 
 
 function getJugador(){
@@ -16,6 +17,13 @@ function getJugador(){
     console.log("ESTE ES Y", jugadores.y)
     return jugadores;
 }
+
+function getJugadorVie(){
+    console.log("Este es X", jugadoresViejos.x);
+    console.log("Este es Y", jugadoresViejos.y);
+    return jugadoresViejos;
+}
+
 
 
 
@@ -66,6 +74,7 @@ var movimiento = (function(){
     function move_monsterderecha() {
           let dx = 10;
           let dy = 0;
+          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
           if (!(comprobar_bordesx(jugadores.x + dx)  )){
                jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
                clear_board();
@@ -81,6 +90,7 @@ var movimiento = (function(){
     function move_monsterizquierda() {
           let dx = -10;
           let dy = 0;
+          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
           if (!(comprobar_bordesx(jugadores.x + dx)  )){
               jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
               clear_board();
@@ -97,6 +107,7 @@ var movimiento = (function(){
     function move_monsterarriba() {
           let dx = 0;
           let dy = 10;
+          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
           if(!(comprobar_bordesy(jugadores.y + dy))){
                jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
                clear_board();
@@ -112,6 +123,7 @@ var movimiento = (function(){
     function move_monsterabajo() {
           let dx = 0;
           let dy = -10;
+          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
           if(!(comprobar_bordesy(jugadores.y + dy))){
                   jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
                   clear_board();
