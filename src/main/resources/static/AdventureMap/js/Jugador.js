@@ -30,7 +30,7 @@ function getJugadores(){
     $.get(url1+"AdventureMap/jugadores",function(data){
         console.log(data);
         var jugadores = data.map(function(jugador){
-            return {x:jugador.coordenadas.x, y:jugador.coordenadas.y}
+            return {x:jugador.x, y:jugador.y}
         });
         jugadores_ = jugadores;
     })
@@ -55,10 +55,15 @@ function random_player(min, max)
 }
 
 function drawjugadoresPart(MonsterPart) {
+    clear_board();
+    maint();
     GameCanvasp_ctx.fillStyle = player_col;
     GameCanvasp_ctx.strokestyle = player_border;
-    GameCanvasp_ctx.fillRect(MonsterPart.x, MonsterPart.y, 10, 10);
-    GameCanvasp_ctx.strokeRect(MonsterPart.x, MonsterPart.y, 10, 10);
+    MonsterPart.forEach(element => {
+        console.log(element);
+        GameCanvasp_ctx.fillRect(element.x, element.y, 10, 10);
+        GameCanvasp_ctx.strokeRect(element.x, element.y, 10, 10);
+    });
 }
 
 function clear_board() {
@@ -120,7 +125,7 @@ var movimiento = (function(){
     function move_monsterarriba() {
           let dx = 0;
           let dy = 10;
-          jugadoresViejos = {x:jugador.x,y:jugadores.y};
+          jugadoresViejos = {x:jugador.x,y:jugador.y};
           if(!(comprobar_bordesy(jugador.y + dy))){
                jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();

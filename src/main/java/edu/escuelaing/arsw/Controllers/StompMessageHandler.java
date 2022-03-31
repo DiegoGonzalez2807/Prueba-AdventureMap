@@ -26,9 +26,9 @@ import org.springframework.stereotype.Controller;
 public class StompMessageHandler {
 
     @Autowired
-
     SimpMessagingTemplate msgt;
-    AdventureMapServices ams = new AdventureMapServices();
+    @Autowired
+    AdventureMapServices ams;
 
     ArrayList<Jugador> jugadores = new ArrayList<>();
     ArrayList<Monstruo> monstruos = new ArrayList<>();  
@@ -56,6 +56,7 @@ public class StompMessageHandler {
             Personaje p = ams.getPersonaje(new Tuple(origen));
             ams.moverPersonaje(p, destino);
             System.out.println("Nuevas "+p.getCoordenadas()+"\n");
+            msgt.convertAndSend("/App/map",ams.getJugadores());
         } catch (AdventureMapServicesPersistenceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -9,6 +9,9 @@ public class Jugador extends Personaje{
     private int bajaMonstruos;
 
 
+    public Jugador(){
+        super();
+    }
     public Jugador(Tuple coordenada, String nombre, Tablero tablero) throws AdventureMapPersistenceException{
         super(coordenada, tablero);
         this.nombre = nombre;
@@ -45,6 +48,18 @@ public class Jugador extends Personaje{
 
     public int getBajaMonstruos() {
         return bajaMonstruos;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setBajaJugadores(int bajaJugadores) {
+        this.bajaJugadores = bajaJugadores;
+    }
+
+    public void setBajaMonstruos(int bajaMonstruos) {
+        this.bajaMonstruos = bajaMonstruos;
     }
     
 

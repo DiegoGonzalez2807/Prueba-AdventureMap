@@ -3,6 +3,7 @@ package edu.escuelaing.arsw.model;
 import java.awt.*;
 
 import edu.escuelaing.arsw.persistence.AdventureMapPersistenceException;
+import javafx.scene.image.Image;
 
 public class Monstruo extends Personaje{
 
@@ -12,9 +13,20 @@ public class Monstruo extends Personaje{
         super(coordenada, tablero);
     }
 
+    public Monstruo(){
+
+    }
+
     @Override
     public String toString(){
         return "Monstruo{"+super.toString()+"}";
     }
 
+    public Image getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Image imagen) {
+        this.imagen = imagen;
+    }
 }

@@ -16,6 +16,11 @@ public abstract class Personaje extends Thread{
     public static int DANO = 10;
     private long time = System.currentTimeMillis();
 
+    public Personaje(){
+        this.dano = DANO;
+        this.vida = VIDA;
+    }
+
     public Personaje(Tuple coordenada, Tablero tablero) throws AdventureMapPersistenceException{
         this.coordenadas = coordenada;
         this.tablero = tablero;
@@ -103,16 +108,24 @@ public abstract class Personaje extends Thread{
         return coordenadas;
     }
 
-    public Tablero getTablero() {
-        return tablero;
-    }
-
     public int getVida() {
         return vida;
     }
 
     public int getDano() {
         return dano;
+    }
+
+    public void setDano(int dano) {
+        this.dano = dano;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+    
+    public void setCoordenadas(Tuple coordenadas) {
+        this.coordenadas = coordenadas;
     }
 
 

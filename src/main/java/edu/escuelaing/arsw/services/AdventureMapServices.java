@@ -24,10 +24,10 @@ import edu.escuelaing.arsw.services.persistence.AdventureMapServicesPersistenceE
 @Component
 public class AdventureMapServices {
 
-    private Tablero tablero;
+    private Tablero tablero = Tablero.getTableroJuego();
     private static final int tTablero = 390;
-    private ArrayList<Monstruo> monstruos;
-    private ArrayList<Jugador> jugadores;
+    private ArrayList<Tuple> monstruos;
+    private ArrayList<Tuple> jugadores;
 
 
     public AdventureMapServices(){
@@ -126,23 +126,23 @@ public class AdventureMapServices {
 
     public void reloadPersonajes(){
         Collection<Personaje> personajes =  tablero.getTablero().values();
-        monstruos = new ArrayList<Monstruo>();
-        jugadores = new ArrayList<Jugador>();
+        monstruos = new ArrayList<Tuple>();
+        jugadores = new ArrayList<Tuple>();
         for(Personaje p:personajes){
             if(p instanceof Monstruo){
-                monstruos.add((Monstruo)p);
+                monstruos.add(p.getCoordenadas());
             }else if(p instanceof Jugador){
-                jugadores.add((Jugador)p);
+                jugadores.add(p.getCoordenadas());
             }
         }
     }
 
-    public ArrayList<Monstruo> getMonstruos() throws AdventureMapServicesPersistenceException{
+    public ArrayList<Tuple> getMonstruos() throws AdventureMapServicesPersistenceException{
         reloadPersonajes();
         return this.monstruos;
     }
 
-    public ArrayList<Jugador> getJugadores() throws AdventureMapServicesPersistenceException{
+    public ArrayList<Tuple> getJugadores() throws AdventureMapServicesPersistenceException{
         reloadPersonajes();
         return this.jugadores;
     }

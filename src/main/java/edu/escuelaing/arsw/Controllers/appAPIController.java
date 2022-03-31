@@ -2,6 +2,7 @@ package edu.escuelaing.arsw.Controllers;
 
 import edu.escuelaing.arsw.model.Jugador;
 import edu.escuelaing.arsw.model.Monstruo;
+import edu.escuelaing.arsw.model.Tuple;
 import edu.escuelaing.arsw.services.AdventureMapServices;
 import edu.escuelaing.arsw.services.persistence.AdventureMapServicesPersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class appAPIController {
 
     @RequestMapping(value = "/AdventureMap/monstruos", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorgetMonstruos() {
-        ArrayList<Monstruo> monstruos = null;
+        ArrayList<Tuple> monstruos = null;
         ResponseEntity<?> mensaje = null;
         try {
             monstruos = services.getMonstruos();
@@ -37,10 +38,12 @@ public class appAPIController {
 
         @RequestMapping(value = "/AdventureMap/jugadores", method = RequestMethod.GET)
         public ResponseEntity<?> manejadorgetJugadores() {
-            ArrayList<Jugador> jugadores = null;
+            ArrayList<Tuple> jugadores = null;
             ResponseEntity<?> mensaje = null;
+            System.out.println("Se hace la solicitud de Jugadores");
             try {
                 jugadores = services.getJugadores();
+                System.out.println("Lista de jugadores: "+jugadores.toString());
                 mensaje = new ResponseEntity<>(jugadores, HttpStatus.ACCEPTED);
             } catch (AdventureMapServicesPersistenceException ex) {
                 ex.printStackTrace();
