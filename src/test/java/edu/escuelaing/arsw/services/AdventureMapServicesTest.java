@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -64,8 +65,8 @@ public class AdventureMapServicesTest {
     public void deberiaRetornarListasPersonajes(){
         try{
             ams.iniciarMapa();
-            ArrayList<Jugador> jugadores = ams.getJugadores();
-            ArrayList<Monstruo> monstruos = ams.getMonstruos();
+            ArrayList<Tuple> jugadores = ams.getJugadores();
+            ArrayList<Tuple> monstruos = ams.getMonstruos();
             assertEquals(jugadores.size(), 3);
             assertEquals(monstruos.size(), 5);
         }catch(AdventureMapServicesPersistenceException e){
@@ -123,6 +124,13 @@ public class AdventureMapServicesTest {
                 fail("No deberia lanzar error");
             }
         }
+    }
+
+    @After
+    public void after(){
+        player1.stop();
+        player2.stop();
+        player11.stop();
     }
 
 }

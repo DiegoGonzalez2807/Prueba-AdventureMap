@@ -63,11 +63,11 @@ public class AdventureMapServices {
         try{
             p.mover(destino);
         }catch(AdventureMapPersistenceException e){
-            if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
-                accionEnTerritorioNoVacio(p, destino);
-            }
+            // if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
+            //     //accionEnTerritorioNoVacio(p, destino);
+            // }
             //e.printStackTrace();
-            //throw new AdventureMapServicesPersistenceException("No se puede mover el personaje a la posicicion ("+destino.getX()+","+destino.getY()+")");
+            throw new AdventureMapServicesPersistenceException("No se puede mover el personaje a la posicion ("+destino.getX()+","+destino.getY()+")");
         }
     }
 
