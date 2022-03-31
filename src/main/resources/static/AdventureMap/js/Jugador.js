@@ -5,17 +5,19 @@ const board_backgroundr = "white";
 const GameCanvasp = document.getElementById("gameCanvas");
 const GameCanvasp_ctx = GameCanvasp.getContext("2d");
 
+let url1 = "http://localhost:8080/";
 
 
-let jugadores = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
+
+let jugador = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
+let jugadores_ = [];
 let jugadoresViejos = {x:-1,y:-1};
 
 
 function getJugador(){
-    console.log("ESTE ES X", jugadores.x)
-    
-    console.log("ESTE ES Y", jugadores.y)
-    return jugadores;
+    console.log("ESTE ES X", jugador.x)
+    console.log("ESTE ES Y", jugador.y)
+    return jugador;
 }
 
 function getJugadorVie(){
@@ -24,6 +26,15 @@ function getJugadorVie(){
     return jugadoresViejos;
 }
 
+function getJugadores(){
+    $.get(url1+"AdventureMap/jugadores",function(data){
+        console.log(data);
+        var jugadores = data.map(function(jugador){
+            return {x:jugador.coordenadas.x, y:jugador.coordenadas.y}
+        });
+        jugadores_ = jugadores;
+    })
+}
 
 
 
@@ -32,8 +43,10 @@ function main() {
 }
 
 function drawPlayer() {
-    console.log("ENTRA A PINTAR JUGADOR")
-   drawjugadoresPart(jugadores);
+    console.log("ENTRA A PINTAR JUGADORES")
+    getJugadores();
+    console.log(jugadores_)
+   drawjugadoresPart(jugadores_);
 }
 
 function random_player(min, max)
@@ -74,9 +87,9 @@ var movimiento = (function(){
     function move_monsterderecha() {
           let dx = 10;
           let dy = 0;
-          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
-          if (!(comprobar_bordesx(jugadores.x + dx)  )){
-               jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
+          jugadoresViejos = {x:jugador.x,y:jugador.y};
+          if (!(comprobar_bordesx(jugador.x + dx)  )){
+               jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();
                maint();
               // mainM();
@@ -90,9 +103,9 @@ var movimiento = (function(){
     function move_monsterizquierda() {
           let dx = -10;
           let dy = 0;
-          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
-          if (!(comprobar_bordesx(jugadores.x + dx)  )){
-              jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
+          jugadoresViejos = {x:jugador.x,y:jugador.y};
+          if (!(comprobar_bordesx(jugador.x + dx)  )){
+              jugador = {x: jugador.x + dx, y: jugador.y + dy}
               clear_board();
               maint();
              // mainM();
@@ -107,9 +120,9 @@ var movimiento = (function(){
     function move_monsterarriba() {
           let dx = 0;
           let dy = 10;
-          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
-          if(!(comprobar_bordesy(jugadores.y + dy))){
-               jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
+          jugadoresViejos = {x:jugador.x,y:jugadores.y};
+          if(!(comprobar_bordesy(jugador.y + dy))){
+               jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();
                maint();
               // mainM();
@@ -123,9 +136,9 @@ var movimiento = (function(){
     function move_monsterabajo() {
           let dx = 0;
           let dy = -10;
-          jugadoresViejos = {x:jugadores.x,y:jugadores.y};
-          if(!(comprobar_bordesy(jugadores.y + dy))){
-                  jugadores = {x: jugadores.x + dx, y: jugadores.y + dy}
+          jugadoresViejos = {x:jugador.x,y:jugador.y};
+          if(!(comprobar_bordesy(jugador.y + dy))){
+                  jugador = {x: jugador.x + dx, y: jugador.y + dy}
                   clear_board();
                   maint();
                 //  mainM();

@@ -1,5 +1,6 @@
 package edu.escuelaing.arsw.Controllers;
 
+import edu.escuelaing.arsw.model.Jugador;
 import edu.escuelaing.arsw.model.Monstruo;
 import edu.escuelaing.arsw.services.AdventureMapServices;
 import edu.escuelaing.arsw.services.persistence.AdventureMapServicesPersistenceException;
@@ -33,6 +34,20 @@ public class appAPIController {
         }
         return mensaje;
     }
+
+        @RequestMapping(value = "/AdventureMap/jugadores", method = RequestMethod.GET)
+        public ResponseEntity<?> manejadorgetJugadores() {
+            ArrayList<Jugador> jugadores = null;
+            ResponseEntity<?> mensaje = null;
+            try {
+                jugadores = services.getJugadores();
+                mensaje = new ResponseEntity<>(jugadores, HttpStatus.ACCEPTED);
+            } catch (AdventureMapServicesPersistenceException ex) {
+                ex.printStackTrace();
+                mensaje = new ResponseEntity<>("No se pudo cargar el arreglo de monstruos",HttpStatus.NOT_FOUND);
+            }
+            return mensaje;
+        }
 
     @RequestMapping(value = "/AdventureMap/initMap", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorgetMapa(){

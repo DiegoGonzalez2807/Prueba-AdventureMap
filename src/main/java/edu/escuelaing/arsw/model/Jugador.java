@@ -16,7 +16,7 @@ public class Jugador extends Personaje{
 
     @Override
     public String toString(){
-        return "Jugador{Nombre: "+nombre+", "super.toString()+"}";
+        return "Jugador{Nombre: "+nombre+", "+super.toString()+"}";
     }
 
 
