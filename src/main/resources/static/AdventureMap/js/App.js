@@ -56,6 +56,9 @@
         }
         var h = "(" + getJugadorVie().x + ","+  getJugadorVie().y + ")";
         console.log(h);
+        // main();
+        // mainM();
+        // maint();
         stompClient.send("/App/map/mover/"+h,{},JSON.stringify(getJugador()));
 
     }
@@ -107,10 +110,15 @@
         //SUSCRIBIRSE AL CANAL DE JUEGO
         stompClient.connect({},function(frame){
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/App/map', function(eventbody){
+            stompClient.subscribe('/App/jugador/map', function(eventbody){
                 console.log("ESTE ES EL EVENTBODY")
                 console.log(JSON.parse(eventbody.body));
                 drawjugadoresPart(JSON.parse(eventbody.body))
+            });
+            stompClient.subscribe('/App/monstruo/map', function(eventbody){
+                console.log("Se suscribe a monstruos")
+                console.log("Monstruos" + eventbody.body);
+                drawMonsterPart(JSON.parse(eventbody.body))
             });
             getElementsTablero();
       });      

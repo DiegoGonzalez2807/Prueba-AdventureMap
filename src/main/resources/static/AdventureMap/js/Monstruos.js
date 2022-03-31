@@ -6,11 +6,29 @@ const GameCanva = document.getElementById("gameCanvas");
 const GameCanva_ctx = GameCanvas.getContext("2d");
 const movement = [-10, 10]
 
+let url1 = "http://localhost:8080/";
+
 var booleans = [];
 var jugadores_M = [];
 var list = [];
 
 
+function getMonstruos(){
+  $.get(url1+"AdventureMap/monstruos",function(data){
+      console.log(data);
+      var monstruos = data.map(function(jugador){
+          return {x:jugador.x, y:jugador.y}
+      });
+      list = monstruos;
+  });
+  drawMonsterPart(list);
+}
+
+mainM();
+
+function mainM(){
+  drawMonster();
+}
 function prueba(){
   console.log("SI SE HACE LA CONEXION CON MONSTRUO")
 }
@@ -23,9 +41,8 @@ function random_movement(){
    return movement[Math.floor(Math.random() * movement.length)];
 }
 
-function drawMonster(lista) {
-  list = lista;
-  list.forEach(drawMonsterPart)
+function drawMonster() {
+  getMonstruos();
 }
 
 function clear_boardm() {
@@ -37,11 +54,15 @@ function clear_boardm() {
 
 
 function drawMonsterPart(MonsterPart) {
-
-    GameCanva_ctx.fillStyle = Monster_col;
-    GameCanva_ctx.strokestyle = monster_border;
-    GameCanva_ctx.fillRect(MonsterPart.x, MonsterPart.y, 10, 10);
-    GameCanva_ctx.strokeRect(MonsterPart.x, MonsterPart.y, 10, 10);
+    // maint();
+    // main();
+    GameCanvasp_ctx.fillStyle = Monster_col;
+    GameCanvasp_ctx.strokestyle = monster_border;
+    MonsterPart.forEach(element => {
+        console.log(element);
+        GameCanvasp_ctx.fillRect(element.x, element.y, 10, 10);
+        GameCanvasp_ctx.strokeRect(element.x, element.y, 10, 10);
+    });
 }
 
 function comprobar_bordesx(dx, i) {

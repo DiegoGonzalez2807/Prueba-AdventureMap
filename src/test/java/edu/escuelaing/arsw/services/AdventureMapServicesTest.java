@@ -43,8 +43,7 @@ public class AdventureMapServicesTest {
 
     @Test
     public void deberiaCrearMapaAleatorio(){
-        try{
-            ams.iniciarMapa();
+            //ams.iniciarMapa();
             ConcurrentHashMap<String,Personaje> tablero = t.getTablero();
             assertEquals(tablero.size(), 8);//Se valida que se hayan creado 5 Monstruos
             System.out.println(tablero.toString());
@@ -55,16 +54,13 @@ public class AdventureMapServicesTest {
                     assertEquals(p.getClass(), Monstruo.class);
                 }
             }
-        }catch(AdventureMapServicesPersistenceException e){
-            fail("No deberia lanzar error");
-        }
+            
         
     }
 
     @Test
     public void deberiaRetornarListasPersonajes(){
         try{
-            ams.iniciarMapa();
             ArrayList<Tuple> jugadores = ams.getJugadores();
             ArrayList<Tuple> monstruos = ams.getMonstruos();
             assertEquals(jugadores.size(), 3);
@@ -79,7 +75,7 @@ public class AdventureMapServicesTest {
         try{
             assertEquals(t.getPersonaje(new Tuple(12,24)).getCoordenadas().toString(),new Tuple(12,24).toString());
             assertEquals(t.getPersonaje(new Tuple(15,78)).getCoordenadas().toString(), new Tuple(15,78).toString());
-            Jugador player3 = new Jugador(new Tuple(12,24),"Jugador3",t);
+            new Jugador(new Tuple(12,24),"Jugador3",t);
 
         }catch(AdventureMapPersistenceException e){
             try{

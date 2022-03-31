@@ -45,6 +45,11 @@ public class StompMessageHandler {
         }
     }
 
+    // @MessageMapping("/map/monstruos")
+    // public void handleIngresarMonstruo(Tuple coord){
+
+    // }
+
     // @MessageMapping("/jugador/atacar.{j}")
     // public void handleAtacarJugador(){
     // }
@@ -56,7 +61,9 @@ public class StompMessageHandler {
             Personaje p = ams.getPersonaje(new Tuple(origen));
             ams.moverPersonaje(p, destino);
             System.out.println("Nuevas "+p.getCoordenadas()+"\n");
-            msgt.convertAndSend("/App/map",ams.getJugadores());
+            System.out.println("Monstruos: " + ams.getMonstruos()+"\n");
+            msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
+            msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
         } catch (AdventureMapServicesPersistenceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

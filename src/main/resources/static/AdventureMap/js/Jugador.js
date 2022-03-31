@@ -55,8 +55,8 @@ function random_player(min, max)
 }
 
 function drawjugadoresPart(MonsterPart) {
-    clear_board();
-    maint();
+    // maint();
+    // mainM();
     GameCanvasp_ctx.fillStyle = player_col;
     GameCanvasp_ctx.strokestyle = player_border;
     MonsterPart.forEach(element => {
@@ -97,7 +97,7 @@ var movimiento = (function(){
                jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();
                maint();
-              // mainM();
+              mainM();
                main();
              //  if(comprobar_otro_monstruo(jugadores)){
                  //   console.info("jugador encontro monstruo derecha")
@@ -113,7 +113,7 @@ var movimiento = (function(){
               jugador = {x: jugador.x + dx, y: jugador.y + dy}
               clear_board();
               maint();
-             // mainM();
+             mainM();
               main();
               //if(comprobar_otro_monstruo(jugadores)){
                              //     console.info("jugador encontro monstruo izquierda")
@@ -129,9 +129,9 @@ var movimiento = (function(){
           if(!(comprobar_bordesy(jugador.y + dy))){
                jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();
-               maint();
-              // mainM();
                main();
+               mainM();
+               maint();
               // if(comprobar_otro_monstruo(jugadores)){
                                 //   console.info("jugador encontro monstruo abajo")
                              // }
@@ -146,7 +146,7 @@ var movimiento = (function(){
                   jugador = {x: jugador.x + dx, y: jugador.y + dy}
                   clear_board();
                   maint();
-                //  mainM();
+                  mainM();
                   main();
                  // if(comprobar_otro_monstruo(jugadores)){
                                      // console.info("jugador encontro monstruo arriba")

@@ -34,12 +34,18 @@ public class AdventureMapServices {
         tablero = Tablero.getTableroJuego();
         monstruos = new ArrayList<>();
         jugadores = new ArrayList<>();
+        try {
+            iniciarMapa();
+        } catch (AdventureMapServicesPersistenceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void iniciarMapa() throws AdventureMapServicesPersistenceException{
         for(int i=0;i<5;i++){
-            int x = Math.round((float)Math.random()*tTablero);
-            int y = Math.round((float)Math.random()*tTablero);
+            int x = (int)Math.round((Math.random() * (390-0) + 0) / 10) * 10;
+            int y = (int)Math.round((Math.random() * (390-0) + 0) / 10) * 10;
             Tuple newPosicion = new Tuple(x,y);
             try{
                 while(tablero.getPersonaje(newPosicion)!=null){
