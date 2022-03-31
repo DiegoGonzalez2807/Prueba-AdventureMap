@@ -55,8 +55,9 @@ function random_player(min, max)
 }
 
 function drawjugadoresPart(MonsterPart) {
-    // maint();
-    // mainM();
+    clear_board
+    maint();
+    mainM();
     GameCanvasp_ctx.fillStyle = player_col;
     GameCanvasp_ctx.strokestyle = player_border;
     MonsterPart.forEach(element => {
@@ -129,9 +130,9 @@ var movimiento = (function(){
           if(!(comprobar_bordesy(jugador.y + dy))){
                jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();
-               main();
-               mainM();
                maint();
+               mainM();
+               main();
               // if(comprobar_otro_monstruo(jugadores)){
                                 //   console.info("jugador encontro monstruo abajo")
                              // }
