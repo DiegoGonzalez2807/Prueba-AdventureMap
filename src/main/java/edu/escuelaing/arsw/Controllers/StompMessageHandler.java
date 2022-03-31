@@ -45,8 +45,8 @@ public class StompMessageHandler {
         }
     }
 
-    // @MessageMapping("/map/monstruos")
-    // public void handleIngresarMonstruo(Tuple coord){
+    // @MessageMapping("/map/mover/monstruos")
+    // public void handleMoverMonstruo(@DestinationVariable String monstruo){
 
     // }
 

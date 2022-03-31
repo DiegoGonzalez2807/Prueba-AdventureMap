@@ -15,14 +15,10 @@ let jugadoresViejos = {x:-1,y:-1};
 
 
 function getJugador(){
-    console.log("ESTE ES X", jugador.x)
-    console.log("ESTE ES Y", jugador.y)
     return jugador;
 }
 
 function getJugadorVie(){
-    console.log("Este es X", jugadoresViejos.x);
-    console.log("Este es Y", jugadoresViejos.y);
     return jugadoresViejos;
 }
 
@@ -43,7 +39,6 @@ function main() {
 }
 
 function drawPlayer() {
-    console.log("ENTRA A PINTAR JUGADORES")
     getJugadores();
     console.log(jugadores_)
    drawjugadoresPart(jugadores_);
@@ -61,7 +56,6 @@ function drawjugadoresPart(MonsterPart) {
     GameCanvasp_ctx.fillStyle = player_col;
     GameCanvasp_ctx.strokestyle = player_border;
     MonsterPart.forEach(element => {
-        console.log(element);
         GameCanvasp_ctx.fillRect(element.x, element.y, 10, 10);
         GameCanvasp_ctx.strokeRect(element.x, element.y, 10, 10);
     });

@@ -11,15 +11,22 @@ let url2 = "http://localhost:8080/";
 var booleans = [];
 var jugadores_M = [];
 var list = [];
+var list_a = [];
 
 
 function getMonstruos(){
   $.get(url2+"AdventureMap/monstruos",function(data){
       console.log(data);
-      var monstruos = data.map(function(jugador){
-          return {x:jugador.x, y:jugador.y}
+      var monstruos = data.map(function(monstruo){
+        monster = {x:monstruo.x, y:monstruo.y}
+        setInterval('move_monster(monster)',20000);
+        return monster;
       });
+      
       list = monstruos;
+      lis_a = monstruos;
+      console.log("Lista de monstruos obtenida");
+      console.log(list);
   });
   drawMonsterPart(list);
 }
@@ -59,7 +66,6 @@ function drawMonsterPart(MonsterPart) {
     GameCanva_ctx.fillStyle = Monster_col;
     GameCanva_ctx.strokestyle = monster_border;
     MonsterPart.forEach(element => {
-        console.log(element);
         GameCanva_ctx.fillRect(element.x, element.y, 10, 10);
         GameCanva_ctx.strokeRect(element.x, element.y, 10, 10);
     });
@@ -112,9 +118,10 @@ function comprobar_otro_monstruo(monstruo, i){
 
 }
 
-function move_monster(i) {
+function move_monster(monster) {
       let dx = 0;
       let dy = 0;
+      mons = monster;
       const xoy = Math.floor(Math.random() * 2)
       if (xoy == 0){
         dx = random_movement();
@@ -122,15 +129,14 @@ function move_monster(i) {
       else{
         dy = random_movement();
       }
-      if (!(comprobar_bordesx(Monstruo[i].x + dx))){
-        if(!(comprobar_bordesy(Monstruo[i].y + dy))){
-            if(!(comprobar_otro_monstruo({x: Monstruo[i].x + dx, y: Monstruo[i].y + dy}, i))){
-                Monstruo[i] = {x: Monstruo[i].x + dx, y: Monstruo[i].y + dy};
-                if(comprobar_jugador(Monstruo[i])){
-                    console.info("encontro jugador el monstruo:")
-                    console.info(i)
-                }
-            }
+      if (!(comprobar_bordesx(monster.x + dx))){
+        if(!(comprobar_bordesy(monster.y + dy))){
+          monster = {x: monster.x + dx, y: monster.y + dy};
+          console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
+          console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
+          var h = "(" + mons.x + ","+  mons.y + ")";
+          //stompClient.send("/App/map/mover/"+h,{},JSON.stringify(mons));
+          console.log(monster);
         }
       }
 
