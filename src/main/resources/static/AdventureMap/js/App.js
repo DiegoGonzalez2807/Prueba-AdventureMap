@@ -2,6 +2,7 @@
     var name;
     var stompClient;
     var direction;
+    var count = 1;
 
     /**
      * Funcion generada para redireccionar desde la página inicial
@@ -22,6 +23,7 @@
      */
      function eventButtonListener(){
         window.addEventListener("click", function(){
+            console.log("COUNT "+count)
             move()
         })
     }
@@ -41,6 +43,7 @@
      * a la direccion que nos de el listener de botones.
      */
     function move(){
+        
         switch (direction){
             case "ABA": movimiento.arriba();
             break;
@@ -60,6 +63,7 @@
         // mainM();
         // maint();
         stompClient.send("/App/map/mover/"+h,{},JSON.stringify(getJugador()));
+        count +=1;
 
     }
     
@@ -95,6 +99,7 @@
         stompClient.send("/App/map/"+name,{},JSON.stringify(getJugador()));
     }
 
+
     /**
      * Funcion generada para conectarse a STOMP, así como 
      * poder suscribirse a los topicos que se crearon
@@ -114,11 +119,6 @@
                 console.log("ESTE ES EL EVENTBODY")
                 console.log(JSON.parse(eventbody.body));
                 drawjugadoresPart(JSON.parse(eventbody.body))
-            });
-            stompClient.subscribe('/App/monstruo/map', function(eventbody){
-                console.log("Se suscribe a monstruos")
-                console.log("Monstruos" + eventbody.body);
-                drawMonsterPart(JSON.parse(eventbody.body))
             });
             getElementsTablero();
       });      

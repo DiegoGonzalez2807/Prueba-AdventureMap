@@ -29,7 +29,10 @@ public class AdventureMapServices {
     private ArrayList<Tuple> monstruos;
     private ArrayList<Tuple> jugadores;
 
-
+    /**
+     * Funcion generada para crear el tablero de backend. Se inicia
+     * la creación de los 5 monstruos con posiciones aleatorias 
+     */
     public AdventureMapServices(){
         tablero = Tablero.getTableroJuego();
         monstruos = new ArrayList<>();
@@ -134,6 +137,7 @@ public class AdventureMapServices {
         Collection<Personaje> personajes =  tablero.getTablero().values();
         monstruos = new ArrayList<Tuple>();
         jugadores = new ArrayList<Tuple>();
+        //System.out.println(personajes);
         for(Personaje p:personajes){
             if(p instanceof Monstruo){
                 monstruos.add(p.getCoordenadas());
@@ -145,6 +149,7 @@ public class AdventureMapServices {
 
     public ArrayList<Tuple> getMonstruos() throws AdventureMapServicesPersistenceException{
         reloadPersonajes();
+        System.out.println(this.monstruos);
         return this.monstruos;
     }
 

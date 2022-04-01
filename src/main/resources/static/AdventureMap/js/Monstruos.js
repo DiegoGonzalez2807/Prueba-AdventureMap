@@ -16,10 +16,9 @@ var list_a = [];
 
 function getMonstruos(){
   $.get(url2+"AdventureMap/monstruos",function(data){
-      console.log(data);
+      //console.log(data);
       var monstruos = data.map(function(monstruo){
         monster = {x:monstruo.x, y:monstruo.y}
-        setInterval('move_monster(monster)',20000);
         return monster;
       });
       
@@ -31,13 +30,11 @@ function getMonstruos(){
   drawMonsterPart(list);
 }
 
-mainM();
 
 function mainM(){
-  drawMonster();
-}
-function prueba(){
-  console.log("SI SE HACE LA CONEXION CON MONSTRUO")
+  console.log("ENTRA A MAINM()")
+    drawMonster();
+  
 }
 
 function random_monster(min, max){
@@ -61,11 +58,16 @@ function clear_boardm() {
 
 
 function drawMonsterPart(MonsterPart) {
+  console.log("ENTRA A DRAWMONSTERPART")
     // maint();
     // main();
     GameCanva_ctx.fillStyle = Monster_col;
     GameCanva_ctx.strokestyle = monster_border;
     MonsterPart.forEach(element => {
+      console.log("COUNT"+count)
+      if(count%3 === 0){
+        move_monster(element);
+      }
         GameCanva_ctx.fillRect(element.x, element.y, 10, 10);
         GameCanva_ctx.strokeRect(element.x, element.y, 10, 10);
     });
@@ -132,12 +134,14 @@ function move_monster(monster) {
       if (!(comprobar_bordesx(monster.x + dx))){
         if(!(comprobar_bordesy(monster.y + dy))){
           monster = {x: monster.x + dx, y: monster.y + dy};
-          console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
-          console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
+          //console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
+          //console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
           var h = "(" + mons.x + ","+  mons.y + ")";
-          //stompClient.send("/App/map/mover/"+h,{},JSON.stringify(mons));
-          console.log(monster);
+          console.log("ESTE ES MONS: "+JSON.stringify(mons))
+          console.log("ESTE ES MONSTER" + JSON.stringify(monster))
+          stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
+         // console.log(monster);
         }
       }
 
-}
+}  

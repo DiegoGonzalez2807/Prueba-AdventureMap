@@ -26,6 +26,11 @@ public class Tablero {
         return new Tablero();
     }
 
+    /**
+     * Constructor de tablero. Este es un ConcurrentHashMap para ofrecer
+     * concurrencia en los datos, así como persistencia en estos al 
+     * momento de cambiar datos.
+     */
     public Tablero(){
         tablero = new ConcurrentHashMap<>();
     }
