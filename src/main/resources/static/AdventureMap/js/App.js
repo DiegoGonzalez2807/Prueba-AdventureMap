@@ -116,9 +116,11 @@
         stompClient.connect({},function(frame){
             console.log('Connected: ' + frame);
             stompClient.subscribe('/App/jugador/map', function(eventbody){
+                console.log("EVENTBODY DE /JUGADOR/MAP")
                 drawjugadoresPart(JSON.parse(eventbody.body));
                 console.log(JSON.parse(eventbody.body));
             });
+<<<<<<< HEAD
             stompClient.subscribe("/App/pelea/", function(eventbody){
                 console.log()
                 var personaje = JSON.parse(eventbody.body);
@@ -159,6 +161,48 @@
                     // });
                 }
             });
+=======
+            // stompClient.subscribe("/App/pelea/", function(eventbody){
+            //     console.log()
+            //     var personaje = JSON.parse(eventbody.body);
+            //     jugador = getJugadorVie();
+            //     enemigo = personaje[1];
+            //     console.log("Se forma conflicto");
+            //     console.log(personaje);
+            //     h1 = "(" + jugador.x + ","+  jugador.y + ")";
+            //     h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
+            //     console.log(getJugador());
+            //     console.log(h1);
+            //     console.log(h2);
+            //     if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
+            //         $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+            //             console.log("Atacante");
+            //             $("#vidaP").text("vidaP: "+data.x)
+            //             $("#ataqueP").text("ataqueP: "+" "+data.y)
+            //         });
+            //         $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+            //             $("#vidaE").text("vidaE: "+" "+data.x)
+            //             $("#ataqueE").text("ataqueE: "+" "+data.y)
+            //         });
+            //         // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
+            //         //     actualizarEstadisticas();
+            //         // });
+            //     }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
+            //         console.log("Enemigo");
+            //         $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+            //             $("#vidaP").text("vidaP: "+" "+data.x)
+            //             $("#ataqueP").text("ataqueP: "+" "+data.y)
+            //         });
+            //         $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+            //             $("#vidaE").text("vidaE: "+" "+data.x)
+            //             $("#ataqueE").text("ataqueE: "+" "+data.y)
+            //         });
+            //         // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
+            //         //     actualizarEstadisticas();
+            //         // });
+            //     }
+           // });
+>>>>>>> 8a4672dd6b9b724dfab81a325cd911af51d865c8
             getElementsTablero();
       });      
     };

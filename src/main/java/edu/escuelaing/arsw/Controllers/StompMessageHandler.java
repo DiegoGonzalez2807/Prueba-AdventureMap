@@ -64,8 +64,8 @@ public class StompMessageHandler {
             ams.moverPersonaje(p, destino);
             System.out.println("Jugadores: " + ams.getJugadores());
             msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
-            msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
-            msgt.convertAndSend("/App/jugador/movimiento."+origen,destino);
+           // msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
+           // msgt.convertAndSend("/App/jugador/movimiento."+origen,destino);
         } catch (AdventureMapServicesPersistenceException e) {
             if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
                 //Tuple con las ubicaciones del personaje a mover y el personaje a atacar
@@ -76,7 +76,7 @@ public class StompMessageHandler {
                 ataques.add(destino);
                 System.out.println(ataques.toString());
                 System.out.println("Jugadores: " + ams.getJugadores());
-                msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
+                //msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
                 //msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
                 msgt.convertAndSend("/App/pelea/",ataques);
             }else{

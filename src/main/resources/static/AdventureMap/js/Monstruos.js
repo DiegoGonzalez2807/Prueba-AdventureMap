@@ -25,16 +25,23 @@ function getMonstruos(){
       
       list = monstruos;
       lis_a = monstruos;
-      console.log("Lista de monstruos obtenida");
-      console.log(list);
+      //console.log("Lista de monstruos obtenida");
+      //console.log(list);
   });
+  if(count%4===0){
+    count+=1;
+    list.forEach(element => {
+      move_monster(element);
+    });
+  }
+  //console.log("COUNT"+count)
   drawMonsterPart(list);
 }
 
 
 function mainM(){
-  console.log("ENTRA A MAINM()")
-    drawMonster();
+  //console.log("ENTRA A MAINM");
+  drawMonster();
   
 }
 
@@ -46,7 +53,8 @@ function random_movement(){
    return movement[Math.floor(Math.random() * movement.length)];
 }
 
-function drawMonster() {
+function drawMonster(){
+ // console.log("ENTRA AL PRIMER DRAWMONSTER");
   getMonstruos();
 }
 
@@ -59,16 +67,19 @@ function clear_boardm() {
 
 
 function drawMonsterPart(MonsterPart) {
-  console.log("ENTRA A DRAWMONSTERPART")
+ // console.log("ENTRA A DRAWMONSTERPART")
     // maint();
     // main();
     GameCanva_ctx.fillStyle = Monster_col;
     GameCanva_ctx.strokestyle = monster_border;
     MonsterPart.forEach(element => {
+<<<<<<< HEAD
       // console.log("COUNT"+count)
       // if(count%3 === 0){
       //   move_monster(element);
       // }
+=======
+>>>>>>> 8a4672dd6b9b724dfab81a325cd911af51d865c8
         GameCanva_ctx.fillRect(element.x, element.y, 10, 10);
         GameCanva_ctx.strokeRect(element.x, element.y, 10, 10);
     });
@@ -122,6 +133,7 @@ function comprobar_otro_monstruo(monstruo, i){
 }
 
 function move_monster(monster) {
+      console.log("MUEVE EL MONSTRUO")
       let dx = 0;
       let dy = 0;
       mons = monster;
@@ -138,8 +150,8 @@ function move_monster(monster) {
           //console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
           //console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
           var h = "(" + mons.x + ","+  mons.y + ")";
-          console.log("ESTE ES MONS: "+JSON.stringify(mons))
-          console.log("ESTE ES MONSTER" + JSON.stringify(monster))
+          //console.log("ESTE ES MONS: "+JSON.stringify(mons))
+          //console.log("ESTE ES MONSTER" + JSON.stringify(monster))
           stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
          // console.log(monster);
         }
