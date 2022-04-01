@@ -19,7 +19,7 @@ function getMonstruos(){
       console.log(data);
       var monstruos = data.map(function(monstruo){
         monster = {x:monstruo.x, y:monstruo.y}
-        setInterval('move_monster(monster)',20000);
+        //setInterval('move_monster(monster)',60000);
         return monster;
       });
       
@@ -135,7 +135,7 @@ function move_monster(monster) {
           console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
           console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
           var h = "(" + mons.x + ","+  mons.y + ")";
-          //stompClient.send("/App/map/mover/"+h,{},JSON.stringify(mons));
+          stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
           console.log(monster);
         }
       }

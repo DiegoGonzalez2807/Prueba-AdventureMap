@@ -11,7 +11,7 @@ let url1 = "http://localhost:8080/";
 
 let jugador = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
 let jugadores_ = [];
-let jugadoresViejos = {x:-1,y:-1};
+let jugadoresViejos = jugador;
 
 
 function getJugador(){

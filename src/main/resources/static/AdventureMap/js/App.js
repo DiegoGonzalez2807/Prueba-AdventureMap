@@ -2,7 +2,10 @@
     var name;
     var stompClient;
     var direction;
-
+    var enemigo = {x:0,y:0};
+    var subscribePelea;
+    var h1;
+    var h2;
     /**
      * Funcion generada para redireccionar desde la página inicial
      * a la página donde se encuentra el mapa. Se recibe el nombre
@@ -15,16 +18,16 @@
         window.location = "../AdventureMap/Mapa.html"
     }
 
-    /**
-     * Funcion generada para escuchar cuando el usuario haya
-     * oprimido un botón. 
-     * @param {String} direccion 
-     */
-     function eventButtonListener(){
-        window.addEventListener("click", function(){
-            move()
-        })
-    }
+    // /**
+    //  * Funcion generada para escuchar cuando el usuario haya
+    //  * oprimido un botón. 
+    //  * @param {String} direccion 
+    //  */
+    //  function eventButtonListener(){
+    //     window.addEventListener("click", function(){
+    //         move();
+    //     })
+    // }
 
     /**
      * Funcion generada para guardar la dirección en la que va el 
@@ -40,7 +43,7 @@
      * Funcion generada para generar movimiento en el jugador de acuerdo
      * a la direccion que nos de el listener de botones.
      */
-    function move(){
+    function move(direction){
         switch (direction){
             case "ABA": movimiento.arriba();
             break;
@@ -55,7 +58,6 @@
             break;
         }
         var h = "(" + getJugadorVie().x + ","+  getJugadorVie().y + ")";
-        console.log(h);
         // main();
         // mainM();
         // maint();
@@ -80,7 +82,7 @@
      * los topicos y se pone en escucha cuando se oprima un boton
      */
     function init(){
-        eventButtonListener();
+        //eventButtonListener();
         connectAndSuscribe();
     }
 
@@ -111,15 +113,86 @@
         stompClient.connect({},function(frame){
             console.log('Connected: ' + frame);
             stompClient.subscribe('/App/jugador/map', function(eventbody){
-                console.log("ESTE ES EL EVENTBODY")
+                drawjugadoresPart(JSON.parse(eventbody.body));
                 console.log(JSON.parse(eventbody.body));
-                drawjugadoresPart(JSON.parse(eventbody.body))
             });
             stompClient.subscribe('/App/monstruo/map', function(eventbody){
-                console.log("Se suscribe a monstruos")
-                console.log("Monstruos" + eventbody.body);
                 drawMonsterPart(JSON.parse(eventbody.body))
+            });
+            stompClient.subscribe("/App/pelea/", function(eventbody){
+                console.log()
+                var personaje = JSON.parse(eventbody.body);
+                jugador = getJugadorVie();
+                enemigo = personaje[1];
+                console.log("Se forma conflicto");
+                console.log(personaje);
+                h1 = "(" + jugador.x + ","+  jugador.y + ")";
+                h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
+                console.log(getJugador());
+                console.log(h1);
+                console.log(h2);
+                if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
+                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                        console.log("Atacante");
+                        $("#vidaP").text("vidaP: "+data.x)
+                        $("#ataqueP").text("ataqueP: "+" "+data.y)
+                    });
+                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                        $("#vidaE").text("vidaE: "+" "+data.x)
+                        $("#ataqueE").text("ataqueE: "+" "+data.y)
+                    });
+                    // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
+                    //     actualizarEstadisticas();
+                    // });
+                }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
+                    console.log("Enemigo");
+                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                        $("#vidaP").text("vidaP: "+" "+data.x)
+                        $("#ataqueP").text("ataqueP: "+" "+data.y)
+                    });
+                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                        $("#vidaE").text("vidaE: "+" "+data.x)
+                        $("#ataqueE").text("ataqueE: "+" "+data.y)
+                    });
+                    // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
+                    //     actualizarEstadisticas();
+                    // });
+                }
             });
             getElementsTablero();
       });      
     };
+
+    function atacarJugador(){
+        stompClient.send("/App/map/pelea."+h1,{},h2);
+    }
+
+    function huirJugador(){
+        if(subscribePelea != null){
+            subscribePelea.unsubscribe();
+        }
+    }
+
+    function actualizarEstadisticas(){
+        if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
+            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                console.log("Atacante");
+                $("#vidaP").text("vidaP: "+data.x)
+                $("#ataqueP").text("ataqueP: "+" "+data.y)
+            });
+            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                $("#vidaE").text("vidaE: "+" "+data.x)
+                $("#ataqueE").text("ataqueE: "+" "+data.y)
+            });
+        }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
+            console.log("Enemigo");
+            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                $("#vidaP").text("vidaP: "+" "+data.x)
+                $("#ataqueP").text("ataqueP: "+" "+data.y)
+            });
+            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                $("#vidaE").text("vidaE: "+" "+data.x)
+                $("#ataqueE").text("ataqueE: "+" "+data.y)
+            });
+        }
+    }

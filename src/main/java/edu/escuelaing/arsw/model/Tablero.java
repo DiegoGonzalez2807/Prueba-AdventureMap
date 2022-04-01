@@ -39,9 +39,10 @@ public class Tablero {
         try{
             Personaje personaje = tablero.remove(begin.toString());
             if(getPersonaje(end) != null){
-                System.out.println("Se encontro un personaje en la posicion ");
+                tablero.put(begin.toString(),personaje);
                 throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
             }
+            personaje.setCoordenadas(end);
             tablero.put(end.toString(), personaje);
         }catch(Exception e){
             //e.printStackTrace();

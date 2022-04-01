@@ -96,7 +96,6 @@ public abstract class Personaje extends Thread{
         try{
             synchronized(this.coordenadas){
                 tablero.moverPersonaje(coordenadas, destino);
-                this.coordenadas = destino;
             }
         }catch(AdventureMapPersistenceException e){
             throw e;

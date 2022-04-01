@@ -60,14 +60,10 @@ public class AdventureMapServicesTest {
 
     @Test
     public void deberiaRetornarListasPersonajes(){
-        try{
-            ArrayList<Tuple> jugadores = ams.getJugadores();
-            ArrayList<Tuple> monstruos = ams.getMonstruos();
-            assertEquals(jugadores.size(), 3);
-            assertEquals(monstruos.size(), 5);
-        }catch(AdventureMapServicesPersistenceException e){
-            fail("No deberia lanzar error");
-        }
+        ArrayList<Tuple> jugadores = ams.getJugadores();
+        ArrayList<Tuple> monstruos = ams.getMonstruos();
+        assertEquals(jugadores.size(), 3);
+        assertEquals(monstruos.size(), 5);
     }
 
     @Test
@@ -99,7 +95,7 @@ public class AdventureMapServicesTest {
             ams.moverPersonaje(player1, new Tuple(15,78));
         }catch(AdventureMapServicesPersistenceException e){
             //Se comprueba que el personaje no se pueda mover a una posicion ya ocupada
-            assertEquals(e.getMessage(), "No se puede mover el personaje a la posicion (15,78)");
+            assertEquals(e.getMessage(), "Empieza el ataque");
         }
     }
 

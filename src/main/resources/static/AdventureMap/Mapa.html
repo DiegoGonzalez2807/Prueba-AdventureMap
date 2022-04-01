@@ -32,10 +32,10 @@
                         <p id="vidaP" style="font-weight: bold;"> VidaP: </p>
                         <p id="ataqueP" style="font-weight: bold;"> ataqueP: </p>
                     </div>
-                    <button onclick="" type='button' class='btn btn-primary' >
+                    <button onclick="huirJugador()" type='button' class='btn btn-primary' >
                         Huir
                     </button>
-                    <button onclick="" type='button' class='btn btn-primary' >
+                    <button onclick="atacarJugador()" type='button' class='btn btn-primary' >
                         Atacar
                     </button>
                 </div>
@@ -58,16 +58,16 @@
         <div class="card" style="width: 90%; margin: 2%; padding: 2%;">
             <h5 class="text-primary" id="Mapa de juego"> Tablero:  </h5>
             <div id = "cuerpobotonesmov">
-                <button onclick="newDirection('ABA');" type='button' class='btn btn-primary' >
+                <button onclick="move('ABA');" type='button' class='btn btn-primary' >
                     Abajo
                 </button>
-                <button onclick="newDirection('ARR');" type='button' class='btn btn-primary' >
+                <button onclick="move('ARR');" type='button' class='btn btn-primary' >
                     Arriba
                 </button>
-                <button onclick="newDirection('IZQ');" type='button' class='btn btn-primary' >
+                <button onclick="move('IZQ');" type='button' class='btn btn-primary' >
                     Izquierda
                 </button>
-                <button onclick="newDirection('DER');" type='button' class='btn btn-primary' >
+                <button onclick="move('DER');" type='button' class='btn btn-primary' >
                     Derecha
                 </button>
             </div>

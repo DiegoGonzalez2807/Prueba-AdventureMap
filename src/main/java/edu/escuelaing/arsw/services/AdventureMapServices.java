@@ -69,11 +69,7 @@ public class AdventureMapServices {
         try{
             p.mover(destino);
         }catch(AdventureMapPersistenceException e){
-            // if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
-            //     //accionEnTerritorioNoVacio(p, destino);
-            // }
-            //e.printStackTrace();
-            throw new AdventureMapServicesPersistenceException("No se puede mover el personaje a la posicion ("+destino.getX()+","+destino.getY()+")");
+            throw new AdventureMapServicesPersistenceException(e.getMessage());
         }
     }
 
@@ -143,12 +139,12 @@ public class AdventureMapServices {
         }
     }
 
-    public ArrayList<Tuple> getMonstruos() throws AdventureMapServicesPersistenceException{
+    public ArrayList<Tuple> getMonstruos(){
         reloadPersonajes();
         return this.monstruos;
     }
 
-    public ArrayList<Tuple> getJugadores() throws AdventureMapServicesPersistenceException{
+    public ArrayList<Tuple> getJugadores(){
         reloadPersonajes();
         return this.jugadores;
     }
@@ -162,6 +158,19 @@ public class AdventureMapServices {
             e.printStackTrace();
         }
         return p;
+    }
+
+    public Tuple getPersonaje(Tuple personaje,  boolean tuple){ 
+        Tuple q = null;
+        try {
+            Personaje p = getPersonaje(personaje);
+            q = p.getCoordenadas();
+        } catch (AdventureMapServicesPersistenceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return q;
+        
     }
 
 }
