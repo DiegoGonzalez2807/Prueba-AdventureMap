@@ -77,7 +77,6 @@ public class StompMessageHandler {
                 msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
                 msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
                 msgt.convertAndSend("/App/pelea/",ataques);
-                msgt.convertAndSend("/App/jugador/movimiento."+origen,new Tuple(origen));
             }else{
                 e.printStackTrace();
             }
