@@ -4,6 +4,7 @@
     var direction;
     var enemigo = {x:0,y:0};
     var subscribePelea;
+    var count = 1;
     var h1;
     var h2;
     /**
