@@ -1,6 +1,8 @@
 package edu.escuelaing.arsw.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLongArray;
 
@@ -92,6 +94,25 @@ public class Tablero {
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
         }
         return p;
+    }
+
+        /** 
+     * Retorna la posicion del jugador inidicado
+     * @param nombre Nombre del jugador a buscar
+     * @return
+     */
+    public Tuple getPersonaje(String nombre){
+        Tuple jugador = null;
+        Collection<Personaje> jugadores = tablero.values();
+        for(Personaje p:jugadores){
+            if(p instanceof Jugador){
+                Jugador j = (Jugador)p;
+                if(j.getNombre().equals(nombre)){
+                    jugador = j.getCoordenadas();
+                }
+            }
+        }
+        return jugador;
     }
 
     /**

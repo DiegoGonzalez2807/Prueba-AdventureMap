@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
-import javax.xml.ws.soap.Addressing;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Service
 @RestController
@@ -61,10 +58,25 @@ public class appAPIController {
     }
 
     @RequestMapping(value="/AdventureMap/personajes/{personaje}", method=RequestMethod.GET)
-    public ResponseEntity<?> manejadorGetJugador(@PathVariable String personaje) {
+    public ResponseEntity<?> manejadorGetJugadorTupla(@PathVariable String personaje) {
         ResponseEntity<?> mensaje = null;
             Tuple p = services.getPersonaje(new Tuple(personaje),true);
             mensaje= new ResponseEntity<>(p,HttpStatus.ACCEPTED);
+        return mensaje;
+    }
+
+    @RequestMapping(value = "/AdventureMap/jugadores/{jugador}", method=RequestMethod.GET)
+    public ResponseEntity<?> manejadorGetJugadorNombre(@PathVariable String jugador){
+        ResponseEntity<?> mensaje = null;
+        Tuple p;
+        try {
+            p = services.getPersonaje(jugador);
+            System.out.println(services.getPersonaje(jugador));
+            mensaje = new ResponseEntity<>(p,HttpStatus.ACCEPTED);
+        } catch (AdventureMapServicesPersistenceException e) {
+            // TODO Auto-generated catch block
+            mensaje = new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
         return mensaje;
     }
 

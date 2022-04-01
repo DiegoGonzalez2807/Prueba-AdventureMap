@@ -134,12 +134,12 @@
                 if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
                     $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                         console.log("Atacante");
-                        $("#vidaP").text("vidaP: "+data.x)
-                        $("#ataqueP").text("ataqueP: "+" "+data.y)
+                        $("#vidaP").text("vidaP: "+data.x);
+                        $("#ataqueP").text("ataqueP: "+" "+data.y);
                     });
                     $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
-                        $("#vidaE").text("vidaE: "+" "+data.x)
-                        $("#ataqueE").text("ataqueE: "+" "+data.y)
+                        $("#vidaE").text("vidaE: "+" "+data.x);
+                        $("#ataqueE").text("ataqueE: "+" "+data.y);
                     });
                     // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
                     //     actualizarEstadisticas();
@@ -147,12 +147,12 @@
                 }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
                     console.log("Enemigo");
                     $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
-                        $("#vidaP").text("vidaP: "+" "+data.x)
-                        $("#ataqueP").text("ataqueP: "+" "+data.y)
+                        $("#vidaP").text("vidaP: "+" "+data.x);
+                        $("#ataqueP").text("ataquePxx: "+" "+data.y);
                     });
                     $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
-                        $("#vidaE").text("vidaE: "+" "+data.x)
-                        $("#ataqueE").text("ataqueE: "+" "+data.y)
+                        $("#vidaE").text("vidaE: "+" "+data.x);
+                        $("#ataqueE").text("ataqueE: "+" "+data.y);
                     });
                     // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
                     //     actualizarEstadisticas();

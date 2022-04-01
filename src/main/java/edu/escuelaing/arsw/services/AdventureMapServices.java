@@ -2,7 +2,9 @@ package edu.escuelaing.arsw.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.aop.config.AdviceEntry;
 import org.springframework.stereotype.Component;
@@ -25,7 +27,7 @@ import edu.escuelaing.arsw.services.persistence.AdventureMapServicesPersistenceE
 public class AdventureMapServices {
 
     private Tablero tablero = Tablero.getTableroJuego();
-    private static final int tTablero = 290;
+    private static final int tTablero = 390;
     private ArrayList<Tuple> monstruos;
     private ArrayList<Tuple> jugadores;
 
@@ -47,8 +49,8 @@ public class AdventureMapServices {
 
     public void iniciarMapa() throws AdventureMapServicesPersistenceException{
         for(int i=0;i<5;i++){
-            int x = (int)Math.round((Math.random() * (290-0) + 0) / 10) * 10;
-            int y = (int)Math.round((Math.random() * (290-0) + 0) / 10) * 10;
+            int x = (int)Math.round((Math.random() * (390-0) + 0) / 10) * 10;
+            int y = (int)Math.round((Math.random() * (390-0) + 0) / 10) * 10;
             Tuple newPosicion = new Tuple(x,y);
             try{
                 while(tablero.getPersonaje(newPosicion)!=null){
@@ -175,7 +177,20 @@ public class AdventureMapServices {
             e.printStackTrace();
         }
         return q;
-        
+    }
+
+    /** 
+     * Retorna la posicion del jugador inidicado
+     * @param nombre Nombre del jugador a buscar
+     * @return
+     * @throws AdventureMapServicesPersistenceException
+     */
+    public Tuple getPersonaje(String nombre) throws AdventureMapServicesPersistenceException{
+        Tuple p = tablero.getPersonaje(nombre);
+        if(p == null){
+            throw new AdventureMapServicesPersistenceException("El jugador no existe");
+        }
+        return p;
     }
 
 }

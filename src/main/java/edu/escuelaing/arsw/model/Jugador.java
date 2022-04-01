@@ -39,15 +39,15 @@ public class Jugador extends Personaje{
     }
 
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public int getBajaJugadores() {
-        return bajaJugadores;
+        return this.bajaJugadores;
     }
 
     public int getBajaMonstruos() {
-        return bajaMonstruos;
+        return this.bajaMonstruos;
     }
 
     public void setNombre(String nombre) {
