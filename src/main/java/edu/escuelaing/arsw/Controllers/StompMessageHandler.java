@@ -77,7 +77,7 @@ public class StompMessageHandler {
                 System.out.println(ataques.toString());
                 System.out.println("Jugadores: " + ams.getJugadores());
                 msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
-                msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
+                //msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
                 msgt.convertAndSend("/App/pelea/",ataques);
             }else{
                 e.printStackTrace();

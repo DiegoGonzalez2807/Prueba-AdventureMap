@@ -119,9 +119,6 @@
                 drawjugadoresPart(JSON.parse(eventbody.body));
                 console.log(JSON.parse(eventbody.body));
             });
-            stompClient.subscribe('/App/monstruo/map', function(eventbody){
-                drawMonsterPart(JSON.parse(eventbody.body))
-            });
             stompClient.subscribe("/App/pelea/", function(eventbody){
                 console.log()
                 var personaje = JSON.parse(eventbody.body);
