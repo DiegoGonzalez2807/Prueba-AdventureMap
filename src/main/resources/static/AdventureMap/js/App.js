@@ -2,10 +2,15 @@
     var name;
     var stompClient;
     var direction;
+<<<<<<< HEAD
     var enemigo = {x:0,y:0};
     var subscribePelea;
     var h1;
     var h2;
+=======
+    var count = 1;
+
+>>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
     /**
      * Funcion generada para redireccionar desde la página inicial
      * a la página donde se encuentra el mapa. Se recibe el nombre
@@ -18,6 +23,7 @@
         window.location = "../AdventureMap/Mapa.html"
     }
 
+<<<<<<< HEAD
     // /**
     //  * Funcion generada para escuchar cuando el usuario haya
     //  * oprimido un botón. 
@@ -28,6 +34,19 @@
     //         move();
     //     })
     // }
+=======
+    /**
+     * Funcion generada para escuchar cuando el usuario haya
+     * oprimido un botón. 
+     * @param {String} direccion 
+     */
+     function eventButtonListener(){
+        window.addEventListener("click", function(){
+            console.log("COUNT "+count)
+            move()
+        })
+    }
+>>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
 
     /**
      * Funcion generada para guardar la dirección en la que va el 
@@ -43,7 +62,12 @@
      * Funcion generada para generar movimiento en el jugador de acuerdo
      * a la direccion que nos de el listener de botones.
      */
+<<<<<<< HEAD
     function move(direction){
+=======
+    function move(){
+        
+>>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
         switch (direction){
             case "ABA": movimiento.arriba();
             break;
@@ -62,6 +86,7 @@
         // mainM();
         // maint();
         stompClient.send("/App/map/mover/"+h,{},JSON.stringify(getJugador()));
+        count +=1;
 
     }
     
@@ -97,6 +122,7 @@
         stompClient.send("/App/map/"+name,{},JSON.stringify(getJugador()));
     }
 
+
     /**
      * Funcion generada para conectarse a STOMP, así como 
      * poder suscribirse a los topicos que se crearon
@@ -116,6 +142,7 @@
                 drawjugadoresPart(JSON.parse(eventbody.body));
                 console.log(JSON.parse(eventbody.body));
             });
+<<<<<<< HEAD
             stompClient.subscribe('/App/monstruo/map', function(eventbody){
                 drawMonsterPart(JSON.parse(eventbody.body))
             });
@@ -159,6 +186,8 @@
                     // });
                 }
             });
+=======
+>>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
             getElementsTablero();
       });      
     };

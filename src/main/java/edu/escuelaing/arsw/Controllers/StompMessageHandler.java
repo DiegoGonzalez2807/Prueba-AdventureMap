@@ -3,6 +3,8 @@ package edu.escuelaing.arsw.Controllers;
 
 import edu.escuelaing.arsw.services.AdventureMapServices;
 import edu.escuelaing.arsw.services.persistence.AdventureMapServicesPersistenceException;
+
+import org.jboss.logging.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.escuelaing.arsw.model.Jugador;
@@ -58,6 +60,7 @@ public class StompMessageHandler {
     public void handleMoverJugador(@DestinationVariable String origen, Tuple destino){
         Personaje p = null;
         try {
+<<<<<<< HEAD
             p = ams.getPersonaje(new Tuple(origen));
             ams.moverPersonaje(p, destino);
             System.out.println("Jugadores: " + ams.getJugadores());
@@ -97,15 +100,29 @@ public class StompMessageHandler {
             msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
             msgt.convertAndSend("/App/pelea/",ataques);//Envia el evento para actualizar las estadisticas
             
+=======
+            System.out.println("MOVIMIENTO DE JUGADOR");
+            System.out.println("Origen:    "+new Tuple(origen).toString());
+            System.out.println("Destino:    "+destino.toString());
+            Personaje p = ams.getPersonaje(new Tuple(origen));
+            ams.moverPersonaje(p, destino);
+            //System.out.println("Nuevas "+p.getCoordenadas()+"\n");
+            //System.out.println("Monstruos: " + ams.getMonstruos()+"\n");
+            msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
+            //msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
+>>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
         } catch (AdventureMapServicesPersistenceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
 }
