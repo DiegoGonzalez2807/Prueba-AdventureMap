@@ -73,13 +73,6 @@ function drawMonsterPart(MonsterPart) {
     GameCanva_ctx.fillStyle = Monster_col;
     GameCanva_ctx.strokestyle = monster_border;
     MonsterPart.forEach(element => {
-<<<<<<< HEAD
-      // console.log("COUNT"+count)
-      // if(count%3 === 0){
-      //   move_monster(element);
-      // }
-=======
->>>>>>> 8a4672dd6b9b724dfab81a325cd911af51d865c8
         GameCanva_ctx.fillRect(element.x, element.y, 10, 10);
         GameCanva_ctx.strokeRect(element.x, element.y, 10, 10);
     });

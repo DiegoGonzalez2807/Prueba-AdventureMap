@@ -17,11 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RequestParam;
 
->>>>>>> 8a4672dd6b9b724dfab81a325cd911af51d865c8
 
 @Service
 @RestController
