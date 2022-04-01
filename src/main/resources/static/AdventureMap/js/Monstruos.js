@@ -19,10 +19,7 @@ function getMonstruos(){
       //console.log(data);
       var monstruos = data.map(function(monstruo){
         monster = {x:monstruo.x, y:monstruo.y}
-<<<<<<< HEAD
         //setInterval('move_monster(monster)',60000);
-=======
->>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
         return monster;
       });
       
@@ -141,15 +138,10 @@ function move_monster(monster) {
           //console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
           //console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
           var h = "(" + mons.x + ","+  mons.y + ")";
-<<<<<<< HEAD
-          stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
-          console.log(monster);
-=======
           console.log("ESTE ES MONS: "+JSON.stringify(mons))
           console.log("ESTE ES MONSTER" + JSON.stringify(monster))
           stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
          // console.log(monster);
->>>>>>> 12f054beed6ac4505b5c13c9f980e17c61387e9f
         }
       }
 
