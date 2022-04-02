@@ -6,7 +6,7 @@ const GameCanva = document.getElementById("gameCanvas");
 const GameCanva_ctx = GameCanvas.getContext("2d");
 const movement = [-10, 10]
 
-let url2 = "http://localhost:8080/";
+let url2 = "https://adventuremap.herokuapp.com/";
 
 var booleans = [];
 var jugadores_M = [];
