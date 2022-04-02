@@ -7,6 +7,7 @@
     var count = 1;
     var h1;
     var h2;
+    const url5 = 'http://adventuremap.herokuapp.com/AdventureMap';
     /**
      * Funcion generada para redireccionar desde la página inicial
      * a la página donde se encuentra el mapa. Se recibe el nombre
@@ -16,7 +17,7 @@
     function redirect(data){
         name = data;
         console.log(name);
-        window.location = "../AdventureMap/Mapa.html"
+        window.location = "url5/AdventureMap/Mapa.html"
     }
 
     // /**
