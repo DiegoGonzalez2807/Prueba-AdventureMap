@@ -5,7 +5,7 @@ const board_backgroundr = "white";
 const GameCanvasp = document.getElementById("gameCanvas");
 const GameCanvasp_ctx = GameCanvasp.getContext("2d");
 
-let url1 = "http://localhost:8080/";
+let url1 = "https://adventuremap.herokuapp.com/";
 
 
 
