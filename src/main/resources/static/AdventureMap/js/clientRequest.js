@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080/AdventureMap';
+const url = 'http://adventuremap.herokuapp.com/AdventureMap';
 var dataCallBack = [];
 
 /**
