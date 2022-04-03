@@ -26,7 +26,12 @@ public class appAPIController {
     @Autowired
     AdventureMapServices services;
 
-
+    /**
+     * Funcion generada para retornar los monstruos que se han creado o que se tienen
+     * en el backend a partir de una lista. Esto sirve para volverlos a pintar en caso de 
+     * haberlos cambiado de posicion o de pintarlos por primera vez
+     * @return List[Monstruo]
+     */
     @RequestMapping(value = "/AdventureMap/monstruos", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorgetMonstruos() {
         ArrayList<Tuple> monstruos = null;
@@ -36,6 +41,11 @@ public class appAPIController {
         return mensaje;
     }
 
+    /**
+     * Funcion generada para retornar la lista de jugadores que se han inscrito al juego.
+     * Esta función sirve para saber sus posiciones y posteriormente dibujarlos.
+     * @return -> List[Jugador]
+     */
         @RequestMapping(value = "/AdventureMap/jugadores", method = RequestMethod.GET)
         public ResponseEntity<?> manejadorgetJugadores() {
             ArrayList<Tuple> jugadores = null;
@@ -47,6 +57,12 @@ public class appAPIController {
             return mensaje;
         }
 
+        /**
+         * Función generada para retornar el mapa que se hizo en el backend.
+         * Esta conexión sirve para tener control sobre los movimientos de 
+         * jugadores y monstruos dentro del mapa pero en backend
+         * @return
+         */
     @RequestMapping(value = "/AdventureMap/initMap", method = RequestMethod.GET)
     public ResponseEntity<?> manejadorgetMapa(){
         ResponseEntity<?> mensaje = null;
@@ -59,6 +75,12 @@ public class appAPIController {
         return mensaje;
     }
 
+    /**
+     * Funcion generada para retornar un jugador a partir de su nombre. En este caso
+     * se dara la tupla de coordenadas donde este se encuentra
+     * @param personaje
+     * @return
+     */
     @RequestMapping(value="/AdventureMap/personajes/{personaje}", method=RequestMethod.GET)
     public ResponseEntity<?> manejadorGetJugadorTupla(@PathVariable String personaje) {
         ResponseEntity<?> mensaje = null;
@@ -67,6 +89,11 @@ public class appAPIController {
         return mensaje;
     }
 
+    /**
+     * 
+     * @param jugador
+     * @return
+     */
     @RequestMapping(value = "/AdventureMap/jugadores/{jugador}", method=RequestMethod.GET)
     public ResponseEntity<?> manejadorGetJugadorNombre(@PathVariable String jugador){
         ResponseEntity<?> mensaje = null;
@@ -96,6 +123,7 @@ public class appAPIController {
                 p = services.getPersonaje(new Tuple(personaje));
                 //Creacion de la tupla por la cual se representan las estadisticas del jugador
                 Tuple q = new Tuple(p.getVida(),p.getDano());
+                System.out.println("SOY EL JUGADOR "+personaje+" MI VIDA ES "+p.getVida()+" Y MI DAÑO ES "+p.getDano());
                 mensaje= new ResponseEntity<>(q,HttpStatus.ACCEPTED);
             } catch (AdventureMapServicesPersistenceException e) {
                 // TODO Auto-generated catch block

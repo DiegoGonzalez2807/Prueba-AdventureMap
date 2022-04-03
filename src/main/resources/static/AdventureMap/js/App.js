@@ -8,6 +8,7 @@
     var h1;
     var h2;
     //const url5 = 'http://adventuremap.herokuapp.com/AdventureMap';
+
     /**
      * Funcion generada para redireccionar desde la página inicial
      * a la página donde se encuentra el mapa. Se recibe el nombre
@@ -19,17 +20,6 @@
         console.log(name);
         window.location = "/AdventureMap/Mapa.html"
     }
-
-    // /**
-    //  * Funcion generada para escuchar cuando el usuario haya
-    //  * oprimido un botón. 
-    //  * @param {String} direccion 
-    //  */
-    //  function eventButtonListener(){
-    //     window.addEventListener("click", function(){
-    //         move();
-    //     })
-    // }
 
     /**
      * Funcion generada para guardar la dirección en la que va el 
@@ -121,19 +111,24 @@
                 drawjugadoresPart(JSON.parse(eventbody.body));
                 console.log(JSON.parse(eventbody.body));
             });
+            //SUSCRIPCION AL CANAL DE PELEA
+            // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
             stompClient.subscribe("/App/pelea/", function(eventbody){
                 console.log()
                 var personaje = JSON.parse(eventbody.body);
+                console.log("ESTE ES EL EVENTBODY DE PELEA")
+                console.log(eventbody.body)
                 jugador = getJugadorVie();
+                console.log("ESTE ES EL JUGADOR VIEJO "+JSON.stringify(jugador));
                 enemigo = personaje[1];
                 console.log("Se forma conflicto");
                 console.log(personaje);
                 h1 = "(" + jugador.x + ","+  jugador.y + ")";
                 h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
-                console.log(getJugador());
                 console.log(h1);
                 console.log(h2);
                 if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
+                    document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
                     $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                         console.log("Atacante");
                         $("#vidaP").text("vidaP: "+data.x);
@@ -147,7 +142,11 @@
                     //     actualizarEstadisticas();
                     // });
                 }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
+                    document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
                     console.log("Enemigo");
+                    h1 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
+                    console.log("SOY H1 DE ENEMIGO, OSEA SOY EL ENEMIGO "+h1)
+                    console.log("SOY H2 DE ENEMIGO, OSE SOY YO "+h2)
                     $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                         $("#vidaP").text("vidaP: "+" "+data.x);
                         $("#ataqueP").text("ataquePxx: "+" "+data.y);
@@ -165,17 +164,34 @@
       });      
     };
 
+    /**
+     * Funcion generada para atacar al jugador y que se envie la solicitud de ataque al backend JAVA para que
+     * los jugadores guardados peleeen y al que hayan atacado, reciba daño en sus estadisticas
+     */
     function atacarJugador(){
+        console.log("YO SOY EL "+h1)
+        console.log("EL ENEMIGO ES "+h2)
         stompClient.send("/App/map/pelea."+h1,{},h2);
     }
 
+    
+
+    /**
+     * Funcion generada para que el jugador huya de la pelea que tiene con otro jugador o monstruo
+     * Lo primero que se hace es desuscribirse del topico de pelea que se genero al entrar en combate
+     */
     function huirJugador(){
         if(subscribePelea != null){
             subscribePelea.unsubscribe();
         }
     }
 
+    /**
+     * Funcion generada para actualizar las estadisticas del jugador en cuestion de daño y de vida
+     * Esto se ve reflejado en la interfaz. Donde se actualiza Mapa.html con las estadísticas del jugador
+     */
     function actualizarEstadisticas(){
+        console.log("SE ESTA ENTRANDO A ACTUALIZAR ESTADISTICAS")
         if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
             $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                 console.log("Atacante");

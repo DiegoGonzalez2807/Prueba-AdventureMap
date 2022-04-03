@@ -5,8 +5,8 @@ const board_backgroundr = "white";
 const GameCanvasp = document.getElementById("gameCanvas");
 const GameCanvasp_ctx = GameCanvasp.getContext("2d");
 
-let url1 = "https://adventuremap.herokuapp.com/";
-
+let url3 = "https://adventuremap.herokuapp.com/";
+let url4 = "http://localhost:8080/";
 
 
 let jugador = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
@@ -23,7 +23,7 @@ function getJugadorVie(){
 }
 
 function getJugadores(){
-    $.get(url1+"AdventureMap/jugadores",function(data){
+    $.get(url4+"AdventureMap/jugadores",function(data){
        // console.log(data);
         var jugadores = data.map(function(jugador){
             return {x:jugador.x, y:jugador.y}
@@ -62,7 +62,7 @@ function drawjugadoresPart(MonsterPart) {
     });
 }
 
-function clear_board() {
+function clear_board(){
       GameCanvasp_ctx.fillStyle = board_backgroundr;
       GameCanvasp_ctx.strokestyle = board_borderr;
       GameCanvasp_ctx.fillRect(0, 0, GameCanvasp.width, GameCanvasp.height);
