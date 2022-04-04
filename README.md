@@ -95,7 +95,7 @@ El otro componente que nos ofrece los servicios es SimpMessageTemplate, el cuál
 
 ### Diagramas de Secuencia 
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/DieagramaSecuenciaCrear.png)
-
+![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/DiagramaSecuenciaMover.png)
 
 
 ### Explicación Frontend
