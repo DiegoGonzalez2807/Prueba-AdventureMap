@@ -130,8 +130,8 @@
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
-                 //console.log("H1 ES "+h1)
-                 //console.log("H2 ES "+h2)
+                 console.log("H1 ES "+h1)
+                 console.log("H2 ES "+h2)
                  stompClient.send("/App/atacando",{},h1);
                  stompClient.send("/App/atacando",{},h2);
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
