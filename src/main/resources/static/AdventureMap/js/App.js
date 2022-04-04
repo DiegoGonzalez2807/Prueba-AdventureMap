@@ -202,6 +202,9 @@
                 $("#ataqueE").text("ataqueE: "+" "+data.y)
             });
         }
+        else{
+            console.log("error")
+        }
     }
 
     $(document).ready(
