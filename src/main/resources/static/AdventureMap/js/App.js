@@ -117,7 +117,7 @@
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
              stompClient.subscribe("/App/pelea/", function(eventbody){
                  var personaje = JSON.parse(eventbody.body);
-                 jugador = getJugadorVie();
+                 jugador = getJugador();
                  enemigo = personaje[1];
                  console.log("YO SOY JUGADOR"+JSON.stringify(jugador));
                  console.log("YO SOY ENEMIGO"+JSON.stringify(enemigo));
