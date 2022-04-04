@@ -107,6 +107,7 @@ public class StompMessageHandler {
             System.out.println(propio+"ataca a "+enemigo);
             msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
             msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
+            System.out.println("Ataques:   "+ataques.toString());
             msgt.convertAndSend("/App/pelea/",ataques);//Envia el evento para actualizar las estadisticas
             
         } catch (AdventureMapServicesPersistenceException e) {
