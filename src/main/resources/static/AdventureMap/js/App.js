@@ -130,12 +130,12 @@
                  console.log("YO SOY ENEMIGO"+JSON.stringify(enemigo));
                  document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
                  //SI SOY ATACANTE
-                 if(getJugadorVie().x == personaje[0].x && getJugador().y == personaje[0].y){
+                 if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
                  }
                  //SI SOY ENEMIGO
-                 else if(getJugadorVie().x == personaje[1].x && getJugador().y == personaje[1].y){
+                 else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
