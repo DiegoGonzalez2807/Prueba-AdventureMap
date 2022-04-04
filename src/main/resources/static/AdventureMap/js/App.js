@@ -206,6 +206,7 @@
             console.log("error")
         }
     }
+    
 
     $(document).ready(
         function(){
