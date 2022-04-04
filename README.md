@@ -9,6 +9,10 @@ Proyecto final ARSW 2022-1 Adventure Map
 ### Diagra de actividades  
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/Diagrama%20de%20actividades.png)  
 
+
+### Diagrama de Clases
+![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/Clases.png)  
+
 Se penso hacer el manejo de actividades a traves de distintos topicos en donde se tiene uno general para el pintado del mapa, y uno espcifico para cada pelea que se esta dando.
 
  ## Ingreso Jugador  
