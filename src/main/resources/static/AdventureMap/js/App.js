@@ -132,6 +132,9 @@
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
+                 else{
+                     console.log("NO ESTA CUMPLIENDO")
+                 }
 
                  console.log("H1 ES "+h1)
                  console.log("H2 ES "+h2)
