@@ -56,7 +56,8 @@
         // mainM();
         // maint();
         stompClient.send("/App/map/mover/"+h,{},JSON.stringify(nueva_posicion));
-        $.get(url3+"AdventureMap/personaje/"+JSON.stringify(nueva_posicion),function(data){
+        var z = "(" + nueva_posicion.x + ","+  nueva_posicion.y + ")";
+        $.get(url3+"AdventureMap/personaje/"+z,function(data){
             if(data == undefined){
                 jugador = nueva_posicion;
             }
@@ -94,7 +95,7 @@
      */
     function getPlayerInCanva(){
         console.log(name)
-        console.log("ESTE ES EL JUGADOR"+name);
+        console.log("ESTE ES EL JUGADOR"+name);4
         stompClient.send("/App/map/"+name,{},JSON.stringify(getJugador()));
     }
 
