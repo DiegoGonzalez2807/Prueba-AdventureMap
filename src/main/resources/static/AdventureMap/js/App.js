@@ -134,11 +134,11 @@
                  //console.log("H2 ES "+h2)
                  stompClient.send("/App/atacando",{},h1);
                  stompClient.send("/App/atacando",{},h2);
-                 $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                 $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
                  });
-                 $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                 $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 });
@@ -182,22 +182,22 @@
     function actualizarEstadisticas(){
         console.log("SE ESTA ENTRANDO A ACTUALIZAR ESTADISTICAS")
         if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
-            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                 console.log("Atacante");
                 $("#vidaP").text("vidaP: "+data.x)
                 $("#ataqueP").text("ataqueP: "+" "+data.y)
             });
-            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                 $("#vidaE").text("vidaE: "+" "+data.x)
                 $("#ataqueE").text("ataqueE: "+" "+data.y)
             });
         }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
             console.log("Enemigo");
-            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                 $("#vidaP").text("vidaP: "+" "+data.x)
                 $("#ataqueP").text("ataqueP: "+" "+data.y)
             });
-            $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                 $("#vidaE").text("vidaE: "+" "+data.x)
                 $("#ataqueE").text("ataqueE: "+" "+data.y)
             });

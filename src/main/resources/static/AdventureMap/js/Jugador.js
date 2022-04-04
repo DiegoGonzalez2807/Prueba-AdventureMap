@@ -23,7 +23,7 @@ function getJugadorVie(){
 }
 
 function getJugadores(){
-    $.get(url4+"AdventureMap/jugadores",function(data){
+    $.get(url3+"AdventureMap/jugadores",function(data){
        // console.log(data);
         var jugadores = data.map(function(jugador){
             return {x:jugador.x, y:jugador.y}
