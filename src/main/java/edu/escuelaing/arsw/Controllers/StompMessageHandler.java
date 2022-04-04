@@ -62,7 +62,7 @@ public class StompMessageHandler {
     @MessageMapping("/map/mover/{origen}")
     public void handleMoverJugador(@DestinationVariable String origen, Tuple destino){
         Personaje p = null;
-        try {
+        try {       
             p = ams.getPersonaje(new Tuple(origen));
             ams.moverPersonaje(p, destino);
             //System.out.println("Jugadores: " + ams.getJugadores());
