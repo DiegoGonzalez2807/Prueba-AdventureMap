@@ -119,6 +119,8 @@
                  var personaje = JSON.parse(eventbody.body);
                  jugador = getJugadorVie();
                  enemigo = personaje[1];
+                 console.log("YO SOY JUGADOR"+jugador);
+                 console.log("YO SOY ENEMIGO"+enemigo);
                  document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
                  //SI SOY ATACANTE
                  if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
