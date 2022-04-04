@@ -57,7 +57,7 @@
         // maint();
         stompClient.send("/App/map/mover/"+h,{},JSON.stringify(nueva_posicion));
         var z = "(" + nueva_posicion.x + ","+  nueva_posicion.y + ")";
-        $.get(url3+"AdventureMap/personaje/"+z,function(data){
+        $.get(url3+"AdventureMap/personajes/"+z,function(data){
             if(data == undefined){
                 jugador = nueva_posicion;
             }
