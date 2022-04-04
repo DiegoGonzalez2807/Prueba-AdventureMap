@@ -4,6 +4,11 @@ Proyecto final ARSW 2022-1 Adventure Map
 # Adventure-Map
 Proyecto final ARSW 2022-1 Adventure Map
 
+# Integrantes
+Diego Alejandro González
+Eduardo Ospina Mejia
+Cristian Andrés Castellanos
+
 [Despliegue](https://adventuremap.herokuapp.com/AdventureMap/Index.html)
 
 ### Diagrama de actividades  
@@ -71,16 +76,30 @@ Para poder graficar en tiempo real mi nueva posición
 
 ### Diagrama de Despliegue
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/Deployment.png)
+El diagrama de despliegue tiene un nodo llamado "User's Computer", este se encarga de la conexión por parte del usuario hacia el ambiente de despliegue (en este caso Heroku), a través de peticiones HTTP, donde se le pide elementos tales como "index.html" para el ingreso del jugador y "Mapa.html", la cual es la interfaz del juego.
+
+Revisando el nodo Heroku Deployment, este contiene los siguientes componentes:
+ - App: Web Application -> Este componente es la conexión del frontend (Lenguaje JavaScript) hacia el usuario. Esto con el fin de conectar el ambiente de etiquetas de HTML con el ambiente de desarrollo de JavaScript. 
+ 
+ - StompMessageHandler -> Este es un componente que se rige a partir de STOMP. Este se crea debido a que funciones tales como "Mover Personaje", "Pelear", entre otros, se manejan a través de suscripciones y envío de mensajes. Este componente se encarga de recibir los mensajes que se le envíen desde el frontend, y, a través de la etiqueta @MessageMapping, revisa a cuál tópico fue enviado el mensaje para empezar a correr las instrucciones de acuerdo a lo definido en el backend.
+ 
+ - appAPIController -> Este es un componente que se rige a partir de REST. Esto significa que a este componente le van a llegar solicitudes HTTP como "GET" y "PUT".
 
 
 ### Diagrama de Componentes
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/Components.png)
+Para el nodo de Web Application, este requiere los servicios de WebSockets y de REST para tener todas las funcionalidades y elementos que requiere la interfaz de mapa.
+El servicio de webSockets le ofrece al nodo Web las funcionalidades necesarias para el envío, suscripción y demás funcionalidades que nos puede ofrecer STOMP. Sin embargo, el componente de WebSockets requiere de funcionalidades en el backend para poder hacer las funcionalidades que le piden actualice en el frontend. Para eso le ofrecemos los servicios de AdventureMapServices, el cuál lo conecta con todas las funciones que tienen definidas las entidades, tales como "MoverJugador" en la entidad de tablero.
+El otro componente que nos ofrece los servicios es SimpMessageTemplate, el cuál nos ayuda a enviar desde el backend un mensaje a un tópico definido.
 
 
 ### Diagramas de Secuencia 
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/DieagramaSecuenciaCrear.png)
 
 
+
+### Explicación Frontend
+Para el frontend llegamos a usar una combinación de HTML y JavaScript para manejar las peticiones hacia el backend y poder tener todas las interfaces correctamente creadas y con sus utilidades necesarias para el juego. Con este modelo buscamos facilitar la conexión al backend, para el manejo de datos, manejo de cambios y el control de peleas. Lo separamos en diferentes clases con sus propios propositos. Separadas en diferentes funcionalidades, como el dibujo de personajes y monstruos por separado, la creacion de la conexión que los diferentes tópicos y el envío de mensajes a estos mismos. Gracias a esta conexión al backend, es que logramos manejar el cambio de posiciones y de daño a los diferentes jugadores que entren al juego.
 
 
 
