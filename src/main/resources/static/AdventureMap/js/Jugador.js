@@ -13,7 +13,10 @@ let jugador = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, 
 let jugadores_ = [];
 let jugadoresViejos = jugador;
 
-
+/**
+ * Retorna el jugador
+ * @returns 
+ */
 function getJugador(){
     return jugador;
 }
