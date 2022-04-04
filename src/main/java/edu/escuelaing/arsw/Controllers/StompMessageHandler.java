@@ -103,7 +103,7 @@ public class StompMessageHandler {
             ataques.add(new Tuple(propio));
             ataques.add(new Tuple(enemigo));
             p = ams.getPersonaje(new Tuple(propio));
-            ams.atacar(p, new Tuple(enemigo));
+            ams.atacar(p, new Tuple(enemigo)); 
             msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
             msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
             msgt.convertAndSend("/App/pelea/",ataques);//Envia el evento para actualizar las estadisticas
