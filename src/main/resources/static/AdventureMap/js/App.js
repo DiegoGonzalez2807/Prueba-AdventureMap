@@ -126,10 +126,11 @@
                     h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
                  }
                  //SI SOY ENEMIGO
-                 else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
+                 else{
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
+
                  console.log("H1 ES "+h1)
                  console.log("H2 ES "+h2)
                  stompClient.send("/App/atacando",{},h1);
