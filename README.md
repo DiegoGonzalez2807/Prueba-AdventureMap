@@ -71,6 +71,14 @@ Para poder graficar en tiempo real mi nueva posición
 
 ### Diagrama de Despliegue
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/Deployment.png)
+El diagrama de despliegue tiene un nodo llamado "User's Computer", este se encarga de la conexión por parte del usuario hacia el ambiente de despliegue (en este caso Heroku), a través de peticiones HTTP, donde se le pide elementos tales como "index.html" para el ingreso del jugador y "Mapa.html", la cual es la interfaz del juego.
+
+Revisando el nodo Heroku Deployment, este contiene los siguientes componentes:
+ - App: Web Application -> Este componente es la conexión del frontend (Lenguaje JavaScript) hacia el usuario. Esto con el fin de conectar el ambiente de etiquetas de HTML con el ambiente de desarrollo de JavaScript. 
+ 
+ - StompMessageHandler -> Este es un componente que se rige a partir de STOMP. Este se crea debido a que funciones tales como "Mover Personaje", "Pelear", entre otros, se manejan a través de suscripciones y envío de mensajes. Este componente se encarga de recibir los mensajes que se le envíen desde el frontend, y, a través de la etiqueta @MessageMapping, revisa a cuál tópico fue enviado el mensaje para empezar a correr las instrucciones de acuerdo a lo definido en el backend.
+ 
+ - appAPIController -> Este es un componente que se rige a partir de REST. Esto significa que a este componente le van a llegar solicitudes HTTP como "GET" y "PUT".
 
 
 ### Diagrama de Componentes
