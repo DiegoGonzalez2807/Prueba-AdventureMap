@@ -105,6 +105,13 @@ public class StompMessageHandler {
         }
     }
 
+    @MessageMapping("/App/atacando.{propio}")
+    public void handlePeleando(@DestinationVariable String propio, String jsonPropio){
+        System.out.println("ENTRA A ATACANDO, NUEVO TOPICO");
+        msgt.convertAndSend("/App/peleando",jsonPropio);
+
+    }
+
 
 
 

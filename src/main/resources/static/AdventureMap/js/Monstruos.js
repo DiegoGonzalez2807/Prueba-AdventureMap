@@ -79,6 +79,7 @@ function drawMonsterPart(MonsterPart) {
     });
 }
 
+
 function comprobar_bordesx(dx, i) {
     const hitLeftWall = dx < 0;
     const hitRightWall = dx > GameCanva.width - 10;

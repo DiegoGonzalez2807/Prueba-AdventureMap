@@ -7,6 +7,8 @@
     var count = 1;
     var h1;
     var h2;
+    var rol;
+    const boton = document.querySelector("#botonAtaque");
     //const url5 = 'http://adventuremap.herokuapp.com/AdventureMap';
 
     /**
@@ -113,56 +115,44 @@
             });
             //SUSCRIPCION AL CANAL DE PELEA
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
-            stompClient.subscribe("/App/pelea/", function(eventbody){
-                console.log()
-                var personaje = JSON.parse(eventbody.body);
-                console.log("ESTE ES EL EVENTBODY DE PELEA")
-                console.log(eventbody.body)
-                jugador = getJugadorVie();
-                console.log("ESTE ES EL JUGADOR VIEJO "+JSON.stringify(jugador));
-                enemigo = personaje[1];
-                console.log("Se forma conflicto");
-                console.log(personaje);
-                h1 = "(" + jugador.x + ","+  jugador.y + ")";
-                h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
-                console.log(h1);
-                console.log(h2);
-                if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
-                    document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
-                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
-                        console.log("Atacante");
-                        $("#vidaP").text("vidaP: "+data.x);
-                        $("#ataqueP").text("ataqueP: "+" "+data.y);
-                    });
-                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
-                        $("#vidaE").text("vidaE: "+" "+data.x);
-                        $("#ataqueE").text("ataqueE: "+" "+data.y);
-                    });
-                    // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
-                    //     actualizarEstadisticas();
-                    // });
-                }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
-                    document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
-                    console.log("Enemigo");
-                    h1 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
-                    console.log("SOY H1 DE ENEMIGO, OSEA SOY EL ENEMIGO "+h1)
-                    console.log("SOY H2 DE ENEMIGO, OSE SOY YO "+h2)
-                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
-                        $("#vidaP").text("vidaP: "+" "+data.x);
-                        $("#ataqueP").text("ataquePxx: "+" "+data.y);
-                    });
-                    $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
-                        $("#vidaE").text("vidaE: "+" "+data.x);
-                        $("#ataqueE").text("ataqueE: "+" "+data.y);
-                    });
-                    // subscribePelea = stompClient.subscribe("App/pelea/"+h1+"."+h2,function(){
-                    //     actualizarEstadisticas();
-                    // });
-                }
-            });
+             stompClient.subscribe("/App/pelea/", function(eventbody){
+                 var personaje = JSON.parse(eventbody.body);
+                 jugador = getJugadorVie();
+                 enemigo = personaje[1];
+                 document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
+                 //SI SOY ATACANTE
+                 if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
+                    h1 = "(" + jugador.x + ","+  jugador.y + ")";
+                    h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
+                 }
+                 //SI SOY ENEMIGO
+                 else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
+                    h1 = "(" + jugador.x + ","+  jugador.y + ")";
+                    h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
+                 }
+                 //console.log("H1 ES "+h1)
+                 //console.log("H2 ES "+h2)
+                 stompClient.send("/App/atacando",{},h1);
+                 stompClient.send("/App/atacando",{},h2);
+                 $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                     $("#vidaP").text("vidaP: "+data.x);
+                     $("#ataqueP").text("ataqueP: "+" "+data.y);
+                 });
+                 $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                    $("#vidaE").text("vidaE: "+" "+data.x);
+                    $("#ataqueE").text("ataqueE: "+" "+data.y);
+                });
+             });
+             // SUSCRIPCION PELEA O HUIDA
+             stompClient.subscribe("/App/atacando", function(eventbody){
+                 console.log("ENTRA A EVENTBODY DE HUIDA O PELEA")
+                 console.log(eventbody.body)
+                $(".movement").prop('disabled', true);
+             })
             getElementsTablero();
       });      
     };
+
 
     /**
      * Funcion generada para atacar al jugador y que se envie la solicitud de ataque al backend JAVA para que
@@ -174,13 +164,12 @@
         stompClient.send("/App/map/pelea."+h1,{},h2);
     }
 
-    
-
     /**
      * Funcion generada para que el jugador huya de la pelea que tiene con otro jugador o monstruo
      * Lo primero que se hace es desuscribirse del topico de pelea que se genero al entrar en combate
      */
     function huirJugador(){
+        $(".movement").prop('disabled', false);
         if(subscribePelea != null){
             subscribePelea.unsubscribe();
         }
@@ -214,3 +203,9 @@
             });
         }
     }
+
+    $(document).ready(
+        function(){
+            $(".movement").prop('disabled', false);
+        }
+    );

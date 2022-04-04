@@ -35,7 +35,7 @@
                     <button onclick="huirJugador()" type='button' class='btn btn-primary' >
                         Huir
                     </button>
-                    <button onclick="atacarJugador()" type='button' class='btn btn-primary' >
+                    <button onclick="atacarJugador()" type='button' class='btn btn-primary' id="botonAtaque" >
                         Atacar
                     </button>
                 </div>
@@ -58,16 +58,16 @@
         <div class="card" style="width: 90%; margin: 2%; padding: 2%;">
             <h5 class="text-primary" id="Mapa de juego"> Tablero:  </h5>
             <div id = "cuerpobotonesmov">
-                <button onclick="move('ABA');" type='button' class='btn btn-primary' >
+                <button onclick="move('ABA');" type='button' class='movement' >
                     Abajo
                 </button>
-                <button onclick="move('ARR');" type='button' class='btn btn-primary' >
+                <button onclick="move('ARR');" type='button' class='movement' >
                     Arriba
                 </button>
-                <button onclick="move('IZQ');" type='button' class='btn btn-primary' >
+                <button onclick="move('IZQ');" type='button' class='movement' >
                     Izquierda
                 </button>
-                <button onclick="move('DER');" type='button' class='btn btn-primary' >
+                <button onclick="move('DER');" type='button' class='movement' >
                     Derecha
                 </button>
             </div>

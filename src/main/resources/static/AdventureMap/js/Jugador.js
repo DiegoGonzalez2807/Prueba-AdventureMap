@@ -1,4 +1,4 @@
-const player_col = 'blue';
+var player_col = 'blue';
 const player_border = 'black';
 const board_borderr = 'black';
 const board_backgroundr = "white";
@@ -61,6 +61,7 @@ function drawjugadoresPart(MonsterPart) {
         GameCanvasp_ctx.strokeRect(element.x, element.y, 10, 10);
     });
 }
+
 
 function clear_board(){
       GameCanvasp_ctx.fillStyle = board_backgroundr;
