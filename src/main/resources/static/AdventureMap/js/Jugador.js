@@ -11,7 +11,6 @@ let url4 = "http://localhost:8080/";
 
 let jugador = {x: random_player(0, GameCanvasp.width - 10), y: random_player(0, GameCanvasp.height - 10)}
 let jugadores_ = [];
-let nueva_posicion = jugador;
 let jugadoresViejos = jugador;
 
 
@@ -92,7 +91,7 @@ var movimiento = (function(){
           let dy = 0;
           jugadoresViejos = {x:jugador.x,y:jugador.y};
           if (!(comprobar_bordesx(jugador.x + dx)  )){
-               nueva_posicion = {x: jugador.x + dx, y: jugador.y + dy}
+               jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();
                maint();
               //mainM();
@@ -108,7 +107,7 @@ var movimiento = (function(){
           let dy = 0;
           jugadoresViejos = {x:jugador.x,y:jugador.y};
           if (!(comprobar_bordesx(jugador.x + dx)  )){
-              nueva_posicion = {x: jugador.x + dx, y: jugador.y + dy}
+              jugador = {x: jugador.x + dx, y: jugador.y + dy}
               clear_board();
               maint();
             // mainM();
@@ -125,7 +124,7 @@ var movimiento = (function(){
           let dy = 10;
           jugadoresViejos = {x:jugador.x,y:jugador.y};
           if(!(comprobar_bordesy(jugador.y + dy))){
-               nueva_posicion = {x: jugador.x + dx, y: jugador.y + dy}
+               jugador = {x: jugador.x + dx, y: jugador.y + dy}
                clear_board();
                maint();
               // mainM();
@@ -141,7 +140,7 @@ var movimiento = (function(){
           let dy = -10;
           jugadoresViejos = {x:jugador.x,y:jugador.y};
           if(!(comprobar_bordesy(jugador.y + dy))){
-                  nueva_posicion = {x: jugador.x + dx, y: jugador.y + dy}
+                  jugador = {x: jugador.x + dx, y: jugador.y + dy}
                   clear_board();
                   maint();
                  // mainM();

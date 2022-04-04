@@ -6,7 +6,7 @@ const GameCanva = document.getElementById("gameCanvas");
 const GameCanva_ctx = GameCanvas.getContext("2d");
 const movement = [-10, 10]
 
-let url2 = "https://adventuremap.herokuapp.com";
+let url2 = "https://adventuremap.herokuapp.com/";
 let url1 = "http://localhost:8080/";
 
 var booleans = [];
@@ -16,7 +16,7 @@ var list_a = [];
 
 
 function getMonstruos(){
-  $.get(url2+"/AdventureMap/monstruos",function(data){
+  $.get(url2+"AdventureMap/monstruos",function(data){
       //console.log(data);
       var monstruos = data.map(function(monstruo){
         monster = {x:monstruo.x, y:monstruo.y}
