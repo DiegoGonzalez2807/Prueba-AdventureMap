@@ -100,7 +100,7 @@ public class appAPIController {
         Tuple p;
         try {
             p = services.getPersonaje(jugador);
-            System.out.println(services.getPersonaje(jugador));
+           // System.out.println(services.getPersonaje(jugador));
             mensaje = new ResponseEntity<>(p,HttpStatus.ACCEPTED);
         } catch (AdventureMapServicesPersistenceException e) {
             // TODO Auto-generated catch block

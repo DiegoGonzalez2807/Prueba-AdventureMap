@@ -15,6 +15,7 @@ import edu.escuelaing.arsw.persistence.AdventureMapPersistenceException;
 import edu.escuelaing.arsw.services.AdventureMapServices;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -32,8 +33,10 @@ public class StompMessageHandler {
     @Autowired
     AdventureMapServices ams;
 
+    boolean count = false;
     ArrayList<Jugador> jugadores = new ArrayList<>();
     ArrayList<Monstruo> monstruos = new ArrayList<>();  
+    ConcurrentHashMap<String,String> ataques = new ConcurrentHashMap<>();
 
     @MessageMapping("/map/{nombre}")
     public void handleIngresarJugador(@DestinationVariable String nombre, Tuple coordenada){
@@ -62,26 +65,32 @@ public class StompMessageHandler {
         try {
             p = ams.getPersonaje(new Tuple(origen));
             ams.moverPersonaje(p, destino);
-            System.out.println("Jugadores: " + ams.getJugadores());
+            //System.out.println("Jugadores: " + ams.getJugadores());
             msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
            // msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
            // msgt.convertAndSend("/App/jugador/movimiento."+origen,destino);
         } catch (AdventureMapServicesPersistenceException e) {
+            //SI SE QUIERE ATACAR Y AUN NO ESTA EN ATAQUE
             if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
+                
+                System.out.println("ESTE ES EL ORIGEN"+origen);
+                ataques.put(origen+",("+destino.getX()+","+destino.getY()+")", "EN PELEA");
+                System.out.println("ESTOS SON LOS ATAQUES"+ataques);
+                System.out.println("ESTE ES EL COUNT" + count);
                 //Tuple con las ubicaciones del personaje a mover y el personaje a atacar
                 ArrayList<Tuple> ataques = new ArrayList<Tuple>();
-                System.out.println("Origen: "+origen);
-                System.out.println("Nuevas: "+ p.getCoordenadas()+"\n");
+                //System.out.println("Origen: "+origen);
+                //System.out.println("Nuevas: "+ p.getCoordenadas()+"\n");
                 ataques.add(new Tuple(origen));
                 ataques.add(destino);
-                System.out.println(ataques.toString());
-                System.out.println("Jugadores: " + ams.getJugadores());
+               // System.out.println(ataques.toString());
+               // System.out.println("Jugadores: " + ams.getJugadores());
                 //msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
                 //msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
                 msgt.convertAndSend("/App/pelea/",ataques);
-            }else{
-                e.printStackTrace();
             }
+            //SI ES UN ERROR EXTERNO
+            else{e.printStackTrace();}
         }
     }
 
