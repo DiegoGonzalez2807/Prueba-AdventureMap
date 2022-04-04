@@ -55,19 +55,12 @@
         // main();
         // mainM();
         // maint();
-        stompClient.send("/App/map/mover/"+h,{},JSON.stringify(nueva_posicion));
-        var z = "(" + nueva_posicion.x + ","+  nueva_posicion.y + ")";
-        $.get(url3+"AdventureMap/personajes/"+z,function(data){
-            if(data == undefined){
-                jugador = nueva_posicion;
-            }
-        });
+        stompClient.send("/App/map/mover/"+h,{},JSON.stringify(getJugador()));
         count +=1;
 
-
     }
-    
-    
+
+
     /**
      * Funcion generada para crear el tablero de juego, sus monstruos,
      * jugadores entre otros elementos.
@@ -80,7 +73,7 @@
 
     /**
      * Funcion generada para iniciar el mapa. Esta función es la primera
-     * en ejecutar apenas se entra en Mapa.html. Se hace las conexiones con 
+     * en ejecutar apenas se entra en Mapa.html. Se hace las conexiones con
      * los topicos y se pone en escucha cuando se oprima un boton
      */
     function init(){
@@ -95,13 +88,13 @@
      */
     function getPlayerInCanva(){
         console.log(name)
-        console.log("ESTE ES EL JUGADOR"+name);4
+        console.log("ESTE ES EL JUGADOR"+name);
         stompClient.send("/App/map/"+name,{},JSON.stringify(getJugador()));
     }
 
 
     /**
-     * Funcion generada para conectarse a STOMP, así como 
+     * Funcion generada para conectarse a STOMP, así como
      * poder suscribirse a los topicos que se crearon
      * como canales de escucha a eventos o peticiones
      */
@@ -124,7 +117,7 @@
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
              stompClient.subscribe("/App/pelea/", function(eventbody){
                  var personaje = JSON.parse(eventbody.body);
-                 jugador = getJugadorVie();
+                 jugador = getJugador();
                  enemigo = personaje[1];
                  console.log("YO SOY JUGADOR"+JSON.stringify(jugador));
                  console.log("YO SOY ENEMIGO"+JSON.stringify(enemigo));
@@ -147,11 +140,11 @@
                  console.log("H2 ES "+h2)
                  stompClient.send("/App/atacando",{},h1);
                  stompClient.send("/App/atacando",{},h2);
-                 $.get(url4+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                 $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
                  });
-                 $.get(url4+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                 $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 });
@@ -163,7 +156,7 @@
                 $(".movement").prop('disabled', true);
              })
             getElementsTablero();
-      });      
+      });
     };
 
 
@@ -195,22 +188,22 @@
     function actualizarEstadisticas(){
         console.log("SE ESTA ENTRANDO A ACTUALIZAR ESTADISTICAS")
         if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
-            $.get(url4+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                 console.log("Atacante");
                 $("#vidaP").text("vidaP: "+data.x)
                 $("#ataqueP").text("ataqueP: "+" "+data.y)
             });
-            $.get(url4+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                 $("#vidaE").text("vidaE: "+" "+data.x)
                 $("#ataqueE").text("ataqueE: "+" "+data.y)
             });
         }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
             console.log("Enemigo");
-            $.get(url4+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                 $("#vidaP").text("vidaP: "+" "+data.x)
                 $("#ataqueP").text("ataqueP: "+" "+data.y)
             });
-            $.get(url4+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                 $("#vidaE").text("vidaE: "+" "+data.x)
                 $("#ataqueE").text("ataqueE: "+" "+data.y)
             });
