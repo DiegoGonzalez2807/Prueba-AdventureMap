@@ -16,7 +16,7 @@ var list_a = [];
 
 
 function getMonstruos(){
-  $.get(url2+"AdventureMap/monstruos",function(data){
+  $.get(url2+"/AdventureMap/monstruos",function(data){
       //console.log(data);
       var monstruos = data.map(function(monstruo){
         monster = {x:monstruo.x, y:monstruo.y}
