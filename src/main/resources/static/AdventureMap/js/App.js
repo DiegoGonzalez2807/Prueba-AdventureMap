@@ -191,7 +191,7 @@
                 $("#vidaE").text("vidaE: "+" "+data.x)
                 $("#ataqueE").text("ataqueE: "+" "+data.y)
             });
-        }else if(getJugadorVie().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
+        }else if(getJugador().x == personaje[1].x && getJugador().y == personaje[1].y){
             console.log("Enemigo");
             $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                 $("#vidaP").text("vidaP: "+" "+data.x)
