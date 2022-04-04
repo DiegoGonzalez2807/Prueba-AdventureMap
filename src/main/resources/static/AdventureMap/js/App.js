@@ -126,11 +126,7 @@
                     h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
                  }
                  //SI SOY ENEMIGO
-<<<<<<< HEAD
                  else if(getJugador().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
-=======
-                 else if(getJugador().x == personaje[1].x && getJugador().y == personaje[1].y){
->>>>>>> 5604ff8b51906bf36f0009f80f5e899c4b0aa00c
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
