@@ -4,6 +4,11 @@ Proyecto final ARSW 2022-1 Adventure Map
 # Adventure-Map
 Proyecto final ARSW 2022-1 Adventure Map
 
+# Integrantes
+Diego Alejandro González
+Eduardo Ospina Mejia
+Cristian Andrés Castellanos
+
 [Despliegue](https://adventuremap.herokuapp.com/AdventureMap/Index.html)
 
 ### Diagrama de actividades  
@@ -83,12 +88,18 @@ Revisando el nodo Heroku Deployment, este contiene los siguientes componentes:
 
 ### Diagrama de Componentes
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/Components.png)
+Para el nodo de Web Application, este requiere los servicios de WebSockets y de REST para tener todas las funcionalidades y elementos que requiere la interfaz de mapa.
+El servicio de webSockets le ofrece al nodo Web las funcionalidades necesarias para el envío, suscripción y demás funcionalidades que nos puede ofrecer STOMP. Sin embargo, el componente de WebSockets requiere de funcionalidades en el backend para poder hacer las funcionalidades que le piden actualice en el frontend. Para eso le ofrecemos los servicios de AdventureMapServices, el cuál lo conecta con todas las funciones que tienen definidas las entidades, tales como "MoverJugador" en la entidad de tablero.
+El otro componente que nos ofrece los servicios es SimpMessageTemplate, el cuál nos ayuda a enviar desde el backend un mensaje a un tópico definido.
 
 
 ### Diagramas de Secuencia 
 ![DiagramaActividades](https://github.com/2022-1-AdventureMap-ARSW/Adventure-Map/blob/main/Img/DieagramaSecuenciaCrear.png)
 
 
+
+### Explicación Frontend
+Para el frontend llegamos a usar una combinación de HTML y JavaScript para manejar las peticiones hacia el backend y poder tener todas las interfaces correctamente creadas y con sus utilidades necesarias para el juego. Con este modelo buscamos facilitar la conexión al backend, para el manejo de datos, manejo de cambios y el control de peleas. Lo separamos en diferentes clases con sus propios propositos. Separadas en diferentes funcionalidades, como el dibujo de personajes y monstruos por separado, la creacion de la conexión que los diferentes tópicos y el envío de mensajes a estos mismos. Gracias a esta conexión al backend, es que logramos manejar el cambio de posiciones y de daño a los diferentes jugadores que entren al juego.
 
 
 
