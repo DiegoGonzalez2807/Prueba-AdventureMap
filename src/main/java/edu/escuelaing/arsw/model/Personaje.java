@@ -93,6 +93,7 @@ public abstract class Personaje extends Thread{
      * Accion que simula el movimiento de un personaje en el tablero de juego
      */
     public void mover(Tuple destino) throws AdventureMapPersistenceException{
+        System.out.println("SE MUEVE");
         tablero.moverPersonaje(coordenadas, destino);
     }
     //Moverse
