@@ -118,6 +118,7 @@
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
              stompClient.subscribe("/App/pelea/", function(eventbody){
                  var personaje = JSON.parse(eventbody.body);
+                 console.log("ESTE ES EL EVENTBODY " + eventbody);
                  enemigo = personaje[1];
                  document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
 
