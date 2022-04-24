@@ -143,11 +143,7 @@ function move_monster(monster) {
         if(!(comprobar_bordesy(monster.y + dy))){
           // En caso que la posicion a la que quiere ir hay otro monstruo
           //Se queda en la misma posicion
-          if(monster.x+dx != null || monster.y+dy != null){
-            console.log("ALGUIEN YA ESTA EN ESA POSICION")
-            console.log(monster.x+dx)
-          }
-          else{
+          
             monster = {x: monster.x + dx, y: monster.y + dy};
             console.log("POSICION DE MONSTRUO "+monster.x,monster.y)
             //console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
@@ -157,7 +153,7 @@ function move_monster(monster) {
             //console.log("ESTE ES MONSTER" + JSON.stringify(monster))
             stompClient.send("/App/map/mover/monstruo/"+h,{},JSON.stringify(monster));
            // console.log(monster);
-          }
+          
         }
       }
 
