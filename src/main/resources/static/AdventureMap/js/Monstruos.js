@@ -141,7 +141,12 @@ function move_monster(monster) {
       }
       if (!(comprobar_bordesx(monster.x + dx))){
         if(!(comprobar_bordesy(monster.y + dy))){
+          // En caso que la posicion a la que quiere ir hay otro monstruo
           monster = {x: monster.x + dx, y: monster.y + dy};
+          if(monster.x !== null || monster.y !== null){
+            monster.x += dx;
+            monster.y += dy;
+          }
           //console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
           //console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
           var h = "(" + mons.x + ","+  mons.y + ")";
