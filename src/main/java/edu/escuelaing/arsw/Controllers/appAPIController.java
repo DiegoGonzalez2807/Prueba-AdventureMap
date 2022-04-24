@@ -39,6 +39,7 @@ public class appAPIController {
         monstruos = services.getMonstruos();
         mensaje = new ResponseEntity<>(monstruos, HttpStatus.ACCEPTED);
         return mensaje;
+        
     }
 
     /**

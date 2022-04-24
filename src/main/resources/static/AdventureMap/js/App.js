@@ -113,6 +113,7 @@
                 drawjugadoresPart(JSON.parse(eventbody.body));
                 console.log(JSON.parse(eventbody.body));
             });
+
             //SUSCRIPCION AL CANAL DE PELEA
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
              stompClient.subscribe("/App/pelea/", function(eventbody){
@@ -120,20 +121,26 @@
                  jugador = getJugadorVie();
                  enemigo = personaje[1];
                  document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
+
                  //SI SOY ATACANTE
                  if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
                  }
+
                  //SI SOY ENEMIGO
                  else if(getJugador().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
                     h1 = "(" + jugador.x + ","+  jugador.y + ")";
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
+
                  //console.log("H1 ES "+h1)
                  //console.log("H2 ES "+h2)
+
                  stompClient.send("/App/atacando",{},h1);
                  stompClient.send("/App/atacando",{},h2);
+                 //console.log("H1 ES "+h1)
+                 //console.log("H2 ES "+h2)
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
@@ -143,6 +150,7 @@
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 });
              });
+
              // SUSCRIPCION PELEA O HUIDA
              stompClient.subscribe("/App/atacando", function(eventbody){
                  console.log("ENTRA A EVENTBODY DE HUIDA O PELEA")
