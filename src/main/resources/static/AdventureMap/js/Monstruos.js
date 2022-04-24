@@ -143,20 +143,20 @@ function move_monster(monster) {
         if(!(comprobar_bordesy(monster.y + dy))){
           // En caso que la posicion a la que quiere ir hay otro monstruo
           //Se queda en la misma posicion
-          monster = {x: monster.x + dx, y: monster.y + dy};
-          console.log("POSICION DE MONSTRUO "+monster.x,monster.y)
-          if(monster.x != null || monster.y != null){
+          if(monster.x+dx != null || monster.y+dy != null){
             console.log("ALGUIEN YA ESTA EN ESA POSICION")
-            monster.x -= dx;
-            monster.y -= dy;
           }
-          //console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
-          //console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
-          var h = "(" + mons.x + ","+  mons.y + ")";
-          //console.log("ESTE ES MONS: "+JSON.stringify(mons))
-          //console.log("ESTE ES MONSTER" + JSON.stringify(monster))
-          stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
-         // console.log(monster);
+          else{
+            monster = {x: monster.x + dx, y: monster.y + dy};
+            console.log("POSICION DE MONSTRUO "+monster.x,monster.y)
+            //console.log("Mons movido: x"+mons.x+ ", y: "+mons.y);
+            //console.log("Monster movido: x"+monster.x+ ", y: "+monster.y);
+            var h = "(" + mons.x + ","+  mons.y + ")";
+            //console.log("ESTE ES MONS: "+JSON.stringify(mons))
+            //console.log("ESTE ES MONSTER" + JSON.stringify(monster))
+            stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
+           // console.log(monster);
+          }
         }
       }
 
