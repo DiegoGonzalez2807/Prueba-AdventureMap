@@ -62,7 +62,7 @@ public class StompMessageHandler {
         try {
             p = ams.getPersonaje(new Tuple(origen));
             if(ams.getPersonaje(destino) != null){
-                System.out.println("YA HAY ALGUIEN AHI");
+                System.out.println("YA HAY ALGUIEN AHI 1");
             }
             else{
                 ams.moverPersonaje(p, destino);
