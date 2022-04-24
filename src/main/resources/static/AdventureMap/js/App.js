@@ -109,7 +109,7 @@
         stompClient.connect({},function(frame){
             console.log('Connected: ' + frame);
             stompClient.subscribe('/App/jugador/map', function(eventbody){
-                console.log("EVENTBODY DE /JUGADOR/MAP")
+                console.log("EVENTBODY DE /JUGADOR/MAP 1")
                 drawjugadoresPart(JSON.parse(eventbody.body));
                 console.log(JSON.parse(eventbody.body));
             });
