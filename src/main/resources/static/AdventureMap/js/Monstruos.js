@@ -155,7 +155,7 @@ function move_monster(monster) {
             var h = "(" + mons.x + ","+  mons.y + ")";
             //console.log("ESTE ES MONS: "+JSON.stringify(mons))
             //console.log("ESTE ES MONSTER" + JSON.stringify(monster))
-            stompClient.send("/App/map/mover/"+h,{},JSON.stringify(monster));
+            stompClient.send("/App/map/mover/monstruo/"+h,{},JSON.stringify(monster));
            // console.log(monster);
           }
         }

@@ -56,6 +56,25 @@ public class StompMessageHandler {
     // public void handleAtacarJugador(){
     // }
 
+    @MessageMapping("/map/mover/monstruo/{origen}")
+    public void handleMoverMonstruo(@DestinationVariable String origen, Tuple destino){
+        Personaje p = null;
+        try {
+            p = ams.getPersonaje(new Tuple(origen));
+            if(ams.getPersonaje(destino) == null){
+                System.out.println("YA HAY ALGUIEN AHI");
+            }
+            else{
+                ams.moverPersonaje(p, destino);
+                System.out.println("Monstruo: " + ams.getJugadores());
+                msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
+            }
+            
+            }
+        catch(Exception ex){ex.printStackTrace();}
+
+    }
+
     @MessageMapping("/map/mover/{origen}")
     public void handleMoverJugador(@DestinationVariable String origen, Tuple destino){
         Personaje p = null;
