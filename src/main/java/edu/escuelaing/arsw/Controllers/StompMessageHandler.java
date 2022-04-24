@@ -74,7 +74,7 @@ public class StompMessageHandler {
                 System.out.println("Nuevas: "+ p.getCoordenadas()+"\n");
                 ataques.add(new Tuple(origen));
                 ataques.add(destino);
-                System.out.println(ataques.toString());
+                System.out.println("ESTOS SON LOS ATAQUES "+ataques.toString());
                 System.out.println("Jugadores: " + ams.getJugadores());
                 //msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
                 //msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());

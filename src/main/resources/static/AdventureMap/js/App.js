@@ -118,19 +118,18 @@
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
              stompClient.subscribe("/App/pelea/", function(eventbody){
                  var personaje = JSON.parse(eventbody.body);
-                 jugador = getJugadorVie();
                  enemigo = personaje[1];
                  document.getElementById("imagenJugador").src ="img/ATACANDO.jpg"
 
                  //SI SOY ATACANTE
                  if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
-                    h1 = "(" + jugador.x + ","+  jugador.y + ")";
+                    h1 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                     h2 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
                  }
 
                  //SI SOY ENEMIGO
                  else if(getJugador().x == personaje[1].x && getJugadorVie().y == personaje[1].y){
-                    h1 = "(" + jugador.x + ","+  jugador.y + ")";
+                    h1 = "(" + personaje[1].x + ","+  personaje[1].y + ")";
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
 
