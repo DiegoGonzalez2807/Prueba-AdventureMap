@@ -144,7 +144,8 @@ function move_monster(monster) {
           // En caso que la posicion a la que quiere ir hay otro monstruo
           //Se queda en la misma posicion
           monster = {x: monster.x + dx, y: monster.y + dy};
-          if(monster.x !== null || monster.y !== null){
+          console.log("POSICION DE MONSTRUO "+monster.x,monster.y)
+          if(monster.x != null || monster.y != null){
             console.log("ALGUIEN YA ESTA EN ESA POSICION")
             monster.x -= dx;
             monster.y -= dy;
