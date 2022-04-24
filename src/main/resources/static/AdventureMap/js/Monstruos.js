@@ -29,7 +29,7 @@ function getMonstruos(){
       //console.log("Lista de monstruos obtenida");
       //console.log(list);
   });
-  if(count%4===0){
+  if(count%1===0){
     count+=1;
     list.forEach(element => {
       move_monster(element);
