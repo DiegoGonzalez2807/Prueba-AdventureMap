@@ -120,9 +120,11 @@ public class appAPIController {
         ResponseEntity<?> mensaje = null;
             Personaje p;
             try {
-                
                 p = services.getPersonaje(new Tuple(personaje));
                 //Creacion de la tupla por la cual se representan las estadisticas del jugador
+                System.out.println("ESTE ES EL PERSONAJE "+personaje);
+                System.out.println(p.getVida());
+                System.out.println(p.getDano());
                 Tuple q = new Tuple(p.getVida(),p.getDano());
                 System.out.println("SOY EL JUGADOR "+personaje+" MI VIDA ES "+p.getVida()+" Y MI DAÑO ES "+p.getDano());
                 mensaje= new ResponseEntity<>(q,HttpStatus.ACCEPTED);
