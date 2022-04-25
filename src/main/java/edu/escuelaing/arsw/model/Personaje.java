@@ -12,6 +12,7 @@ public abstract class Personaje extends Thread{
     protected int vida;
     protected int dano;
     protected Tablero tablero;
+    public boolean ataca = false;
     public static int VIDA = 100;
     public static int DANO = 10;
     private long time = System.currentTimeMillis();
@@ -120,6 +121,14 @@ public abstract class Personaje extends Thread{
     
     public void setCoordenadas(Tuple coordenadas) {
         this.coordenadas = coordenadas;
+    }
+
+    public boolean getAtaca() {
+        return this.ataca;
+    }
+    
+    public void setAtaca(boolean atacaN) {
+        this.ataca = atacaN;
     }
 
 

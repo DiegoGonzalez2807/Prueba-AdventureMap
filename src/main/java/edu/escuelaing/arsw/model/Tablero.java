@@ -47,10 +47,12 @@ public class Tablero {
             Personaje personaje = tablero.remove(begin.toString());
             if(getPersonaje(end) != null){
                 tablero.put(begin.toString(),personaje);
-                if(getPersonaje(end).vida != 100){
+                if(getPersonaje(end).getAtaca()){
                     System.out.println("EL JUGADOR YA ESTA EN ATAQUE");
                 }
                 else{
+                    getPersonaje(end).setAtaca(true);
+                    getPersonaje(begin).setAtaca(true);
                     throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
                 }
             }
