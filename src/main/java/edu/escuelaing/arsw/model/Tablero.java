@@ -47,21 +47,10 @@ public class Tablero {
             Personaje personaje = tablero.remove(begin.toString());
             if(getPersonaje(end) != null){
                 tablero.put(begin.toString(),personaje);
-                if(getPersonaje(end).getAtaca()){
-                    System.out.println("COORDENADAS DEL PERSONAJE "+personaje.coordenadas); 
-                    System.out.println("COORDENADAS DEL PERSONAJE EN END "+getPersonaje(end).coordenadas);
-                    System.out.println("EL JUGADOR YA ESTA EN ATAQUE");
-                }
-                else{
-                    getPersonaje(end).setAtaca(true);
-                    getPersonaje(begin).setAtaca(true);
-                    throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
-                }
+                throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
             }
-            else{
-                personaje.setCoordenadas(end);
-                tablero.put(end.toString(), personaje);
-            }
+            personaje.setCoordenadas(end);
+            tablero.put(end.toString(), personaje);
         }catch(Exception e){
             //e.printStackTrace();
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());

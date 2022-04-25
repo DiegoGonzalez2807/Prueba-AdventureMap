@@ -80,15 +80,15 @@ public class StompMessageHandler {
         Personaje p = null;
         try {
             p = ams.getPersonaje(new Tuple(origen));
-            if(ams.getPersonaje(destino).getAtaca()){
-                System.out.println("NO ATACAAAAA");
+            if(ams.getPersonaje(destino) != null){
+                if(ams.getPersonaje(destino).getAtaca()){
+                    System.out.print("NO DEBE ATACARRRR");
+                }
             }
             else{
                 ams.moverPersonaje(p, destino);
                 System.out.println("Jugadores: " + ams.getJugadores());
                 msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
-            // msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
-            // msgt.convertAndSend("/App/jugador/movimiento."+origen,destino);
             }
         } catch (AdventureMapServicesPersistenceException e) {
             if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
@@ -100,8 +100,6 @@ public class StompMessageHandler {
                 ataques.add(destino);
                 System.out.println("ESTOS SON LOS ATAQUES "+ataques.toString());
                 System.out.println("Jugadores: " + ams.getJugadores());
-                //msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
-                //msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
                 msgt.convertAndSend("/App/pelea/",ataques);
             }else{
                 e.printStackTrace();
