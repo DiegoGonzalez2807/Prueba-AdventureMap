@@ -160,6 +160,8 @@
 
             // SUSCRIPCION PELEA DOS
             stompClient.subscribe("/App/atacando/masDos",function(eventbody){
+                console.log(eventbody);
+                console.log(eventbody.body);
                 var nombreAtacante = JSON.parse(eventbody.body);
                 if(nombreAtacante == name){
                     alert("El destino esta en combate");
