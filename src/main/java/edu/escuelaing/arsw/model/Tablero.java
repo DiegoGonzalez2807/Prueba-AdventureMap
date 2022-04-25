@@ -45,23 +45,16 @@ public class Tablero {
     public void moverPersonaje(Tuple begin, Tuple end) throws AdventureMapPersistenceException{
         try{
             Personaje personaje = tablero.remove(begin.toString());
-            //En caso que haya algun elemento en la posicion a la que se dirige
             if(getPersonaje(end) != null){
                 if(getPersonaje(end).atacando){
-                    System.out.println("EL JUGADOR AL QUE SE QUIERE ATACAR YA ESTA ATACANDO A OTRO1");
+                    System.out.println("EL JUGADOR AL QUE SE QUIERE ATACAR YA ESTA ATACANDO A OTRO");
                 }
-                else{
-                    personaje.atacando = true;
-                    throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
-                }
-                //Se queda quieto el personaje
+                personaje.atacando = true;
                 tablero.put(begin.toString(),personaje);
+                throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
             }
-            //En caso que este vacia la posicion, vaya para alla
-            else{
-                personaje.setCoordenadas(end);
-                tablero.put(end.toString(), personaje);
-            }
+            personaje.setCoordenadas(end);
+            tablero.put(end.toString(), personaje);
         }catch(Exception e){
             //e.printStackTrace();
             throw new AdventureMapPersistenceException(e.getMessage(), e.getCause());
