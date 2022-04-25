@@ -156,7 +156,15 @@
                  console.log("ENTRA A EVENTBODY DE HUIDA O PELEA")
                  console.log(eventbody.body)
                 $(".movement").prop('disabled', true);
-             })
+             });
+
+            // SUSCRIPCION PELEA DOS
+            stompClient.subscribe("/App/atacando/masDos",function(eventbody){
+                var nombreAtacante = JSON.parse(eventbody.body);
+                if(nombreAtacante == name){
+                    alert("El destino esta en combate");
+                }
+            })
             getElementsTablero();
       });      
     };

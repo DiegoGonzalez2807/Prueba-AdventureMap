@@ -97,6 +97,7 @@ public class StompMessageHandler {
             else if(e.getMessage() == AdventureMapPersistenceException.MAS_DE_DOS){
                 System.out.println("YA ESTA EN PELEA EL OTRO 21");
                 ams.moverPersonaje(p, new Tuple(origen));
+                msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
             }
             else{
                 e.printStackTrace();
