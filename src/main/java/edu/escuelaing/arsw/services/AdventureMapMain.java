@@ -39,7 +39,7 @@ public class AdventureMapMain {
             // System.out.println("Coordenadas J1" + j1.getCoordenadas());
             // e.printStackTrace();
             if(e.getMessage().equals(AdventureMapPersistenceException.ATACAR_EXCEPTION)){
-                System.out.println("Se entro en pelea");
+                System.out.println("Se entro en pe lea");
                 try {
                     ams.moverPersonaje(j3, j2.getCoordenadas());
                 } catch (AdventureMapServicesPersistenceException e1) {
