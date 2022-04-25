@@ -48,6 +48,8 @@ public class Tablero {
             if(getPersonaje(end) != null){
                 tablero.put(begin.toString(),personaje);
                 if(getPersonaje(end).getAtaca()){
+                    System.out.println("COORDENADAS DEL PERSONAJE "+personaje.coordenadas); 
+                    System.out.println("COORDENADAS DEL PERSONAJE EN END "+getPersonaje(end).coordenadas);
                     System.out.println("EL JUGADOR YA ESTA EN ATAQUE");
                 }
                 else{
