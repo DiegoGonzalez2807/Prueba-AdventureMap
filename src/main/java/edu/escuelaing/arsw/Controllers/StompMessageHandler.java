@@ -98,6 +98,7 @@ public class StompMessageHandler {
                 System.out.println("YA ESTA EN PELEA EL OTRO 21");
                 ams.moverPersonaje(p, new Tuple(origen));
                 msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
+                msgt.convertAndSend("/App/atacando/masDos",((Jugador)ams.getPersonaje(new Tuple(origen))).getNombre());
             }
             else{
                 e.printStackTrace();
