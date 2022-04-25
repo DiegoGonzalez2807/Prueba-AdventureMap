@@ -46,16 +46,13 @@ public class Tablero {
         try{
             Personaje personaje = tablero.remove(begin.toString());
             if(getPersonaje(end) != null){
-                if(getPersonaje(end).atacando){
-                    System.out.println("EL JUGADOR AL QUE SE QUIERE ATACAR YA ESTA ATACANDO A OTRO");
+                tablero.put(begin.toString(),personaje);
+                if(getPersonaje(end).vida != 100){
+                    System.out.println("EL JUGADOR YA ESTA EN ATAQUE");
                 }
                 else{
-                    personaje.atacando = true;
-                    //throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION); 
+                    throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
                 }
-                //personaje.atacando = true;
-                tablero.put(begin.toString(),personaje);
-                throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
             }
             personaje.setCoordenadas(end);
             tablero.put(end.toString(), personaje);

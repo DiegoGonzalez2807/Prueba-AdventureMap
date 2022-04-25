@@ -12,14 +12,12 @@ public abstract class Personaje extends Thread{
     protected int vida;
     protected int dano;
     protected Tablero tablero;
-    public boolean atacando;
     public static int VIDA = 100;
     public static int DANO = 10;
     private long time = System.currentTimeMillis();
 
     public Personaje(){
         this.dano = DANO;
-        this.atacando = false;
         this.vida = VIDA;
     }
 
