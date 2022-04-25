@@ -85,7 +85,7 @@ public class StompMessageHandler {
                     System.out.print("NO DEBE ATACARRRR");
                 }
             }
-            else{
+            else if(ams.getPersonaje(destino) == null){
                 ams.moverPersonaje(p, destino);
                 System.out.println("Jugadores: " + ams.getJugadores());
                 msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
