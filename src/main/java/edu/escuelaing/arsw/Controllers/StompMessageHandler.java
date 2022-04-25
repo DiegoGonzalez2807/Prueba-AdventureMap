@@ -80,11 +80,16 @@ public class StompMessageHandler {
         Personaje p = null;
         try {
             p = ams.getPersonaje(new Tuple(origen));
-            ams.moverPersonaje(p, destino);
-            System.out.println("Jugadores: " + ams.getJugadores());
-            msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
-           // msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
-           // msgt.convertAndSend("/App/jugador/movimiento."+origen,destino);
+            if(ams.getPersonaje(destino).getAtaca()){
+                System.out.println("NO ATACAAAAA");
+            }
+            else{
+                ams.moverPersonaje(p, destino);
+                System.out.println("Jugadores: " + ams.getJugadores());
+                msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
+            // msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
+            // msgt.convertAndSend("/App/jugador/movimiento."+origen,destino);
+            }
         } catch (AdventureMapServicesPersistenceException e) {
             if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
                 //Tuple con las ubicaciones del personaje a mover y el personaje a atacar
