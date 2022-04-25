@@ -51,11 +51,11 @@ public class Tablero {
                 }
                 else{
                     personaje.atacando = true;
-                    throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION); 
+                    //throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION); 
                 }
                 //personaje.atacando = true;
                 tablero.put(begin.toString(),personaje);
-                //throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
+                throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
             }
             personaje.setCoordenadas(end);
             tablero.put(end.toString(), personaje);
