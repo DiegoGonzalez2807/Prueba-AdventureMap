@@ -93,7 +93,7 @@ public class StompMessageHandler {
                 ataques.add(destino);
                 System.out.println("ESTOS SON LOS ATAQUES "+ataques.toString());
                 System.out.println("Jugadores: " + ams.getJugadores());
-                msgt.convertAndSend("/App/pelea/",ataques);
+                msgt.convertAndSend("/App/pelea/",ataques);}
             else if(e.getMessage() == AdventureMapPersistenceException.MAS_DE_DOS){
                 System.out.println("YA ESTA EN PELEA EL OTRO");
                 ams.moverPersonaje(p, new Tuple(origen));
