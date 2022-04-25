@@ -46,6 +46,9 @@ public class Tablero {
         try{
             Personaje personaje = tablero.remove(begin.toString());
             if(getPersonaje(end) != null){
+                if(getPersonaje(end).getAtaca()){
+                    throw new AdventureMapPersistenceException(AdventureMapPersistenceException.MAS_DE_DOS);
+                }
                 tablero.put(begin.toString(),personaje);
                 throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
             }

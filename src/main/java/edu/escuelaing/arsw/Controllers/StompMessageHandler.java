@@ -76,20 +76,13 @@ public class StompMessageHandler {
     }
 
     @MessageMapping("/map/mover/{origen}")
-    public void handleMoverJugador(@DestinationVariable String origen, Tuple destino){
+    public void handleMoverJugador(@DestinationVariable String origen, Tuple destino) throws AdventureMapServicesPersistenceException{
         Personaje p = null;
         try {
             p = ams.getPersonaje(new Tuple(origen));
-            if(ams.getPersonaje(destino) != null){
-                if(ams.getPersonaje(destino).getAtaca()){
-                    System.out.print("NO DEBE ATACARRRR");
-                }
-            }
-            else if(ams.getPersonaje(destino) == null){
-                ams.moverPersonaje(p, destino);
-                System.out.println("Jugadores: " + ams.getJugadores());
-                msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
-            }
+            ams.moverPersonaje(p, destino);
+            System.out.println("Jugadores: " + ams.getJugadores());
+            msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
         } catch (AdventureMapServicesPersistenceException e) {
             if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
                 //Tuple con las ubicaciones del personaje a mover y el personaje a atacar
@@ -101,6 +94,11 @@ public class StompMessageHandler {
                 System.out.println("ESTOS SON LOS ATAQUES "+ataques.toString());
                 System.out.println("Jugadores: " + ams.getJugadores());
                 msgt.convertAndSend("/App/pelea/",ataques);
+            if(e.getMessage() == AdventureMapPersistenceException.MAS_DE_DOS){
+                System.out.println("YA ESTA EN PELEA EL OTRO");
+                ams.moverPersonaje(p, new Tuple(origen));
+            }
+
             }else{
                 e.printStackTrace();
             }
