@@ -48,7 +48,7 @@ public class Tablero {
             //En caso que haya algun elemento en la posicion a la que se dirige
             if(getPersonaje(end) != null){
                 if(getPersonaje(end).atacando){
-                    System.out.println("EL JUGADOR AL QUE SE QUIERE ATACAR YA ESTA ATACANDO A OTRO");
+                    System.out.println("EL JUGADOR AL QUE SE QUIERE ATACAR YA ESTA ATACANDO A OTRO1");
                 }
                 else{
                     personaje.atacando = true;
