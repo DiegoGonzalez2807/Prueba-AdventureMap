@@ -46,11 +46,14 @@ public class Tablero {
         try{
             Personaje personaje = tablero.remove(begin.toString());
             if(getPersonaje(end) != null){
+                tablero.put(begin.toString(),personaje);
                 if(getPersonaje(end).getAtaca()){
                     throw new AdventureMapPersistenceException(AdventureMapPersistenceException.MAS_DE_DOS);
                 }
-                tablero.put(begin.toString(),personaje);
-                throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
+                else{
+                    throw new AdventureMapPersistenceException(AdventureMapPersistenceException.ATACAR_EXCEPTION);
+
+                }
             }
             personaje.setCoordenadas(end);
             tablero.put(end.toString(), personaje);
