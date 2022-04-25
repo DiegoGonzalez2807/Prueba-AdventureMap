@@ -17,7 +17,7 @@ public class AdventureMapMain {
             j1 = new Jugador(new Tuple(12,78), "Jugador1", ams.getTablero());
             j2 = new Jugador(new Tuple(13,78),"Jugador2",ams.getTablero());
             j3 = new Jugador(new Tuple(14,78),"Jugador3",ams.getTablero());
-            System.out.println(ams.getPersonaje("Jugador1"));
+            // System.out.println(ams.getPersonaje("Jugador1"));
             
             // j1.start();
             // j2.start();
@@ -25,7 +25,7 @@ public class AdventureMapMain {
             // ams.atacar(j1, j2.getCoordenadas());
             // j1.atacar(j2.getCoordenadas());
             // j3.atacar(j2.getCoordenadas());
-            //ams.moverPersonaje(j1, j2.getCoordenadas());
+            ams.moverPersonaje(j1, j2.getCoordenadas());
             // ams.moverPersonaje(j3, j2.getCoordenadas());
             // ams.moverPersonaje(j2, j3.getCoordenadas());
             // ams.moverPersonaje(j3, j1.getCoordenadas());
@@ -36,8 +36,17 @@ public class AdventureMapMain {
             // ams.atacar(j3,j1.getCoordenadas());
 
         } catch (AdventureMapServicesPersistenceException e) {
-            System.out.println("Coordenadas J1" + j1.getCoordenadas());
-            e.printStackTrace();
+            // System.out.println("Coordenadas J1" + j1.getCoordenadas());
+            // e.printStackTrace();
+            if(e.getMessage().equals(AdventureMapPersistenceException.ATACAR_EXCEPTION)){
+                System.out.println("Se entro en pelea");
+                try {
+                    ams.moverPersonaje(j3, j2.getCoordenadas());
+                } catch (AdventureMapServicesPersistenceException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            }
         } catch (AdventureMapPersistenceException e) {
             //TODO Auto-generated catch block
             e.printStackTrace();
