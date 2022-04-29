@@ -170,7 +170,7 @@
             stompClient.subscribe("/App/pelea/jugaVSmons", function(eventbody){
                 console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUO "+eventbody.body);
                 var contrincantes = JSON.parse(eventbody.body);
-                setInterval(ataqueMonstruo(contrincantes[1],contrincantes[0]),2000)
+                setTimeout(ataqueMonstruo(contrincantes[1],contrincantes[0]),2000);
             })
             getElementsTablero();
       });      
@@ -180,6 +180,7 @@
      * Funcion generada para que se envie mensaje donde el jugador recibe el ataque
      */
     function ataqueMonstruo(monstruo,jugador){
+        console.log("ENTRA A ATAQUE MONSTRUO")
         stompClient.send("/App/map/pelea."+monstruo,{},jugador)
     }
 
