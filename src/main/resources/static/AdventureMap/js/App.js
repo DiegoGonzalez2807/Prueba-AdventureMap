@@ -164,11 +164,24 @@
                 if(nombreAtacante == name){
                     alert("El destino esta en combate");
                 }
+            });
+
+            //SUSCRIPCION MONSTRUO VS JUGADOR
+            stompClient.subscribe("/App/pelea/jugaVSmons", function(eventbody){
+                console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUO "+eventbody.body);
+                var contrincantes = JSON.parse(eventbody.body);
+                setInterval(ataqueMonstruo(contrincantes[1],contrincantes[0]),2000)
             })
             getElementsTablero();
       });      
     };
 
+    /**
+     * Funcion generada para que se envie mensaje donde el jugador recibe el ataque
+     */
+    function ataqueMonstruo(monstruo,jugador){
+        stompClient.send("/App/map/pelea."+monstruo,{},jugador)
+    }
 
     /**
      * Funcion generada para atacar al jugador y que se envie la solicitud de ataque al backend JAVA para que

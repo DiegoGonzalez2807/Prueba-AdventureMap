@@ -93,7 +93,16 @@ public class StompMessageHandler {
                 ataques.add(destino);
                 System.out.println("ESTOS SON LOS ATAQUES "+ataques.toString());
                 System.out.println("Jugadores: " + ams.getJugadores());
-                msgt.convertAndSend("/App/pelea/",ataques);}
+                msgt.convertAndSend("/App/pelea/",ataques);
+                //IDEA PARA ATAQUE DE MONSTRUOS
+                if(ams.getPersonaje(destino).getClass() == Monstruo.class){
+                    //En caso que sea un monstruo, cada 2 segundos se ataca al jugador
+                    //Se empieza manejando esto en el front, donde JS tiene funcion para
+                    //que cada cierto tiempo se ejecute la función.}
+                    System.out.println("PELEA CONTRA EL MONSTRUO");
+                    msgt.convertAndSend("/App/pelea/jugaVSmons",ataques);
+                }
+            }
             else if(e.getMessage() == AdventureMapPersistenceException.MAS_DE_DOS){
                 System.out.println("YA ESTA EN PELEA EL OTRO 21");
                 ams.moverPersonaje(p, new Tuple(origen));
