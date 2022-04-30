@@ -61,14 +61,19 @@ public class StompMessageHandler {
         Personaje p = null;
         try {
             p = ams.getPersonaje(new Tuple(origen));
-            if(ams.getPersonaje(destino) != null){
-                System.out.println("YA HAY ALGUIEN AHI 1");
+            if(p.getAtaca()){
+                System.out.println("NO SE PUEDE MOVER, ESTA EN COMBATE");
             }
             else{
-                ams.moverPersonaje(p, destino);
-                System.out.println("Monstruo: " + ams.getJugadores());
-                msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
-            }
+                if(ams.getPersonaje(destino) != null){
+                    System.out.println("YA HAY ALGUIEN AHI 1");
+                }
+                else{
+                    ams.moverPersonaje(p, destino);
+                    System.out.println("Monstruo: " + ams.getJugadores());
+                    msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
+                    }
+                }
             
             }
         catch(Exception ex){ex.printStackTrace();}
@@ -100,6 +105,7 @@ public class StompMessageHandler {
                     //Se empieza manejando esto en el front, donde JS tiene funcion para
                     //que cada cierto tiempo se ejecute la función.}
                     System.out.println("PELEA CONTRA EL MONSTRUO");
+                    
                     msgt.convertAndSend("/App/pelea/jugaVSmons",ataques);
                 }
             }
