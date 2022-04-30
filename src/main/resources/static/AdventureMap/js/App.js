@@ -170,10 +170,9 @@
             stompClient.subscribe("/App/pelea/jugaVSmons", function(eventbody){
                 console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUO "+eventbody.body);
                 var contrincantes = JSON.parse(eventbody.body);
-                console.log(contrincantes)
-                console.log("MONSTRUO "+contrincantes[1])
-                console.log("JUGADOR "+contrincantes[0])
-                setInterval(ataqueMonstruo(contrincantes[1],contrincantes[0]),2000);
+                var monstruo = "(" + contrincantes[1].x + ","+  contrincantes[1].y + ")";
+                var jugador = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
+                setInterval(ataqueMonstruo(monstruo,jugador),2000);
             })
             getElementsTablero();
       });      
