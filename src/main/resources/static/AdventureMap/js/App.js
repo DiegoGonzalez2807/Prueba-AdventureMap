@@ -174,7 +174,7 @@
                 var jugador = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
                 console.log(monstruo)
                 console.log(jugador)
-                setInterval(ataqueMonstruo(monstruo,jugador),1000);
+                setInterval(ataqueMonstruo(monstruo,jugador),2000);
             })
             getElementsTablero();
       });      
