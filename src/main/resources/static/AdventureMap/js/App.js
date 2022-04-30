@@ -176,7 +176,7 @@
                 jugador1 = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
                 console.log(monstruo1)
                 console.log(jugador1)
-                setInterval(stompClient.send("/App/map/pelea."+monstruo1,{},jugador1),2000);
+                setInterval('ataqueMonstruo()',2000);
             })
             getElementsTablero();
       });      
