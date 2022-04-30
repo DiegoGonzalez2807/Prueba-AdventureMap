@@ -172,6 +172,8 @@
                 var contrincantes = JSON.parse(eventbody.body);
                 var monstruo = "(" + contrincantes[1].x + ","+  contrincantes[1].y + ")";
                 var jugador = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
+                console.log(monstruo)
+                console.log(jugador)
                 setInterval(ataqueMonstruo(monstruo,jugador),2000);
             })
             getElementsTablero();
