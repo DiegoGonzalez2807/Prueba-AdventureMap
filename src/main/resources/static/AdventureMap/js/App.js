@@ -1,5 +1,7 @@
     //Variables generales
     var name;
+    var monstruo;
+    var jugador;
     var stompClient;
     var direction;
     var enemigo = {x:0,y:0};
@@ -170,11 +172,11 @@
             stompClient.subscribe("/App/pelea/jugaVSmons", function(eventbody){
                 console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUO "+eventbody.body);
                 var contrincantes = JSON.parse(eventbody.body);
-                var monstruo = "(" + contrincantes[1].x + ","+  contrincantes[1].y + ")";
-                var jugador = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
+                monstruo = "(" + contrincantes[1].x + ","+  contrincantes[1].y + ")";
+                jugador = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
                 console.log(monstruo)
                 console.log(jugador)
-                setInterval(ataqueMonstruo(monstruo,jugador),2000);
+                setInterval(ataqueMonstruo(),2000);
             })
             getElementsTablero();
       });      
@@ -183,7 +185,7 @@
     /**
      * Funcion generada para que se envie mensaje donde el jugador recibe el ataque
      */
-    function ataqueMonstruo(monstruo,jugador){
+    function ataqueMonstruo(){
         console.log("ENTRA A ATAQUE MONSTRUO")
         stompClient.send("/App/map/pelea."+monstruo,{},jugador)
     }
