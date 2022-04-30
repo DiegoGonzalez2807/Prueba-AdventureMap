@@ -126,7 +126,7 @@ public class appAPIController {
                 //System.out.println(p.getVida());
                 System.out.println(p.getDano());
                 Tuple q = new Tuple(p.getVida(),p.getDano());
-                System.out.println("SOY EL JUGADOR "+personaje+" MI VIDA ES "+p.getVida()+" Y MI DAÑO ES "+p.getDano());
+                System.out.println("SOY EL JUGADOOR "+personaje+" MI VIDA ES "+p.getVida()+" Y MI DAÑO ES "+p.getDano());
                 mensaje= new ResponseEntity<>(q,HttpStatus.ACCEPTED);
             } catch (AdventureMapServicesPersistenceException e) {
                 // TODO Auto-generated catch block
