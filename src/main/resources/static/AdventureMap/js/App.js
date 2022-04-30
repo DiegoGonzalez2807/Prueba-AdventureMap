@@ -193,6 +193,7 @@
     function atacarJugador(){
         console.log("YO SOY EL "+h1)
         console.log("EL ENEMIGO ES "+h2)
+        console.log(h1+" ATACA A "+h2)
         stompClient.send("/App/map/pelea."+h1,{},h2);
     }
 
