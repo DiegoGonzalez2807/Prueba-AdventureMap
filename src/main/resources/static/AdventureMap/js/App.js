@@ -151,7 +151,7 @@
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 });
-                //estadoJugador(h1);
+                estadoJugador(h1);
              });
 
              // SUSCRIPCION PELEA O HUIDA
@@ -180,7 +180,6 @@
                 setInterval('ataqueMonstruo()',2000);
             })
             getElementsTablero();
-            estadoJugador(h1);
       });      
     };
 
