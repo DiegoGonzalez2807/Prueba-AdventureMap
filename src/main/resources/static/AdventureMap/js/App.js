@@ -180,8 +180,20 @@
                 setInterval('ataqueMonstruo()',2000);
             })
             getElementsTablero();
+            estadoJugador(h1);
       });      
     };
+
+    /**
+     * Funcion generada para revisar el estado del jugador llamandolo desde el API REST.
+     * En este caso el valor debe ser un booleano
+     * @param {Jugador} jugador 
+     */
+    function estadoJugador(jugador){
+        $.get(url2+"/AdventureMap/estado/"+jugador,function(data){
+            console.log(data)
+        });
+    }
 
     /**
      * Funcion generada para que se envie mensaje donde el jugador recibe el ataque
