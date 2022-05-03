@@ -170,7 +170,7 @@
 
             //SUSCRIPCION MONSTRUO VS JUGADOR
             stompClient.subscribe("/App/pelea/jugaVSmons", function(eventbody){
-                console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUO "+eventbody.body);
+                console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUOO "+eventbody.body);
                 var contrincantes = JSON.parse(eventbody.body);
                 monstruo1 = "(" + contrincantes[1].x + ","+  contrincantes[1].y + ")";
                 jugador1 = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
