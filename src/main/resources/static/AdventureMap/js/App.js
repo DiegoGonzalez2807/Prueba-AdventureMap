@@ -171,7 +171,7 @@
 
             //SUSCRIPCION MONSTRUO VS JUGADOR
             stompClient.subscribe("/App/pelea/jugaVSmons", function(eventbody){
-                console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUOO "+eventbody.body);
+                console.log("EVENTBODY PELEA ENTRE JUGADOR Y MONSTRUO "+eventbody.body);
                 var contrincantes = JSON.parse(eventbody.body);
                 monstruo1 = "(" + contrincantes[1].x + ","+  contrincantes[1].y + ")";
                 jugador1 = "(" + contrincantes[0].x + ","+  contrincantes[0].y + ")";
@@ -190,9 +190,7 @@
      */
     function estadoJugador(jugador){
         $.get(url2+"/AdventureMap/estado"+jugador,function(data){
-            if(data){
-                console.log("ES TRUE")
-            }
+            console.log(data)
         });
     }
 
