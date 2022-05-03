@@ -151,6 +151,7 @@
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 });
+                estadoJugador(h1);
              });
 
              // SUSCRIPCION PELEA O HUIDA
@@ -181,6 +182,19 @@
             getElementsTablero();
       });      
     };
+
+    /**
+     * Funcion generada para revisar el estado del jugador llamandolo desde el API REST.
+     * En este caso el valor debe ser un booleano
+     * @param {Jugador} jugador 
+     */
+    function estadoJugador(jugador){
+        $.get(url2+"/AdventureMap/estado"+jugador,function(data){
+            if(data){
+                console.log("ES TRUE")
+            }
+        });
+    }
 
     /**
      * Funcion generada para que se envie mensaje donde el jugador recibe el ataque
