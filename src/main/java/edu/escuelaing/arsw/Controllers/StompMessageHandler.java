@@ -131,13 +131,17 @@ public class StompMessageHandler {
             ataques.add(new Tuple(enemigo));
             p = ams.getPersonaje(new Tuple(propio));
             ams.atacar(p, new Tuple(enemigo));
+        } catch (AdventureMapServicesPersistenceException e) {
+            if(e.getMessage() == "Ha muerto"){
+                System.out.println("JUGADOR HA MUERTO");
+
+            }
+            e.printStackTrace();
+        }
+        finally{
             msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
             msgt.convertAndSend("/App/monstruo/map",ams.getMonstruos());
             msgt.convertAndSend("/App/pelea/",ataques);//Envia el evento para actualizar las estadisticas
-            
-        } catch (AdventureMapServicesPersistenceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 
