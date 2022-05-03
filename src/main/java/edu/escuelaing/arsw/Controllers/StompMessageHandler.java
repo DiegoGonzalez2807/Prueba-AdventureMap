@@ -134,7 +134,6 @@ public class StompMessageHandler {
         } catch (AdventureMapServicesPersistenceException e) {
             if(e.getMessage() == "Ha muerto"){
                 System.out.println("JUGADOR HA MUERTO");
-
             }
             e.printStackTrace();
         }
