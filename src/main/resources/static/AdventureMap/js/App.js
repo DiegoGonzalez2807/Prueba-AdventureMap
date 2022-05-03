@@ -151,7 +151,6 @@
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 });
-                estadoJugador(h1);
              });
 
              // SUSCRIPCION PELEA O HUIDA

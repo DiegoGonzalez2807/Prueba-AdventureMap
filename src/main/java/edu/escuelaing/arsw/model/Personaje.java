@@ -11,6 +11,7 @@ public abstract class Personaje extends Thread{
     protected Tuple coordenadas;
     protected int vida;
     protected int dano;
+    protected boolean vivo = true;
     protected Tablero tablero;
     public boolean ataca = false;
     public static int VIDA = 100;
@@ -86,6 +87,7 @@ public abstract class Personaje extends Thread{
         this.vida -= dano;
         System.out.println("Vida Restante de "+this.coordenadas +": " +this.vida);
         if(this.vida<=0){
+            this.vivo = false;
             throw new AdventureMapPersistenceException(AdventureMapPersistenceException.EXCEPCTION_MUERTEJUGADOR);
         }
     }
@@ -129,6 +131,10 @@ public abstract class Personaje extends Thread{
     
     public void setAtaca(boolean atacaN) {
         this.ataca = atacaN;
+    }
+
+    public boolean getVivo(){
+        return this.vivo;
     }
 
 

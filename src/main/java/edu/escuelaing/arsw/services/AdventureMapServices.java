@@ -30,6 +30,7 @@ public class AdventureMapServices {
     private static final int tTablero = 290;
     private ArrayList<Tuple> monstruos;
     private ArrayList<Tuple> jugadores;
+    private Collection<Personaje> personajes;
 
     /**
      * Funcion generada para crear el tablero de backend. Se inicia
@@ -132,7 +133,7 @@ public class AdventureMapServices {
     }
 
     public void reloadPersonajes(){
-        Collection<Personaje> personajes =  tablero.getTablero().values();
+        personajes =  tablero.getTablero().values();
         monstruos = new ArrayList<Tuple>();
         jugadores = new ArrayList<Tuple>();
         //System.out.println(personajes);
@@ -154,6 +155,14 @@ public class AdventureMapServices {
     public ArrayList<Tuple> getJugadores(){
         reloadPersonajes();
         return this.jugadores;
+    }
+
+    public Collection<Personaje> getPersonajes(){
+        return this.personajes;
+    }
+
+    public void quitarPersonaje(Personaje p){
+        personajes.remove(p);
     }
     
     public Personaje getPersonaje(Tuple personaje) throws AdventureMapServicesPersistenceException{

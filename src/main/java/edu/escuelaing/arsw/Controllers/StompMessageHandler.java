@@ -132,8 +132,9 @@ public class StompMessageHandler {
             p = ams.getPersonaje(new Tuple(propio));
             ams.atacar(p, new Tuple(enemigo));
         } catch (AdventureMapServicesPersistenceException e) {
-            if(e.getMessage() == "Ha muerto"){
+            if(e.getMessage() == AdventureMapPersistenceException.EXCEPCTION_MUERTEJUGADOR){
                 System.out.println("JUGADOR HA MUERTO");
+                quitarJugador();
             }
             e.printStackTrace();
         }
@@ -149,6 +150,17 @@ public class StompMessageHandler {
         System.out.println("ENTRA A ATACANDO, NUEVO TOPICO ");
         msgt.convertAndSend("/App/peleando",jsonPropio);
 
+    }
+
+    /**
+     * Funcion generada para quitar un personaje en caso que este muerto
+     */
+    public void quitarJugador(){
+        for(Personaje p : ams.getPersonajes()){
+            if(!p.getVivo()){
+                ams.quitarPersonaje(p);
+            }
+        }
     }
 
 
