@@ -180,6 +180,7 @@
                 setInterval('ataqueMonstruo()',2000);
             })
             getElementsTablero();
+            estadoJugador(h1);
       });      
     };
 
@@ -189,7 +190,7 @@
      * @param {Jugador} jugador 
      */
     function estadoJugador(jugador){
-        $.get(url2+"/AdventureMap/estado"+jugador,function(data){
+        $.get(url2+"/AdventureMap/estado/"+jugador,function(data){
             console.log(data)
         });
     }
