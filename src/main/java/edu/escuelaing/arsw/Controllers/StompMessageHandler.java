@@ -126,7 +126,7 @@ public class StompMessageHandler {
         Personaje p;
         ArrayList<Tuple> ataques = new ArrayList<Tuple>();
         try {
-            System.out.println("Se entra en conflicto");
+            System.out.println("Se entra en conflictoo");
             ataques.add(new Tuple(propio));
             ataques.add(new Tuple(enemigo));
             p = ams.getPersonaje(new Tuple(propio));
