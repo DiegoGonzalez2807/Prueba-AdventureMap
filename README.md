@@ -118,7 +118,7 @@ Cuando por problemas en el sistema ocasionen fallos al hacer uso de la aplicacio
 - Artefacto: El sistema.  
 - Respuesta: Restablecer su operacion con normalidad y recuperar los datos afectados.  
 - Medida de respuesta: En un tiempo no superior a 10 seg.  
-## 
+## Mantenibilidad
 Cuando un desarrollador genere cambios en el codigo, bajo todos los casos, cuando el programa SonarQube analice el codigo, este debe tener una valoracion mínimo de B.
 - Origen: Desarrollador.
 - Estimulo: Cambios en el codigo.
