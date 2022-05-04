@@ -217,8 +217,11 @@
         if(subscribePelea != null){
             subscribePelea.unsubscribe();
             console.log("SE DESUBSCRIBE DE LA PELEA ");
-            document.getElementById("imagenJugador").prop('disabled',true);
-            document.getElementById("vidaE").prop('disabled',true);
+            document.getElementById("imagenJugador").src = "img/CAMINANDO.jpg";
+            $("#vidaP").text("vidaP: ");
+            $("#ataqueP").text("ataqueP: ");
+            $("#vidaE").text("vidaE: ");
+            $("#ataqueE").text("ataqueE: ");
 
         }
     } 
