@@ -157,7 +157,7 @@
 
              // SUSCRIPCION PELEA O HUIDA
              stompClient.subscribe("/App/atacando", function(eventbody){
-                 console.log("ENTRA A EVENTBODY DE HUIDA O PELEA")
+                 console.log("ENTRA A EVENTBODY DE HUIDA O PELEA1")
                  console.log(eventbody.body)
                 $(".movement").prop('disabled', true);
              });
@@ -212,40 +212,7 @@
         if(subscribePelea != null){
             subscribePelea.unsubscribe();
         }
-    }
-
-    /**
-     * Funcion generada para actualizar las estadisticas del jugador en cuestion de daño y de vida
-     * Esto se ve reflejado en la interfaz. Donde se actualiza Mapa.html con las estadísticas del jugador
-     */
-    function actualizarEstadisticas(){
-        console.log("SE ESTA ENTRANDO A ACTUALIZAR ESTADISTICAS")
-        if(getJugadorVie().x == personaje[0].x && getJugadorVie().y == personaje[0].y){
-            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
-                console.log("Atacante");
-                $("#vidaP").text("vidaP: "+data.x)
-                $("#ataqueP").text("ataqueP: "+" "+data.y)
-            });
-            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
-                $("#vidaE").text("vidaE: "+" "+data.x)
-                $("#ataqueE").text("ataqueE: "+" "+data.y)
-            });
-        }else if(getJugador().x == personaje[1].x && getJugador().y == personaje[1].y){
-            console.log("Enemigo");
-            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
-                $("#vidaP").text("vidaP: "+" "+data.x)
-                $("#ataqueP").text("ataqueP: "+" "+data.y)
-            });
-            $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
-                $("#vidaE").text("vidaE: "+" "+data.x)
-                $("#ataqueE").text("ataqueE: "+" "+data.y)
-            });
-        }
-        else{
-            console.log("error")
-        }
-    }
-    
+    } 
 
     $(document).ready(
         function(){
