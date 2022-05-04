@@ -216,6 +216,10 @@
         $(".movement").prop('disabled', false);
         if(subscribePelea != null){
             subscribePelea.unsubscribe();
+            console.log("SE DESUBSCRIBE DE LA PELEA");
+            document.getElementById("imagenJugador").prop('disabled',true);
+            document.getElementById("vidaE").prop('disabled',true);
+
         }
     } 
 
