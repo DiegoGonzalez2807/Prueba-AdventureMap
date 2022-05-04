@@ -216,7 +216,7 @@
         $(".movement").prop('disabled', false);
         if(subscribePelea != null){
             subscribePelea.unsubscribe();
-            console.log("SE DESUBSCRIBE DE LA PELEA ");
+            console.log("SE DESUBSCRIBE DE LA PELEA");
             document.getElementById("imagenJugador").src = "img/CAMINANDO.jpg";
             $("#vidaP").text("vidaP: ");
             $("#ataqueP").text("ataqueP: ");
