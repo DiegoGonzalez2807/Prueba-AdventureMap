@@ -119,6 +119,7 @@ public class StompMessageHandler {
                 e.printStackTrace();
             }
         }
+        
     }
 
     @MessageMapping("/map/pelea.{propio}")

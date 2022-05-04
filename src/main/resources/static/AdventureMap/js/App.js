@@ -148,6 +148,7 @@
                  function(err){
                      alert("Usted ha muerto");
                      huirJugador();
+                     window.location.href = "/AdventruMap/Index.html";
                  });
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                     $("#vidaE").text("vidaE: "+" "+data.x);
