@@ -99,8 +99,33 @@ El otro componente que nos ofrece los servicios es SimpMessageTemplate, el cuál
 
 
 ### Explicación Frontend
-Para el frontend llegamos a usar una combinación de HTML y JavaScript para manejar las peticiones hacia el backend y poder tener todas las interfaces correctamente creadas y con sus utilidades necesarias para el juego. Con este modelo buscamos facilitar la conexión al backend, para el manejo de datos, manejo de cambios y el control de peleas. Lo separamos en diferentes clases con sus propios propositos. Separadas en diferentes funcionalidades, como el dibujo de personajes y monstruos por separado, la creacion de la conexión que los diferentes tópicos y el envío de mensajes a estos mismos. Gracias a esta conexión al backend, es que logramos manejar el cambio de posiciones y de daño a los diferentes jugadores que entren al juego.
+Para el frontend llegamos a usar una combinación de HTML y JavaScript para manejar las peticiones hacia el backend y poder tener todas las interfaces correctamente creadas y con sus utilidades necesarias para el juego. Con este modelo buscamos facilitar la conexión al backend, para el manejo de datos, manejo de cambios y el control de peleas. Lo separamos en diferentes clases con sus propios propositos. Separadas en diferentes funcionalidades, como el dibujo de personajes y monstruos por separado, la creacion de la conexión que los diferentes tópicos y el envío de mensajes a estos mismos. Gracias a esta conexión al backend, es que logramos manejar el cambio de posiciones y de daño a los diferentes jugadores que entren al juego.  
 
+## Atributos de calidad  
+### Seguridad  
+Cuando el usuario acceda al juego bajo condiciones normales de funcionamiento no debe serle posible ingresar sin antes iniciar sesion, para asi evitar accesos no autorizado a la aplicacion.  
+ - Origen: Usuario.  
+ - Estimulo: Ingresar a la aplicacion.  
+ - Entorno: En condiciones normales.
+ - Artefacto: Pantalla de inicio del juego
+ - Respuesta: Se debe notificar al usuario que no se puede ingresar sin antes haberse registrado.
+ - Medida de respuesta: ...
+## Disponibilidad 
+Cuando por problemas en el sistema ocasionen fallos al hacer uso de la aplicacion por caida de un servidor, el sistema debe restablecer su operacion con normalidad y recuperar los datos afectados en un tiempo no superior a 10 seg.
+- Origen: Problemas en el sistema.
+- Estimulo: Hacer uso de la aplicacion.
+- Entorno: Caido un servidor.  
+- Artefacto: El sistema.  
+- Respuesta: Restablecer su operacion con normalidad y recuperar los datos afectados.  
+- Medida de respuesta: En un tiempo no superior a 10 seg.  
+## 
+Cuando un desarrollador genere cambios en el codigo, bajo todos los casos, cuando el programa SonarQube analice el codigo, este debe tener una valoracion mínimo de B.
+- Origen: Desarrollador.
+- Estimulo: Cambios en el codigo.
+- Entorno: En todos los casos.
+- Artefacto: SonarQube.
+- Respuesta: Debe retornar el analisis de codigo pertinente.
+- Medidad de respuesta: Valoracion mínimo de B.
 
 
 
