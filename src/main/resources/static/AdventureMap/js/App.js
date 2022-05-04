@@ -118,7 +118,7 @@
 
             //SUSCRIPCION AL CANAL DE PELEA
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
-             stompClient.subscribe("/App/pelea/", function(eventbody){
+             subscribePelea = stompClient.subscribe("/App/pelea/", function(eventbody){
                  var personaje = JSON.parse(eventbody.body);
                  console.log("ESTE ES EL EVENTBODY1 " + eventbody);
                  enemigo = personaje[1];
