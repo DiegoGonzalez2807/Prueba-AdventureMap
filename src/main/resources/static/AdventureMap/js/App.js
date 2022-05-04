@@ -142,14 +142,19 @@
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
-                 }).then(function(err){
+                 }).then(function(){
+                     console-log("Excelente");
+                 },
+                 function(err){
                      alert("Usted ha muerto");
                      huirJugador();
                  });
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
-                }).then(function(err){
+                }).then(function(){
+                    console.log(excelente);
+                },function(err){
                     alert("Ha ganado");
                     huirJugador();
                 });
