@@ -194,7 +194,7 @@
      * Funcion generada para que se envie mensaje donde el jugador recibe el ataque
      */
     function ataqueMonstruo(){
-        console.log("ENTRA A ATAQUE MONSTRUO")
+        console.log("ENTRA A ATAQUE MONSTRUO ")
         stompClient.send("/App/map/pelea."+monstruo1,{},jugador1);
     }
 
