@@ -143,7 +143,7 @@
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
                  }).then(function(){
-                     console-log("Excelente");
+                     console.log("Excelente");
                  },
                  function(err){
                      alert("Usted ha muerto");
