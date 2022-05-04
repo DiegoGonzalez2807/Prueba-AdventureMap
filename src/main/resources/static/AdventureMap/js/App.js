@@ -136,13 +136,9 @@
                     h2 = "(" + personaje[0].x + ","+  personaje[0].y + ")";
                  }
 
-                 //console.log("H1 ES "+h1)
-                 //console.log("H2 ES "+h2)
-
                  stompClient.send("/App/atacando",{},h1);
                  stompClient.send("/App/atacando",{},h2);
                  console.log("H1 ES "+h1)
-                 //console.log("H2 ES "+h2)
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
@@ -181,17 +177,6 @@
             getElementsTablero();
       });      
     };
-
-    /**
-     * Funcion generada para revisar el estado del jugador llamandolo desde el API REST.
-     * En este caso el valor debe ser un booleano
-     * @param {Jugador} jugador 
-     */
-    function estadoJugador(jugador){
-        $.get(url2+"/AdventureMap/estado/"+jugador,function(data){
-            console.log(data)
-        });
-    }
 
     /**
      * Funcion generada para que se envie mensaje donde el jugador recibe el ataque

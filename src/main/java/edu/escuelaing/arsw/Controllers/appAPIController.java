@@ -135,36 +135,4 @@ public class appAPIController {
             }
         return mensaje;
     }
-
-
-    /**
-     * Metodo generado para saber el estado del jugador
-     * Vivo -> Return TRUE
-     * Muerto -> Return FALSE
-     * @param personaje
-     * @return -> Estado (boolean)
-     */
-    @RequestMapping(value="/AdventureMap/estado/{personaje}", method=RequestMethod.GET)
-    public ResponseEntity<?> manejadorEstadoJugador(@PathVariable String personaje){
-        Personaje p;
-        ResponseEntity<?> mensaje = null;
-        try {
-            p = services.getPersonaje(new Tuple(personaje));
-            if(services.comprobarEstadoPersonaje(p)== 0){
-                mensaje = new ResponseEntity<>(false,HttpStatus.ACCEPTED);
-            }
-            else{
-                mensaje = new ResponseEntity<>(true,HttpStatus.ACCEPTED);
-            }
-        } catch (AdventureMapServicesPersistenceException e) {
-            mensaje = new ResponseEntity<>("El estado del personaje no pudo ser enncontrado",HttpStatus.NOT_FOUND);
-            e.printStackTrace();
-        }
-        return mensaje;
-        
-    }
-    
-    
-    
-    
 }
