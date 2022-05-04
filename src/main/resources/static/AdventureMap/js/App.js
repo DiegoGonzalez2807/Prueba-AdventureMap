@@ -153,7 +153,7 @@
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 }).then(function(){
-                    console.log(excelente);
+                    console.log("excelente");
                 },function(err){
                     alert("Ha ganado");
                     huirJugador();
@@ -171,7 +171,7 @@
             stompClient.subscribe("/App/atacando/masDos",function(eventbody){
                 var nombreAtacante = eventbody.body;
                 if(nombreAtacante == name){
-                    alert("El destino esta en combate");
+                    alert("El destino esta en combate ");
                 }
             });
 
