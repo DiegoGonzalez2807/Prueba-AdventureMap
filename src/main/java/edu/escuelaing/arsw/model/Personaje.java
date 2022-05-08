@@ -44,6 +44,7 @@ public abstract class Personaje extends Thread{
                     sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }

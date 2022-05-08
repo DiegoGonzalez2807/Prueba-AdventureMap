@@ -1,4 +1,4 @@
-const url = 'https://adventuremap.herokuapp.com/AdventureMap';
+const url = "https://adventuremap-app.azurewebsites.net/AdventureMap";
 var dataCallBack = [];
 
 /**

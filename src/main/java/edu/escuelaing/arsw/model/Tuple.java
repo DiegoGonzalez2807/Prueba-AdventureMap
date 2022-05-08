@@ -31,8 +31,19 @@ public class Tuple {
     
     @Override
     public boolean equals(Object obj){
+        if (obj == null)
+            return false;
+
+        if (this.getClass() != obj.getClass())
+            return false;
+            
         return this.equals((Tuple)obj);
     }
+
+    @Override
+  public int hashCode() {
+    return x;
+  }
 
     public boolean equals(Tuple other){
         boolean isEquals  =false;

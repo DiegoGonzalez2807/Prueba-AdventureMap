@@ -89,11 +89,9 @@ public class StompMessageHandler {
             System.out.println("Jugadores: " + ams.getJugadores());
             msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
         } catch (AdventureMapServicesPersistenceException e) {
-            if(e.getMessage() == AdventureMapPersistenceException.ATACAR_EXCEPTION){
+            if(e.getMessage().equals(AdventureMapPersistenceException.ATACAR_EXCEPTION)){
                 //Tuple con las ubicaciones del personaje a mover y el personaje a atacar
                 ArrayList<Tuple> ataques = new ArrayList<Tuple>();
-                System.out.println("Origen: "+origen);
-                System.out.println("Nuevas: "+ p.getCoordenadas()+"\n");
                 ataques.add(new Tuple(origen));
                 ataques.add(destino);
                 System.out.println("ESTOS SON LOS ATAQUES "+ataques.toString());
@@ -109,7 +107,7 @@ public class StompMessageHandler {
                     msgt.convertAndSend("/App/pelea/jugaVSmons",ataques);
                 }
             }
-            else if(e.getMessage() == AdventureMapPersistenceException.MAS_DE_DOS){
+            else if(e.getMessage().equals(AdventureMapPersistenceException.MAS_DE_DOS)){
                 System.out.println("YA ESTA EN PELEA EL OTRO 21");
                 ams.moverPersonaje(p, new Tuple(origen));
                 msgt.convertAndSend("/App/jugador/map",ams.getJugadores());
@@ -118,6 +116,9 @@ public class StompMessageHandler {
             else{
                 e.printStackTrace();
             }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
         }
     }
 
@@ -132,7 +133,7 @@ public class StompMessageHandler {
             p = ams.getPersonaje(new Tuple(propio));
             ams.atacar(p, new Tuple(enemigo));
         } catch (AdventureMapServicesPersistenceException e) {
-            if(e.getMessage() == AdventureMapPersistenceException.EXCEPCTION_MUERTEJUGADOR){
+            if(e.getMessage().equals(AdventureMapPersistenceException.EXCEPCTION_MUERTEJUGADOR)){
                 System.out.println("JUGADOR HA MUERTO");
                 quitarJugador();
             }

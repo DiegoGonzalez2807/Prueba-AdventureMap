@@ -22,6 +22,7 @@
     function redirect(data){
         name = data;
         console.log(name);
+        console.log("SI REDEPLOY2");
         window.location = "/AdventureMap/Mapa.html"
     }
 
