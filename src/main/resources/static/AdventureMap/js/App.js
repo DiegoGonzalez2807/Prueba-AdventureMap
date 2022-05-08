@@ -119,7 +119,7 @@
 
             //SUSCRIPCION AL CANAL DE PELEA
             // ESTE CANAL ACTUALIZA LAS ESTADISTICAS DE LOS JUGADORES
-             stompClient.subscribe("/App/pelea/", function(eventbody){
+             subscribePelea = stompClient.subscribe("/App/pelea/", function(eventbody){
                  var personaje = JSON.parse(eventbody.body);
                  console.log("ESTE ES EL EVENTBODY1 " + eventbody);
                  enemigo = personaje[1];
@@ -143,10 +143,22 @@
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
+                 }).then(function(){
+                     console.log("Excelente");
+                 },
+                 function(err){
+                     alert("Usted ha muerto");
+                     huirJugador();
+                     window.location.href = "/AdventruMap/Index.html";
                  });
                  $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
+                }).then(function(){
+                    console.log("excelente");
+                },function(err){
+                    alert("Ha ganado");
+                    huirJugador();
                 });
              });
 
@@ -161,7 +173,7 @@
             stompClient.subscribe("/App/atacando/masDos",function(eventbody){
                 var nombreAtacante = eventbody.body;
                 if(nombreAtacante == name){
-                    alert("El destino esta en combate");
+                    alert("El destino esta en combate ");
                 }
             });
 
@@ -183,7 +195,7 @@
      * Funcion generada para que se envie mensaje donde el jugador recibe el ataque
      */
     function ataqueMonstruo(){
-        console.log("ENTRA A ATAQUE MONSTRUO")
+        console.log("ENTRA A ATAQUE MONSTRUO ")
         stompClient.send("/App/map/pelea."+monstruo1,{},jugador1);
     }
 
@@ -206,6 +218,13 @@
         $(".movement").prop('disabled', false);
         if(subscribePelea != null){
             subscribePelea.unsubscribe();
+            console.log("SE DESUBSCRIBE DE LA PELEA");
+            document.getElementById("imagenJugador").src = "img/CAMINANDO.jpg";
+            $("#vidaP").text("vidaP: ");
+            $("#ataqueP").text("ataqueP: ");
+            $("#vidaE").text("vidaE: ");
+            $("#ataqueE").text("ataqueE: ");
+
         }
     } 
 
