@@ -8,7 +8,7 @@ var dataCallBack = [];
  * @returns 
  */
 function getMonstruos(callback){
-    $.get(url+"/monstruos", function(data){
+    $.get(url1+"/monstruos", function(data){
         dataCallBack = data;
     });
     console.log("ENTR AL CLIENT REQUEST");

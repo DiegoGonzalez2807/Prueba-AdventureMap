@@ -140,7 +140,7 @@
                  stompClient.send("/App/atacando",{},h1);
                  stompClient.send("/App/atacando",{},h2);
                  console.log("H1 ES "+h1)
-                 $.get(url2+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
+                 $.get(url1+"/AdventureMap/personajes/estadisticas/"+h1,function(data){
                      $("#vidaP").text("vidaP: "+data.x);
                      $("#ataqueP").text("ataqueP: "+" "+data.y);
                  }).then(function(){
@@ -151,7 +151,7 @@
                      huirJugador();
                      window.location.href = "/AdventruMap/Index.html";
                  });
-                 $.get(url2+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
+                 $.get(url1+"/AdventureMap/personajes/estadisticas/"+h2,function(data){
                     $("#vidaE").text("vidaE: "+" "+data.x);
                     $("#ataqueE").text("ataqueE: "+" "+data.y);
                 }).then(function(){

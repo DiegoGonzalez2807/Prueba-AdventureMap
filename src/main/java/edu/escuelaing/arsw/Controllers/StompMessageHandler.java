@@ -24,8 +24,21 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 
+//IMPORTS PARA BUS SERVICE 
+import com.azure.messaging.servicebus.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.Arrays;
+import java.util.List;
+
+
 @Controller
 public class StompMessageHandler {
+
+    //VARIABLES DE CONEXION DE BUS DE SERVICIOS
+    static String connectionString = "Endpoint=sb://adventuremapbus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=N2scEpM3nf6CiJ6hPiuy6bxAMmqw6L6S6sOQ16qyUYA=";
+    static String topicName = "app";  
+    static String subName = "jugador";
 
     @Autowired
     SimpMessagingTemplate msgt;
