@@ -7,7 +7,7 @@ const GameCanva_ctx = GameCanvas.getContext("2d");
 const movement = [-10, 10]
 
 let url2 = "https://adventuremap-app.azurewebsites.net/";
-let url1 = "http://20.248.152.16:8080/";
+let url1 = "http://projectarsw.australiaeast.cloudapp.azure.com:8080/";
 
 var booleans = [];
 var jugadores_M = [];
